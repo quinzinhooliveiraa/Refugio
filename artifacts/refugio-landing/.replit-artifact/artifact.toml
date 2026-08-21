@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Refúgio — Landing de validação"
+description = "Landing page de validação para uma comunidade anônima de escuta e apoio entre pessoas, com captação de e-mails e pesquisa de interesse."
+version = "1.0.0"
+id = "artifacts/refugio-landing"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23021
+
+[services.development]
+run = "pnpm --filter @workspace/refugio-landing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/refugio-landing", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/refugio-landing/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23021"
+BASE_PATH = "/"
