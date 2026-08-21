@@ -161,7 +161,7 @@ function Home() {
   const formSection = useReveal();
 
   useEffect(() => {
-    document.title = 'Refúgio — um lugar para ser ouvido';
+    document.title = 'Refúgio — desabafe sem se expor e encontre quem escuta';
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -189,12 +189,12 @@ function Home() {
 
       <section id="top" className="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-8 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-16 md:px-10 md:pb-32 md:pt-16">
         <div className="max-w-2xl">
-          <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">entre na primeira turma</span></div>
-          <h1 className="serif reveal reveal-delay-1 is-visible mt-6 text-[clamp(3.7rem,9vw,7.8rem)] leading-[.87] text-[#183d3b]" data-testid="text-hero-title">Desabafe.<br /><span className="ml-[.38em] text-[#d8785c]">Seja ouvido.</span></h1>
-          <p className="reveal reveal-delay-2 is-visible mt-8 max-w-lg text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:mt-10 md:text-[1.2rem]">Entre na lista de interesse do Refúgio e seja uma das primeiras pessoas a experimentar um espaço anônimo para falar sobre o que pesa — ou estar presente para alguém.</p>
+          <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">comunidade anônima de apoio</span></div>
+          <h1 className="serif reveal reveal-delay-1 is-visible mt-6 text-[clamp(3.7rem,9vw,7.8rem)] leading-[.87] text-[#183d3b]" data-testid="text-hero-title">Não tem com quem<br /><span className="ml-[.38em] text-[#d8785c]">desabafar?</span></h1>
+          <p className="reveal reveal-delay-2 is-visible mt-8 max-w-lg text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:mt-10 md:text-[1.2rem]">No Refúgio, você fala sobre o que está vivendo com um nome anônimo e encontra escuta, ideias e apoio de pessoas reais — sem plateia e sem precisar parecer forte o tempo todo.</p>
           <div className="reveal reveal-delay-3 is-visible mt-9 flex flex-wrap items-center gap-6 md:mt-11">
-            <a href="#entrar" className="button-primary" data-testid="button-hero-join">Quero entrar na lista <ArrowDownRight size={16} /></a>
-            <span className="max-w-[10rem] text-[.7rem] leading-relaxed text-[#183d3b]/55">receba o convite antes da abertura</span>
+            <a href="#entrar" className="button-primary" data-testid="button-hero-join">Quero falar sem me expor <ArrowDownRight size={16} /></a>
+            <span className="max-w-[10rem] text-[.7rem] leading-relaxed text-[#183d3b]/55">entre na lista para receber acesso</span>
           </div>
         </div>
         <HeroArtwork />
@@ -211,9 +211,9 @@ function Home() {
         <div ref={story.ref} className={story.className}>
           <div className="grid gap-12 md:grid-cols-[.72fr_1.28fr] md:gap-24">
             <div>
-              <p className="eyebrow">o que estamos imaginando</p>
-              <h2 className="serif mt-4 max-w-md text-5xl leading-[.95] md:text-6xl">A internet pode caber numa conversa.</h2>
-              <p className="mt-6 max-w-sm text-sm leading-[1.65] text-[#183d3b]/65">O Refúgio nasce de uma pergunta simples: o que mudaria se a nossa presença não precisasse ser uma performance?</p>
+              <p className="eyebrow">a dor que estamos resolvendo</p>
+              <h2 className="serif mt-4 max-w-md text-5xl leading-[.95] md:text-6xl">Você não precisa carregar tudo sozinho.</h2>
+              <p className="mt-6 max-w-sm text-sm leading-[1.65] text-[#183d3b]/65">Quando não existe ninguém por perto — ou quando você não quer mostrar sua vulnerabilidade — ainda deveria existir um lugar para falar e ser ouvido.</p>
             </div>
             <div className="grid gap-0 border-t border-[#183d3b]/20">
               {[
@@ -249,9 +249,9 @@ function Home() {
 
       <section id="entrar" className="mx-auto grid w-full max-w-7xl gap-12 px-5 py-24 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-24 md:px-10 md:py-36">
         <div ref={formSection.ref} className={formSection.className}>
-          <p className="eyebrow">o próximo passo</p>
-          <h2 className="serif mt-4 text-5xl leading-[.93] md:text-7xl">Ajude a dar<br /><span className="text-[#d8785c]">forma ao lugar.</span></h2>
-              <p className="mt-7 max-w-md text-[1.04rem] leading-[1.6] text-[#183d3b]/68">Deixe seu e-mail para receber o convite da primeira abertura e conte como você quer participar: colocando algo para fora, oferecendo apoio, ou fazendo os dois.</p>
+          <p className="eyebrow">se você precisa de um lugar para falar</p>
+          <h2 className="serif mt-4 text-5xl leading-[.93] md:text-7xl">Entre na primeira<br /><span className="text-[#d8785c]">abertura do Refúgio.</span></h2>
+          <p className="mt-7 max-w-md text-[1.04rem] leading-[1.6] text-[#183d3b]/68">Deixe seu e-mail para receber o convite e conte como você quer participar: desabafando, oferecendo apoio, ou fazendo os dois.</p>
           <div className="mt-10 flex items-center gap-4 border-t border-[#183d3b]/15 pt-5 text-xs text-[#183d3b]/56"><span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#183d3b]/25"><Mail size={14} /></span> Seu endereço fica salvo apenas como demonstração local nesta versão.</div>
         </div>
         <SignupForm />
