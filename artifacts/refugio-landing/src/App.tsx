@@ -115,9 +115,9 @@ function SignupForm() {
       <div className="flex min-h-[390px] flex-col justify-between rounded-[1.5rem] bg-[#183d3b] p-6 text-[#f3eee4] md:p-8" data-testid="status-signup-success">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#b7cfc0] text-[#183d3b]"><Check size={22} /></div>
         <div>
-          <p className="eyebrow !text-[#d8785c]">anotado com cuidado</p>
-          <h3 className="serif mt-3 text-4xl leading-[.98]">A gente se encontra do lado de dentro.</h3>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#f3eee4]/70">Seu interesse ficou salvo neste dispositivo. Quando o Refúgio estiver pronto para abrir as portas, vamos te contar.</p>
+          <p className="eyebrow !text-[#d8785c]">você está no começo</p>
+          <h3 className="serif mt-3 text-4xl leading-[.98]">Seu convite está reservado.</h3>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#f3eee4]/70">Quando abrirmos as primeiras vagas, você vai saber antes. Obrigado por ajudar a dar forma a um lugar mais honesto para conversar.</p>
         </div>
         <p className="text-xs text-[#f3eee4]/50">Nenhuma mensagem automática será enviada nesta fase.</p>
       </div>
@@ -127,8 +127,9 @@ function SignupForm() {
   return (
     <form onSubmit={submit} noValidate className="rounded-[1.5rem] border border-[#183d3b]/20 bg-[#f3eee4]/80 p-5 md:p-7" data-testid="form-waitlist">
       <div className="mb-7">
-        <p className="eyebrow">chegue primeiro</p>
-        <h3 className="serif mt-2 text-3xl leading-[1.02]">Quer fazer parte do começo?</h3>
+        <p className="eyebrow">entre na lista de interesse</p>
+        <h3 className="serif mt-2 text-3xl leading-[1.02]">Receba o convite quando o Refúgio abrir.</h3>
+        <p className="mt-3 max-w-md text-sm leading-relaxed text-[#183d3b]/65">Se fizer sentido para você, deixe seu e-mail. Vamos avisar quando houver um primeiro espaço seguro para entrar — e ouvir o que você espera encontrar aqui.</p>
       </div>
       <div className="space-y-2">
         <label htmlFor="refugio-email" className="text-xs font-bold">Seu melhor e-mail</label>
@@ -147,7 +148,7 @@ function SignupForm() {
         </div>
       </fieldset>
       {error && <p id="signup-error" role="alert" className="mt-4 text-xs font-semibold text-[#a7493c]" data-testid="status-signup-error">{error}</p>}
-      <button type="submit" className="button-primary mt-7 w-full" data-testid="button-submit-signup">Quero saber quando abrir <ArrowRight size={16} /></button>
+      <button type="submit" className="button-primary mt-7 w-full" data-testid="button-submit-signup">Quero receber meu convite <ArrowRight size={16} /></button>
       <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[.68rem] leading-relaxed text-[#183d3b]/55"><LockKeyhole size={12} /> Sem feed. Sem exposição. Sem spam.</p>
     </form>
   );
@@ -188,12 +189,12 @@ function Home() {
 
       <section id="top" className="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-8 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-16 md:px-10 md:pb-32 md:pt-16">
         <div className="max-w-2xl">
-          <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">uma ideia em voz baixa</span></div>
-          <h1 className="serif reveal reveal-delay-1 is-visible mt-6 text-[clamp(3.7rem,9vw,7.8rem)] leading-[.87] text-[#183d3b]" data-testid="text-hero-title">Ser ouvido<br /><span className="ml-[.38em] text-[#d8785c]">sem se expor.</span></h1>
-          <p className="reveal reveal-delay-2 is-visible mt-8 max-w-lg text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:mt-10 md:text-[1.2rem]">Refúgio é um espaço anônimo para dividir o que pesa, encontrar escuta de verdade e oferecer apoio — sem curtidas, sem palco, sem precisar sustentar uma versão de si.</p>
+          <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">entre na primeira turma</span></div>
+          <h1 className="serif reveal reveal-delay-1 is-visible mt-6 text-[clamp(3.7rem,9vw,7.8rem)] leading-[.87] text-[#183d3b]" data-testid="text-hero-title">Desabafe.<br /><span className="ml-[.38em] text-[#d8785c]">Seja ouvido.</span></h1>
+          <p className="reveal reveal-delay-2 is-visible mt-8 max-w-lg text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:mt-10 md:text-[1.2rem]">Entre na lista de interesse do Refúgio e seja uma das primeiras pessoas a experimentar um espaço anônimo para falar sobre o que pesa — ou estar presente para alguém.</p>
           <div className="reveal reveal-delay-3 is-visible mt-9 flex flex-wrap items-center gap-6 md:mt-11">
-            <a href="#entrar" className="button-primary" data-testid="button-hero-join">Quero conhecer o Refúgio <ArrowDownRight size={16} /></a>
-            <span className="max-w-[10rem] text-[.7rem] leading-relaxed text-[#183d3b]/55">uma pesquisa de interesse, não uma promessa pronta</span>
+            <a href="#entrar" className="button-primary" data-testid="button-hero-join">Quero entrar na lista <ArrowDownRight size={16} /></a>
+            <span className="max-w-[10rem] text-[.7rem] leading-relaxed text-[#183d3b]/55">receba o convite antes da abertura</span>
           </div>
         </div>
         <HeroArtwork />
@@ -250,7 +251,7 @@ function Home() {
         <div ref={formSection.ref} className={formSection.className}>
           <p className="eyebrow">o próximo passo</p>
           <h2 className="serif mt-4 text-5xl leading-[.93] md:text-7xl">Ajude a dar<br /><span className="text-[#d8785c]">forma ao lugar.</span></h2>
-          <p className="mt-7 max-w-md text-[1.04rem] leading-[1.6] text-[#183d3b]/68">Estamos validando se essa vontade existe antes de construir qualquer coisa. Deixe seu e-mail e diga como você gostaria de participar.</p>
+              <p className="mt-7 max-w-md text-[1.04rem] leading-[1.6] text-[#183d3b]/68">Deixe seu e-mail para receber o convite da primeira abertura e conte como você quer participar: colocando algo para fora, oferecendo apoio, ou fazendo os dois.</p>
           <div className="mt-10 flex items-center gap-4 border-t border-[#183d3b]/15 pt-5 text-xs text-[#183d3b]/56"><span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#183d3b]/25"><Mail size={14} /></span> Seu endereço fica salvo apenas como demonstração local nesta versão.</div>
         </div>
         <SignupForm />

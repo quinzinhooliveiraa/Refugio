@@ -436,15 +436,15 @@
 /* Refúgio editorial system */
 :root {
   color-scheme: light;
-  --refugio-ink: #183d3b;
-  --refugio-deep: #102e2d;
+  --refugio-ink: #151515;
+  --refugio-deep: #080808;
   --refugio-paper: #f3eee4;
   --refugio-paper-2: #ebe3d5;
   --refugio-coral: #d8785c;
   --refugio-coral-dark: #b85d47;
   --refugio-sage: #b7cfc0;
   --refugio-lilac: #c8c1d4;
-  --refugio-line: rgba(24, 61, 59, 0.18);
+  --refugio-line: rgba(21, 21, 21, 0.2);
 }
 
 html {
