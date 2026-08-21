@@ -1,0 +1,373 @@
+Quero ajustar a landing page atual do projeto de comunidade anônima.
+
+**IMPORTANTE:** não reconstrua o projeto do zero. Preserve a estrutura existente, o design system, componentes, responsividade, animações e funcionalidades que já estiverem implementadas. O objetivo agora é principalmente melhorar a **copy, hierarquia da informação e posicionamento da landing page**, deixando a proposta muito mais específica e emocional.
+
+## 1. POSICIONAMENTO CENTRAL
+
+A página não deve vender simplesmente “uma rede social anônima”.
+
+O produto deve ser apresentado como:
+
+**Uma comunidade anônima para quem precisa falar.**
+
+A principal dor que queremos resolver é:
+
+> “Eu preciso desabafar, mas não tenho com quem falar — e não quero me expor para pessoas que conheço.”
+
+A promessa central é:
+
+> A pessoa pode falar sobre o que está passando sem revelar sua identidade para a comunidade, ser ouvida, receber diferentes perspectivas e encontrar pessoas dispostas a ajudar.
+
+O tom deve ser humano, acolhedor e direto. Evite linguagem corporativa, genérica ou excessivamente “startup”.
+
+---
+
+# 2. HERO / PRIMEIRA DOBRA
+
+Substitua a headline atual pela seguinte:
+
+## Headline
+
+**Você não precisa carregar tudo sozinho. Desabafe anonimamente e encontre pessoas dispostas a ouvir e ajudar.**
+
+Essa deve ser a maior informação visual da primeira dobra.
+
+### Subheadline
+
+**Uma comunidade anônima para desabafar, ser ouvido e receber diferentes perspectivas de pessoas que passaram por coisas parecidas — sem seguidores, sem exposição e sem precisar fingir que está tudo bem.**
+
+### CTA principal
+
+**Quero entrar na lista de espera →**
+
+A CTA deve abrir/enviar o formulário de lista de espera que já existir no projeto.
+
+Caso ainda não exista formulário funcional, criar um formulário simples pedindo:
+
+- e-mail
+
+E abaixo do campo:
+
+**Grátis. Sem compromisso. Você será avisado quando a comunidade abrir.**
+
+Não pedir nome completo, telefone ou outras informações desnecessárias.
+
+---
+
+# 3. SEÇÃO DE IDENTIFICAÇÃO DA DOR
+
+Criar uma seção logo após o hero com bastante contraste visual e boa hierarquia.
+
+Título:
+
+## **Você já teve algo que precisava colocar para fora, mas...**
+
+Apresentar os seguintes pontos:
+
+- Não queria contar para sua família.
+- Não queria falar com seus amigos porque tinha medo de ser julgado.
+- Não queria que conhecidos soubessem da sua vida.
+- Sentia vergonha de admitir que não estava bem.
+- Precisava de uma opinião de alguém de fora da situação.
+- Ou simplesmente **não tinha ninguém para conversar.**
+
+Depois dos pontos, destacar visualmente:
+
+> **Às vezes, você não precisa de uma solução perfeita. Só precisa de um lugar seguro para finalmente falar.**
+
+Essa frase deve funcionar como fechamento emocional da seção.
+
+---
+
+# 4. APRESENTAÇÃO DA SOLUÇÃO
+
+Título:
+
+## **Foi para isso que essa comunidade nasceu.**
+
+Texto:
+
+**Um lugar onde você pode falar sem precisar se identificar.**
+
+Depois apresentar o fluxo de forma visual e simples:
+
+**Você escreve o que está acontecendo.**
+
+↓
+
+**Pessoas reais leem.**
+
+↓
+
+**Algumas acolhem.**
+
+↓
+
+**Outras compartilham experiências.**
+
+↓
+
+**Outras oferecem uma perspectiva que talvez você nunca tivesse considerado.**
+
+↓
+
+**E você decide o que faz sentido para você.**
+
+Depois destacar:
+
+**Sem seguidores.**
+
+**Sem competição.**
+
+**Sem precisar construir uma imagem.**
+
+Não transformar isso em uma seção excessivamente técnica. A sensação deve ser de alívio e segurança.
+
+---
+
+# 5. SEÇÃO EMOCIONAL — “NINGUÉM PRECISA PARECER FORTE”
+
+Criar uma seção visualmente forte, podendo utilizar bastante espaço negativo.
+
+Título grande:
+
+## **Aqui, ninguém precisa parecer forte.**
+
+Subcopy:
+
+> Você não precisa fingir que está tudo bem.
+>
+> Não precisa mostrar seu nome.
+>
+> Não precisa construir uma imagem.
+>
+> Não precisa ter seguidores.
+>
+> **Você pode simplesmente ser uma pessoa passando por alguma coisa.**
+
+Essa deve ser uma das seções mais marcantes da página.
+
+Evitar excesso de elementos visuais. A copy precisa respirar.
+
+---
+
+# 6. SEÇÃO SOBRE DIFERENTES PERSPECTIVAS
+
+Título:
+
+## **Mais de uma perspectiva pode mudar a forma como você enxerga um problema.**
+
+Texto:
+
+> Você conta sua história uma vez.
+>
+> Pessoas diferentes respondem a partir das próprias experiências.
+>
+> Talvez alguém tenha passado exatamente pela mesma coisa.
+>
+> Talvez alguém enxergue algo que você não percebeu.
+>
+> Talvez alguém simplesmente diga:
+>
+> **“Eu também passei por isso. Você não está sozinho.”**
+
+Importante: não posicionar a plataforma como serviço psicológico ou terapia.
+
+A proposta é **apoio entre pessoas, escuta e diferentes perspectivas**.
+
+---
+
+# 7. SEÇÃO SOBRE ANONIMATO
+
+Não usar a expressão “anônimo de verdade”, porque isso pode gerar uma promessa técnica/jurídica inadequada.
+
+Usar:
+
+## **Anônimo para a comunidade.**
+
+Texto:
+
+> Aqui, você não precisa colocar seu nome, foto ou perfil pessoal para participar.
+>
+> Você não está tentando ganhar seguidores.
+>
+> Você não está construindo uma reputação baseada em quem você conhece.
+>
+> **Sua história é o que importa.**
+
+Se já houver algum texto falando de “anonimato total”, “100% anônimo” ou equivalente, substituir por uma linguagem que deixe claro que a identidade não é exposta aos outros membros.
+
+---
+
+# 8. SEÇÃO “VOCÊ AJUDA. VOCÊ TAMBÉM PODE SER AJUDADO.”
+
+Título:
+
+## **Você ajuda. Você também pode ser ajudado.**
+
+Texto:
+
+> Hoje você pode estar entrando para pedir ajuda.
+>
+> Amanhã pode ser você dizendo para outra pessoa:
+>
+> **“Eu já passei por isso.”**
+
+Depois explicar:
+
+> Não estamos criando apenas um lugar onde pessoas vêm pedir conselhos.
+>
+> Estamos criando **uma comunidade onde pessoas se ajudam.**
+
+Essa parte deve deixar claro que a comunidade é colaborativa e não uma plataforma de consumo passivo.
+
+---
+
+# 9. SEÇÃO DE REPUTAÇÃO
+
+Título:
+
+## **Aqui, reputação não vem de seguidores. Vem de ajudar.**
+
+Texto:
+
+> Quanto mais você contribui com respostas que a comunidade considera úteis, mais reconhecimento você recebe.
+>
+> Não importa quantas pessoas conhecem você.
+>
+> **Importa quantas pessoas você conseguiu ajudar.**
+
+Pode apresentar visualmente os badges/reconhecimentos existentes no produto.
+
+Não vender isso como “gamificação”.
+
+O conceito é **reconhecimento por contribuição útil**.
+
+---
+
+# 10. DIFERENCIAL DA COMUNIDADE
+
+Criar uma seção curta mostrando os princípios da comunidade:
+
+### 🕊️ Sem exposição
+Você não precisa revelar quem é para poder falar.
+
+### 💬 Sem seguidores
+Ninguém está aqui para construir uma audiência.
+
+### 🤝 Pessoas ajudando pessoas
+Você pode pedir ajuda e também oferecer ajuda.
+
+### 🧠 Diferentes perspectivas
+Nem todo mundo pensa igual — e isso é parte do valor.
+
+### 🛡️ Comunidade moderada
+Existem regras para manter o espaço seguro e respeitoso.
+
+Os ícones podem utilizar o sistema visual já existente.
+
+---
+
+# 11. CTA FINAL
+
+Criar uma seção final emocional.
+
+Título:
+
+## **Talvez você não precise ser forte o tempo todo.**
+
+Texto:
+
+> Quando a comunidade abrir, você terá um lugar para falar sem precisar revelar quem é.
+>
+> **Entre na lista de espera.**
+
+CTA:
+
+**Quero entrar na lista de espera →**
+
+Abaixo:
+
+**Grátis. Sem compromisso. Você será avisado quando a comunidade abrir.**
+
+---
+
+# 12. TOM DA COPY
+
+A página inteira deve seguir estes princípios:
+
+- Humana
+- Direta
+- Acolhedora
+- Emocional sem ser melodramática
+- Específica
+- Sem linguagem corporativa
+- Sem “revolucionário”
+- Sem “a próxima geração”
+- Sem buzzwords de startup
+- Sem exagerar promessas
+- Sem prometer terapia, tratamento psicológico ou solução profissional
+- Não infantilizar o usuário
+- Não tratar a pessoa como “cliente vulnerável”
+- Falar como uma comunidade de pessoas para pessoas
+
+A pessoa deve terminar a página pensando:
+
+> **“É exatamente isso que eu estava procurando.”**
+
+---
+
+# 13. HIERARQUIA VISUAL
+
+A primeira dobra precisa comunicar imediatamente:
+
+**DOR → SOLUÇÃO → AÇÃO**
+
+Ou seja:
+
+**“Estou carregando algo sozinho.”**
+
+↓
+
+**“Aqui posso falar anonimamente e encontrar pessoas que vão me ouvir e ajudar.”**
+
+↓
+
+**“Quero entrar.”**
+
+Não deixar a primeira dobra ocupada por explicações sobre funcionalidades, badges, roadmap ou tecnologia.
+
+Essas coisas podem aparecer depois.
+
+---
+
+# 14. NÃO ALTERAR DESNECESSARIAMENTE
+
+Preserve:
+
+- identidade visual atual;
+- cores;
+- tipografia;
+- componentes;
+- navegação;
+- responsividade;
+- animações que já funcionam bem;
+- formulário existente;
+- estrutura técnica;
+- funcionalidades existentes.
+
+Faça apenas as alterações necessárias para implementar essa nova comunicação.
+
+No final, revise a página inteira em desktop e mobile para garantir que:
+- nenhuma copy esteja cortada;
+- não existam textos duplicados;
+- CTAs estejam funcionando;
+- espaçamento esteja consistente;
+- a headline tenha destaque suficiente;
+- a primeira dobra seja imediatamente compreensível.
+
+Antes de finalizar, faça uma revisão da landing page como se você fosse uma pessoa que acabou de chegar pela primeira vez e pergunte:
+
+**“Eu entendi em 5 segundos qual problema isso resolve, para quem é e o que devo fazer agora?”**
+
+Se a resposta não for claramente “sim”, ajuste a hierarquia visual e a copy.
