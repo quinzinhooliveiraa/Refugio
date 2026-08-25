@@ -1,0 +1,68 @@
+# Prompt para o Replit — Landing + Lista de espera
+
+## Como usar (2 passos)
+
+1. Crie um Repl novo e faça **upload do arquivo `lp-comunidade-v2.html`**, renomeando para `index.html`.
+2. Cole o prompt abaixo no **Replit Agent**.
+
+> Por que 2 passos: subir o HTML garante que o Replit mantenha o design que já montamos, em vez de recriar a página do zero.
+
+---
+
+## O prompt (cole no Replit Agent)
+
+```
+Tenho um arquivo index.html no projeto: é a landing page final de uma lista de espera,
+já com design, textos e cores prontos. NÃO mude o visual, o texto nem as cores dele.
+Se o arquivo não estiver no projeto, me peça para colá-lo antes de continuar.
+
+Contexto: é a página de captação de uma comunidade anônima de apoio emocional, um
+projeto SEM FINS LUCRATIVOS. O objetivo desta página é validar demanda: coletar e-mails
+de interessados e, principalmente, medir quantos querem AJUDAR (não só desabafar).
+
+Construa em cima do index.html existente:
+
+1) BACKEND (Node.js + Express, simples, sem serviços pagos externos):
+   - Sirva o index.html na raiz.
+   - Endpoint POST /api/waitlist que recebe: email (obrigatório) e intencao
+     (um de: "desabafar", "ajudar", "os-dois").
+   - Valide o formato do e-mail, ignore duplicados (mesmo e-mail = 1 registro),
+     e salve também data/hora e a origem (query param ?ref= se existir).
+   - Guarde num banco de dados persistente (SQLite via better-sqlite3, ou o
+     PostgreSQL nativo do Replit se estiver disponível).
+   - Responda JSON { ok: true } no sucesso e um erro claro em caso de falha.
+   - Inclua um campo honeypot escondido para barrar bots.
+
+2) FORMULÁRIOS (o index.html tem formulários com o atributo data-form):
+   - Faça-os enviar para POST /api/waitlist via fetch.
+   - Adicione ao formulário PRINCIPAL um seletor de intenção com 3 opções —
+     "Quero desabafar", "Quero ajudar alguém", "Os dois" — no MESMO estilo visual
+     da página (mesmas cores e fontes). Esse campo é a métrica mais importante do
+     teste, então deixe-o obrigatório.
+   - Mantenha o estado de "obrigado" que já existe na página após o envio.
+
+3) PAINEL /admin protegido por senha:
+   - Senha vinda de um Secret do Replit chamado ADMIN_PASSWORD (não deixe senha no código).
+   - Liste os cadastros: e-mail, intenção e data.
+   - Mostre contadores no topo: total de inscritos e a % por intenção
+     (quantos "desabafar", "ajudar", "os-dois").
+   - Botão para baixar todos os cadastros em CSV.
+
+4) PRIVACIDADE: colete o mínimo, nunca exponha e-mails publicamente, e não use
+   trackers de terceiros.
+
+5) Deixe pronto para publicar via Replit Deployments e me diga a URL final.
+
+Paleta, caso precise estilizar algo novo: creme #F3EDE1, tinta #22322B, coral #DE6E4C,
+sálvia #A6BBA0, lavanda #C7BCE2. Títulos em serifa (Fraunces), corpo em Inter.
+```
+
+---
+
+## Depois de publicado
+
+- Abra `/admin` (com a senha que você definir no Secret `ADMIN_PASSWORD`) para ver os cadastros e a % por intenção.
+- **A métrica que importa:** a fatia de "quero ajudar" + "os dois". Se boa parte dos inscritos vier daí, você tem sinal de que existe gente disposta a acolher — não só a desabafar.
+- Leve tráfego com um story/post/link na bio pra sua audiência e observe por alguns dias.
+
+> Se quiser manter o formulário só com e-mail (sem o seletor de intenção), é só remover o item 2 do seletor no prompt.

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowDownRight, ArrowRight, Check, ChevronDown, EyeOff, HeartHandshake, LockKeyhole, Mail, Menu, Quote, ShieldCheck, Sparkles, X } from 'lucide-react';
 
-type Intent = 'share' | 'help' | 'both';
+type Intent = 'desabafar' | 'ajudar' | 'os-dois';
 
 const FUTURE_FORM_ENDPOINT = import.meta.env.VITE_REFUGIO_FORM_ENDPOINT ?? '/api/waitlist';
 
@@ -88,9 +88,11 @@ function SignupForm() {
   const [intent, setIntent] = useState<Intent | ''>('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submitting) return;
     const cleanEmail = email.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
       setError('Confira o e-mail — precisamos de um endereço válido.');
@@ -101,13 +103,23 @@ function SignupForm() {
       return;
     }
     setError('');
-    // Integration point: send { email: cleanEmail, intent } to FUTURE_FORM_ENDPOINT when the endpoint exists.
+    setSubmitting(true);
     try {
-      window.localStorage.setItem('refugio-waitlist', JSON.stringify({ email: cleanEmail, intent, createdAt: new Date().toISOString() }));
-    } catch {
-      // Local storage is optional; success feedback should still work in restricted browsers.
+      const response = await fetch(FUTURE_FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cleanEmail, intencao: intent, website: (event.currentTarget.elements.namedItem('website') as HTMLInputElement)?.value ?? '' }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || data.ok !== true) {
+        throw new Error(typeof data.error === 'string' ? data.error : 'Não foi possível salvar agora. Tente novamente.');
+      }
+      setSubmitted(true);
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Não foi possível salvar agora. Tente novamente.');
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitted(true);
   };
 
   if (submitted) {
@@ -142,15 +154,117 @@ function SignupForm() {
       <fieldset className="mt-7">
         <legend className="mb-3 text-xs font-bold">Eu quero...</legend>
         <div className="grid gap-3 sm:grid-cols-3">
-          <IntentOption intent="share" title="Ser ouvido" copy="Tenho algo para colocar para fora." selected={intent === 'share'} onSelect={(value) => { setIntent(value); setError(''); }} />
-          <IntentOption intent="help" title="Oferecer apoio" copy="Quero estar presente para alguém." selected={intent === 'help'} onSelect={(value) => { setIntent(value); setError(''); }} />
-          <IntentOption intent="both" title="Os dois" copy="Quero alternar entre os dois lados." selected={intent === 'both'} onSelect={(value) => { setIntent(value); setError(''); }} />
+           <IntentOption intent="desabafar" title="Quero desabafar" copy="Tenho algo para colocar para fora." selected={intent === 'desabafar'} onSelect={(value) => { setIntent(value); setError(''); }} />
+           <IntentOption intent="ajudar" title="Quero ajudar alguém" copy="Quero estar presente para alguém." selected={intent === 'ajudar'} onSelect={(value) => { setIntent(value); setError(''); }} />
+           <IntentOption intent="os-dois" title="Os dois" copy="Quero alternar entre os dois lados." selected={intent === 'os-dois'} onSelect={(value) => { setIntent(value); setError(''); }} />
         </div>
       </fieldset>
+      <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="honeypot" />
       {error && <p id="signup-error" role="alert" className="mt-4 text-xs font-semibold text-[#a7493c]" data-testid="status-signup-error">{error}</p>}
-      <button type="submit" className="button-primary mt-7 w-full" data-testid="button-submit-signup">Quero entrar na lista de espera <ArrowRight size={16} /></button>
+      <button type="submit" disabled={submitting} className="button-primary mt-7 w-full disabled:cursor-wait disabled:opacity-70" data-testid="button-submit-signup">{submitting ? 'Salvando seu convite...' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}</button>
       <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[.68rem] leading-relaxed text-[#183d3b]/55"><LockKeyhole size={12} /> Grátis. Sem compromisso. Você será avisado quando a comunidade abrir.</p>
     </form>
+  );
+}
+
+type AdminEntry = { email: string; intent: Intent; source: string | null; createdAt: string };
+type AdminSummary = { total: number; counts: Record<Intent, number> };
+
+function Admin() {
+  const [password, setPassword] = useState('');
+  const [auth, setAuth] = useState('');
+  const [summary, setSummary] = useState<AdminSummary | null>(null);
+  const [entries, setEntries] = useState<AdminEntry[]>([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+
+  const load = async (secret = auth) => {
+    setLoading(true);
+    setError('');
+    const headers = { Authorization: `Basic ${btoa(`admin:${secret}`)}` };
+    try {
+      const [summaryResponse, entriesResponse] = await Promise.all([
+        fetch('/api/admin/summary', { headers }),
+        fetch('/api/admin/waitlist', { headers }),
+      ]);
+      if (summaryResponse.status === 401 || entriesResponse.status === 401) throw new Error('Senha inválida ou ADMIN_PASSWORD ainda não configurado.');
+      if (!summaryResponse.ok || !entriesResponse.ok) throw new Error('Não foi possível carregar os cadastros.');
+      setSummary(await summaryResponse.json());
+      setEntries((await entriesResponse.json()).entries);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Não foi possível carregar os cadastros.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signIn = (event: FormEvent) => {
+    event.preventDefault();
+    if (password.trim()) {
+      setAuth(password);
+      void load(password);
+    }
+  };
+
+  const downloadCsv = async () => {
+    setDownloading(true);
+    try {
+      const response = await fetch('/api/admin/waitlist.csv', { headers: { Authorization: `Basic ${btoa(`admin:${auth}`)}` } });
+      if (!response.ok) throw new Error('Não foi possível baixar o CSV.');
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'refugio-waitlist.csv';
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (downloadError) {
+      setError(downloadError instanceof Error ? downloadError.message : 'Não foi possível baixar o CSV.');
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  if (!auth || error) {
+    return (
+      <main className="refugio-page grain flex min-h-screen items-center justify-center px-5 py-12">
+        <form onSubmit={signIn} className="w-full max-w-md rounded-[1.5rem] border border-[#183d3b]/20 bg-[#f3eee4] p-7 md:p-9">
+          <Mark />
+          <p className="eyebrow mt-12">área reservada</p>
+          <h1 className="serif mt-3 text-5xl leading-none">Cadastros da lista.</h1>
+          <p className="mt-4 text-sm leading-relaxed text-[#183d3b]/65">Digite a senha de administrador para consultar os dados da validação.</p>
+          <label className="mt-7 block text-xs font-bold" htmlFor="admin-password">Senha</label>
+          <input id="admin-password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} className="email-field mt-2" autoFocus />
+          {error && <p role="alert" className="mt-3 text-xs font-semibold text-[#a7493c]">{error}</p>}
+          <button className="button-primary mt-6 w-full" type="submit">Entrar <ArrowRight size={16} /></button>
+        </form>
+      </main>
+    );
+  }
+
+  const labels: Record<Intent, string> = { desabafar: 'Desabafar', ajudar: 'Ajudar', 'os-dois': 'Os dois' };
+  return (
+    <main className="refugio-page grain min-h-screen px-5 py-8 md:px-10 md:py-12">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-wrap items-end justify-between gap-5">
+          <div><Mark /><p className="eyebrow mt-10">painel de validação</p><h1 className="serif mt-3 text-5xl leading-none md:text-7xl">Lista de espera.</h1></div>
+          <button className="button-primary" type="button" onClick={() => void downloadCsv()} disabled={downloading}>{downloading ? 'Preparando CSV...' : 'Baixar CSV'} {!downloading && <ArrowDownRight size={16} />}</button>
+        </div>
+        {loading ? <p className="mt-16 text-sm">Carregando cadastros...</p> : (
+          <>
+            <div className="mt-12 grid gap-4 sm:grid-cols-4">
+              <div className="rounded-2xl bg-[#151515] p-5 text-[#f3eee4]"><p className="eyebrow !text-[#d8785c]">total</p><p className="serif mt-4 text-5xl">{summary?.total ?? 0}</p></div>
+              {(['desabafar', 'ajudar', 'os-dois'] as Intent[]).map((item) => <div key={item} className="rounded-2xl bg-[#b7cfc0] p-5"><p className="text-xs font-bold">{labels[item]}</p><p className="serif mt-4 text-5xl">{summary?.total ? Math.round(((summary.counts[item] ?? 0) / summary.total) * 100) : 0}%</p><p className="mt-1 text-xs text-[#183d3b]/60">{summary?.counts[item] ?? 0} cadastro(s)</p></div>)}
+            </div>
+            <div className="mt-10 overflow-x-auto rounded-2xl border border-[#183d3b]/15 bg-[#f3eee4]/80">
+              <table className="w-full min-w-[650px] text-left text-sm"><thead className="border-b border-[#183d3b]/15 text-xs uppercase tracking-wider text-[#183d3b]/55"><tr><th className="px-5 py-4">E-mail</th><th className="px-5 py-4">Intenção</th><th className="px-5 py-4">Data</th><th className="px-5 py-4">Origem</th></tr></thead><tbody>{entries.map((entry) => <tr key={`${entry.email}-${entry.createdAt}`} className="border-b border-[#183d3b]/10 last:border-0"><td className="px-5 py-4">{entry.email}</td><td className="px-5 py-4">{labels[entry.intent]}</td><td className="px-5 py-4">{new Date(entry.createdAt).toLocaleString('pt-BR')}</td><td className="px-5 py-4 text-[#183d3b]/60">{entry.source || 'direto'}</td></tr>)}</tbody></table>
+              {entries.length === 0 && <p className="p-8 text-sm text-[#183d3b]/60">Ainda não há cadastros.</p>}
+            </div>
+          </>
+        )}
+      </div>
+    </main>
   );
 }
 
@@ -311,7 +425,7 @@ function Home() {
 }
 
 function App() {
-  return <Home />;
+  return window.location.pathname === '/admin' ? <Admin /> : <Home />;
 }
 
 export default App;
