@@ -303,9 +303,9 @@ function Home() {
 
       <section id="top" className="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-8 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-16 md:px-10 md:pb-32 md:pt-16">
         <div className="max-w-2xl">
-          <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">comunidade anônima para quem precisa falar</span></div>
-          <h1 className="serif reveal reveal-delay-1 is-visible mt-6 max-w-5xl text-[clamp(3.1rem,7.5vw,7rem)] leading-[.89] text-[#183d3b]" data-testid="text-hero-title">Você não precisa carregar tudo sozinho.<br /><span className="text-[#d8785c]">Desabafe anonimamente.</span></h1>
-          <p className="reveal reveal-delay-2 mt-8 max-w-2xl text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:mt-10 md:text-[1.2rem]">Encontre pessoas dispostas a ouvir, acolher e compartilhar diferentes perspectivas — sem seguidores, sem exposição e sem precisar fingir que está tudo bem.</p>
+           <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">para quem precisa falar e não tem com quem</span></div>
+           <h1 className="serif reveal reveal-delay-1 is-visible mt-6 max-w-5xl text-[clamp(3.1rem,7.5vw,7rem)] leading-[.89] text-[#183d3b]" data-testid="text-hero-title">Tire o peso do peito hoje — <span className="text-[#d8785c]">sem que ninguém saiba quem você é.</span></h1>
+           <p className="reveal reveal-delay-2 mt-8 max-w-2xl text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:mt-10 md:text-[1.2rem]">Uma comunidade anônima para desabafar e ser acolhido por pessoas que já passaram por algo parecido. <strong>Sem seguidores, sem exposição</strong>, sem precisar fingir que está tudo bem.</p>
           <div className="reveal reveal-delay-3 is-visible mt-9 flex flex-wrap items-center gap-6 md:mt-11">
             <a href="#entrar" className="button-primary" data-testid="button-hero-join">Quero entrar na lista de espera <ArrowDownRight size={16} /></a>
             <span className="max-w-[12rem] text-[.7rem] leading-relaxed text-[#183d3b]/55">Grátis. Sem compromisso. Avisaremos quando abrir.</span>
@@ -316,23 +316,24 @@ function Home() {
 
       <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-20 text-[#f3eee4] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <p className="eyebrow !text-[#d8785c]">talvez você conheça essa sensação</p>
-          <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Você já teve algo que precisava colocar para fora, mas...</h2>
+           <p className="eyebrow !text-[#d8785c]">talvez você conheça essa sensação</p>
+           <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Você já teve algo preso na garganta que não conseguiu falar com ninguém.</h2>
+           <p className="mt-7 max-w-3xl text-[1.02rem] leading-[1.6] text-[#f3eee4]/70">Contar pra família ia virar preocupação, ou sermão. Pros amigos também não dava: e se vazasse, e se te olhassem diferente depois? Então você segurou. De novo. Abriu a conversa de alguém, digitou, apagou, e guardou pra você mais uma vez.</p>
           <div className="mt-12 grid gap-x-10 gap-y-5 md:grid-cols-2">
             {[
-              'Não queria contar para sua família.',
-              'Tinha medo de ser julgado pelos seus amigos.',
-              'Não queria que conhecidos soubessem da sua vida.',
-              'Sentia vergonha de admitir que não estava bem.',
-              'Precisava de uma opinião de alguém de fora da situação.',
-              'Ou simplesmente não tinha ninguém para conversar.',
+               'Não é que você não tenha ninguém.',
+               'É que não consegue ser honesto com quem te conhece.',
+               'Você não queria preocupar sua família.',
+               'Tinha medo de ser julgado pelos seus amigos.',
+               'Não queria que conhecidos soubessem da sua vida.',
+               'E acabou guardando tudo para você.',
             ].map((item) => (
               <div key={item} className="flex items-start gap-3 border-b border-[#f3eee4]/12 pb-4 text-[1.02rem] text-[#f3eee4]/78">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#d8785c]" />{item}
               </div>
             ))}
           </div>
-          <p className="serif mt-14 max-w-3xl text-3xl leading-[1.02] text-[#b7cfc0] md:text-5xl">Às vezes, você não precisa de uma solução perfeita. Só precisa de um lugar seguro para finalmente falar.</p>
+           <p className="serif mt-14 max-w-3xl text-3xl leading-[1.02] text-[#b7cfc0] md:text-5xl">O problema quase nunca é falta de gente por perto. É que fica difícil falar de verdade com quem sabe o seu nome, o seu rosto, a sua vida.</p>
         </div>
       </section>
 
@@ -340,15 +341,15 @@ function Home() {
         <div ref={story.ref} className={story.className}>
           <div className="grid gap-12 md:grid-cols-[.72fr_1.28fr] md:gap-24">
             <div>
-              <p className="eyebrow">foi para isso que nasceu</p>
-              <h2 className="serif mt-4 max-w-md text-5xl leading-[.95] md:text-6xl">Foi para isso que essa comunidade nasceu.</h2>
-              <p className="mt-6 max-w-sm text-sm leading-[1.65] text-[#183d3b]/65">Um lugar onde você pode falar sem precisar se identificar — e decidir sozinho o que faz sentido levar consigo.</p>
+               <p className="eyebrow">a virada</p>
+               <h2 className="serif mt-4 max-w-md text-5xl leading-[.95] md:text-6xl">E se você pudesse falar sem que ninguém soubesse quem você é?</h2>
+               <p className="mt-6 max-w-sm text-sm leading-[1.65] text-[#183d3b]/65">Você não tem nome real, não tem foto, não tem um perfil pra proteger. Sem plateia pra impressionar e sem ninguém pra te julgar depois, dá pra dizer o que você realmente sente — não a versão editada.</p>
             </div>
             <div className="grid gap-0 border-t border-[#183d3b]/20">
               {[
-                { number: '01', icon: EyeOff, title: 'Você escreve o que está acontecendo', copy: 'Com um nome anônimo, você coloca para fora o que pesa sem precisar construir uma imagem.' },
-                { number: '02', icon: HeartHandshake, title: 'Pessoas reais leem e acolhem', copy: 'Gente comum responde a partir das próprias experiências — não robôs, não profissionais de saúde mental.' },
-                { number: '03', icon: ShieldCheck, title: 'Você decide o que faz sentido', copy: 'Você pode receber ideias, conselhos e perspectivas diferentes. A escolha continua sendo sua.' },
+                 { number: '01', icon: EyeOff, title: 'Entre com um nome anônimo', copy: 'Nada seu aparece. Sem nome real, foto ou perfil para proteger.' },
+                 { number: '02', icon: HeartHandshake, title: 'Escreva o que está sentindo', copy: 'Do jeito que sair. Sem editar para parecer bem, sem precisar explicar tudo.' },
+                 { number: '03', icon: ShieldCheck, title: 'Pessoas reais leem e respondem', copy: 'Gente que talvez já tenha passado pelo mesmo acolhe e compartilha perspectivas. Você decide o que faz sentido levar.' },
               ].map(({ number, icon: Icon, title, copy }) => (
                 <div key={number} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-[#183d3b]/20 py-7 md:grid-cols-[4.5rem_1fr] md:gap-7">
                   <div className="flex flex-col items-start gap-4"><span className="text-xs font-bold text-[#d8785c]">{number}</span><Icon size={20} strokeWidth={1.6} /></div>
@@ -368,9 +369,9 @@ function Home() {
               <p className="max-w-xs text-sm leading-[1.65] text-[#183d3b]/65">Você pode simplesmente ser uma pessoa passando por alguma coisa. Sem fingir que está tudo bem, sem transformar sua vulnerabilidade em uma apresentação.</p>
             </div>
             <div className="mt-16 grid gap-4 md:mt-24 md:grid-cols-3">
-              <article className="rounded-[1.4rem] bg-[#b7cfc0] p-6 md:p-7"><EyeOff size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Anônimo para a comunidade</h3><p className="mt-3 text-sm leading-relaxed text-[#183d3b]/70">Você não precisa colocar seu nome, foto ou perfil pessoal para participar. Sua história é o que importa.</p></article>
-              <article className="rounded-[1.4rem] bg-[#d8785c] p-6 text-[#f3eee4] md:mt-12 md:p-7"><Quote size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Diferentes perspectivas</h3><p className="mt-3 text-sm leading-relaxed text-[#f3eee4]/75">Talvez alguém tenha vivido algo parecido. Talvez alguém enxergue o que você ainda não conseguiu perceber.</p></article>
-              <article className="rounded-[1.4rem] bg-[#c8c1d4] p-6 md:p-7"><LockKeyhole size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Sem seguidores</h3><p className="mt-3 text-sm leading-relaxed text-[#183d3b]/70">Ninguém está construindo uma audiência. Sem competição, sem precisar provar nada para ninguém.</p></article>
+               <article className="rounded-[1.4rem] bg-[#b7cfc0] p-6 md:p-7"><EyeOff size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">100% anônimo.</h3><p className="mt-3 text-sm leading-relaxed text-[#183d3b]/70">Nome, foto e perfil ficam de fora. Você escolhe um apelido e é só isso que aparece.</p></article>
+               <article className="rounded-[1.4rem] bg-[#d8785c] p-6 text-[#f3eee4] md:mt-12 md:p-7"><Quote size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Pessoas que já passaram pelo mesmo.</h3><p className="mt-3 text-sm leading-relaxed text-[#f3eee4]/75">Não são robôs, nem profissionais. É gente de verdade, respondendo a partir da própria experiência.</p></article>
+               <article className="rounded-[1.4rem] bg-[#c8c1d4] p-6 md:p-7"><LockKeyhole size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Sem seguidores e sem competição.</h3><p className="mt-3 text-sm leading-relaxed text-[#183d3b]/70">Ninguém está construindo uma audiência. Todo mundo começa igual.</p></article>
             </div>
           </div>
         </div>
@@ -379,8 +380,8 @@ function Home() {
       <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.8fr_1.2fr] md:items-start md:gap-24">
           <div>
-            <p className="eyebrow !text-[#d8785c]">uma comunidade, não um balcão</p>
-            <h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Você ajuda.<br /><span className="text-[#b7cfc0]">Você também pode ser ajudado.</span></h2>
+             <p className="eyebrow !text-[#d8785c]">uma comunidade, não um balcão</p>
+             <h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Você ajuda.<br /><span className="text-[#b7cfc0]">Você também pode ser ajudado.</span></h2>
           </div>
           <div className="grid gap-10 md:grid-cols-2">
             <div>
@@ -388,7 +389,7 @@ function Home() {
               <p className="serif mt-5 text-3xl text-[#d8785c]">“Eu já passei por isso.”</p>
             </div>
             <div>
-              <p className="text-sm leading-[1.7] text-[#f3eee4]/65">Quanto mais você contribui com respostas que a comunidade considera úteis, mais reconhecimento recebe. Aqui, reputação não vem de seguidores. Vem de ajudar.</p>
+               <p className="text-sm leading-[1.7] text-[#f3eee4]/65">Quanto mais você contribui com respostas que a comunidade considera úteis, mais reconhecimento recebe. Aqui, reputação não vem de seguidores. Vem do que você oferece quando alguém precisa.</p>
               <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold text-[#151515]">
                 <span className="rounded-full bg-[#b7cfc0] px-3 py-2">Pessoa que ajuda</span>
                 <span className="rounded-full bg-[#c8c1d4] px-3 py-2">Boa ouvinte</span>
@@ -403,8 +404,8 @@ function Home() {
         <div ref={formSection.ref} className={formSection.className}>
           <p className="eyebrow">o próximo passo</p>
           <h2 className="serif mt-4 text-5xl leading-[.93] md:text-7xl">Talvez você não precise ser forte<br /><span className="text-[#d8785c]">o tempo todo.</span></h2>
-          <p className="mt-7 max-w-md text-[1.04rem] leading-[1.6] text-[#183d3b]/68">Quando a comunidade abrir, você terá um lugar para falar sem precisar revelar quem é. Entre na lista de espera e receba o convite.</p>
-          <div className="mt-10 flex items-center gap-4 border-t border-[#183d3b]/15 pt-5 text-xs text-[#183d3b]/56"><span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#183d3b]/25"><Mail size={14} /></span> Seu endereço fica salvo apenas como demonstração local nesta versão.</div>
+           <p className="mt-7 max-w-md text-[1.04rem] leading-[1.6] text-[#183d3b]/68">Quando a comunidade abrir, você vai ter um lugar para falar sem revelar quem é — e pessoas do outro lado prontas para ouvir. Deixe seu e-mail e a gente te avisa.</p>
+           <div className="mt-10 flex items-center gap-4 border-t border-[#183d3b]/15 pt-5 text-xs text-[#183d3b]/56"><span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#183d3b]/25"><Mail size={14} /></span> Grátis. Anônimo. Sem fins lucrativos.</div>
         </div>
         <SignupForm />
       </section>
