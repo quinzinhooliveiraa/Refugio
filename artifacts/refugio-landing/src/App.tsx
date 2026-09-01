@@ -502,7 +502,7 @@ function CopyStructureHome() {
           <p className="eyebrow">para quem precisa falar e não tem com quem</p>
           <h1 className="serif mt-6 text-[clamp(3.1rem,7.5vw,7rem)] leading-[.89] text-[#183d3b]">Tire o peso do peito hoje — <span className="text-[#d8785c]">sem que ninguém saiba quem você é.</span></h1>
           <p className="mt-8 max-w-2xl text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:text-[1.2rem]">Uma comunidade anônima para desabafar e ser acolhido por pessoas que já passaram por algo parecido. <strong>Sem seguidores, sem exposição</strong>, sem precisar fingir que está tudo bem.</p>
-          <div className="mt-9 flex flex-wrap items-center gap-6"><a href="#entrar" className="button-primary">Quero entrar na lista de espera <ArrowDownRight size={16} /></a><span className="max-w-[12rem] text-[.7rem] leading-relaxed text-[#183d3b]/55">Grátis. Anônimo. Sem compromisso.</span></div>
+           <CompactWaitlistForm />
         </div>
         <HeroArtwork />
       </section>
@@ -533,10 +533,10 @@ function CopyStructureHome() {
               <p className="serif mt-7 text-2xl leading-tight md:text-3xl">“Eu precisava falar isso em algum lugar, mas não queria que ninguém conhecido soubesse.”</p>
               <div className="mt-7 ml-8 rounded-2xl bg-[#b7cfc0] p-5"><p className="text-sm leading-relaxed">Você não precisa ter as palavras certas. Às vezes, começar a falar já é uma forma de não carregar tudo sozinho.</p><div className="mt-4 flex items-center gap-2 text-[.68rem] font-bold text-[#183d3b]/55"><Check size={14} /> resposta considerada útil</div></div>
             </div>
-          </div>
+           </div>
+           <CompactWaitlistForm />
         </div>
       </section>
-      <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-20"><CompactWaitlistForm /></div>
 
       <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
         <p className="eyebrow">como funciona</p><h2 className="serif mt-4 max-w-2xl text-5xl leading-[.94] md:text-7xl">É mais simples do que parece.</h2>
