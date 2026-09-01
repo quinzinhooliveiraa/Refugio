@@ -45,7 +45,7 @@ function Mark({ inverse = false }: { inverse?: boolean }) {
 
 function HeroArtwork() {
   return (
-    <div className="relative min-h-[410px] overflow-hidden rounded-[2rem] border border-[#183d3b]/20 bg-[#c8c1d4] md:min-h-[590px]" aria-label="Ilustração abstrata de uma porta aberta para um espaço de escuta" role="img">
+    <div className="relative min-h-[320px] overflow-hidden rounded-[1.5rem] border border-[#183d3b]/20 bg-[#c8c1d4] lg:min-h-[590px] lg:rounded-[2rem]" aria-label="Ilustração abstrata de uma porta aberta para um espaço de escuta" role="img">
       <div className="orb absolute -right-16 -top-16 h-56 w-56 rounded-full border border-[#183d3b]/20 bg-[#d8785c]/65 md:h-72 md:w-72" />
       <div className="orb-delay absolute -bottom-20 -left-20 h-64 w-64 rounded-full border border-[#183d3b]/15 bg-[#b7cfc0]/80 md:h-80 md:w-80" />
       <svg viewBox="0 0 560 620" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -63,7 +63,7 @@ function HeroArtwork() {
           <path d="M88 122h27l10 90" /><path d="M438 98l28 90" />
         </g>
       </svg>
-      <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between md:bottom-7 md:left-7 md:right-7">
+      <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between md:bottom-7 md:left-7 md:right-7">
         <p className="max-w-[15rem] text-[.74rem] leading-relaxed text-[#f3eee4]/80">um lugar para baixar a guarda, sem precisar explicar tudo</p>
         <span className="rounded-full border border-[#f3eee4]/40 px-3 py-1.5 text-[.65rem] font-semibold uppercase tracking-[.16em] text-[#f3eee4]/80">em construção</span>
       </div>
@@ -194,8 +194,8 @@ function CompactWaitlistForm() {
     window.setTimeout(() => document.getElementById('refugio-email')?.focus(), 200);
   };
 
-  return (
-    <div className="mt-8 max-w-2xl">
+   return (
+     <div className="compact-waitlist mt-8 max-w-2xl">
       <form onSubmit={submit} className="flex flex-wrap gap-2 rounded-[1.2rem] border border-[#183d3b]/15 bg-[#f3eee4] p-2 shadow-[0_12px_34px_-22px_rgba(24,61,59,.6)]">
         <input type="email" name="email" required value={email} onChange={(event) => { setEmail(event.target.value); setSent(false); }} placeholder="Seu melhor e-mail" autoComplete="email" className="min-w-[13rem] flex-1 rounded-full bg-transparent px-4 py-3 text-sm outline-none" aria-label="Seu melhor e-mail" />
         <button type="submit" className="button-primary w-full sm:w-auto">{sent ? 'Agora escolha como participar' : 'Quero entrar na lista de espera'} <ArrowRight size={16} /></button>
@@ -335,24 +335,24 @@ function Home() {
     <main className="refugio-page grain">
       <header className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 md:px-10 md:py-7">
         <a href="#top" className="nav-link" aria-label="Voltar ao início" data-testid="link-home"><Mark /></a>
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Navegação principal">
           <a href="#como-funciona" className="nav-link" data-testid="link-how-it-works">Como funciona</a>
           <a href="#por-que" className="nav-link" data-testid="link-why">Por que existe</a>
           <a href="#entrar" className="button-quiet" data-testid="link-join">Quero entrar <ArrowDownRight size={14} /></a>
         </nav>
-        <button type="button" className="focus-ring rounded-full p-2 md:hidden" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} data-testid="button-toggle-menu">
+        <button type="button" className="focus-ring rounded-full p-2 lg:hidden" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} data-testid="button-toggle-menu">
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
       </header>
       {menuOpen && (
-        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#183d3b]/20 bg-[#f3eee4] p-4 shadow-xl md:hidden" aria-label="Navegação móvel">
+        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#183d3b]/20 bg-[#f3eee4] p-4 shadow-xl lg:hidden" aria-label="Navegação móvel">
           <a href="#como-funciona" onClick={closeMenu} className="block border-b border-[#183d3b]/10 py-3 text-sm font-semibold" data-testid="mobile-link-how-it-works">Como funciona</a>
           <a href="#por-que" onClick={closeMenu} className="block border-b border-[#183d3b]/10 py-3 text-sm font-semibold" data-testid="mobile-link-why">Por que existe</a>
           <a href="#entrar" onClick={closeMenu} className="block py-3 text-sm font-semibold text-[#b85d47]" data-testid="mobile-link-join">Quero entrar</a>
         </nav>
       )}
 
-      <section id="top" className="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-8 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-16 md:px-10 md:pb-32 md:pt-16">
+      <section id="top" className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-14 pt-5 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 md:px-10 md:pb-32 md:pt-16">
         <div className="max-w-2xl">
            <div className="reveal is-visible flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-9 bg-[#d8785c]" /><span className="eyebrow">para quem precisa falar e não tem com quem</span></div>
            <h1 className="serif reveal reveal-delay-1 is-visible mt-6 max-w-5xl text-[clamp(3.1rem,7.5vw,7rem)] leading-[.89] text-[#183d3b]" data-testid="text-hero-title">Tire o peso do peito hoje. <span className="text-[#d8785c]">Fale sem revelar quem você é.</span></h1>
@@ -366,7 +366,7 @@ function Home() {
       </section>
       <div className="mx-auto max-w-7xl px-5 pb-20 md:px-10 md:pb-28"><CompactWaitlistForm /></div>
 
-      <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-20 text-[#f3eee4] md:px-10 md:py-28">
+      <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-16 text-[#f3eee4] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
            <p className="eyebrow !text-[#d8785c]">talvez você conheça essa sensação</p>
            <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Você já teve algo preso na garganta que não conseguiu falar com ninguém.</h2>
@@ -478,6 +478,7 @@ function Home() {
 }
 
 function CopyStructureHome() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const conversation = useReveal();
   const benefits = useReveal();
   const origin = useReveal();
@@ -486,28 +487,40 @@ function CopyStructureHome() {
     document.title = 'Refúgio: desabafe sem precisar mostrar quem você é';
   }, []);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <main className="refugio-page grain">
       <header className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 md:px-10 md:py-7">
         <a href="#top" className="nav-link" aria-label="Voltar ao início"><Mark /></a>
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Navegação principal">
           <a href="#como-funciona" className="nav-link">Como funciona</a>
           <a href="#o-que-encontra" className="nav-link">O que você encontra</a>
           <a href="#entrar" className="button-quiet">Entrar na lista <ArrowDownRight size={14} /></a>
         </nav>
+        <button type="button" className="focus-ring rounded-full p-2 lg:hidden" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} data-testid="button-toggle-menu">
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
       </header>
+      {menuOpen && (
+        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#183d3b]/20 bg-[#f3eee4] p-4 shadow-xl lg:hidden" aria-label="Navegação móvel">
+          <a href="#como-funciona" onClick={closeMenu} className="block border-b border-[#183d3b]/10 py-3 text-sm font-semibold">Como funciona</a>
+          <a href="#o-que-encontra" onClick={closeMenu} className="block border-b border-[#183d3b]/10 py-3 text-sm font-semibold">O que você encontra</a>
+          <a href="#entrar" onClick={closeMenu} className="block py-3 text-sm font-semibold text-[#b85d47]">Entrar na lista</a>
+        </nav>
+      )}
 
-      <section id="top" className="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-8 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-16 md:px-10 md:pb-32 md:pt-16">
+      <section id="top" className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-14 pt-5 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 md:px-10 md:pb-32 md:pt-16">
         <div className="max-w-2xl">
           <p className="eyebrow">para quem precisa falar e não tem com quem</p>
-          <h1 className="serif mt-6 text-[clamp(3.1rem,7.5vw,7rem)] leading-[.89] text-[#183d3b]">Tem coisas que ficam mais leves quando a gente fala. <span className="text-[#d8785c]">Aqui, ninguém precisa saber que foi você.</span></h1>
+          <h1 className="serif mt-5 text-[clamp(2.75rem,11vw,7rem)] leading-[.9] text-[#183d3b]">Tem coisas que ficam mais leves quando a gente fala. <span className="text-[#d8785c]">Aqui, ninguém precisa saber que foi você.</span></h1>
           <p className="mt-8 max-w-2xl text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:text-[1.2rem]">Um espaço anônimo para desabafar e conversar com quem entende. Você fala do seu jeito, sem seguidores, sem exposição e sem precisar fingir que está tudo bem.</p>
-           <CompactWaitlistForm />
+           <div className="mt-7 md:mt-8"><CompactWaitlistForm /></div>
         </div>
         <HeroArtwork />
       </section>
 
-      <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-20 text-[#f3eee4] md:px-10 md:py-28">
+      <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-16 text-[#f3eee4] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
           <p className="eyebrow !text-[#d8785c]">o que talvez esteja travando você</p>
           <h2 className="serif mt-4 max-w-4xl text-5xl leading-[.94] md:text-7xl">Tem coisa que a gente guarda porque não sabe com quem falar.</h2>
@@ -517,16 +530,16 @@ function CopyStructureHome() {
         </div>
       </section>
 
-      <section className="paper-crease px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
+      <section className="paper-crease px-5 py-16 md:px-10 md:py-32">
+         <div className="tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
           <div><p className="eyebrow">a virada</p><h2 className="serif mt-4 max-w-2xl text-5xl leading-[.94] md:text-7xl">E se você pudesse falar sem que <span className="text-[#b85d47]">ninguém</span> soubesse quem você é?</h2></div>
           <div><p className="text-[1.05rem] leading-[1.7] text-[#183d3b]/70">Aqui você não precisa usar seu nome, colocar foto ou montar um perfil. Sem a pressão de ser reconhecido, fica mais fácil dizer o que está sentindo.</p><p className="serif mt-8 text-3xl leading-tight text-[#b85d47] md:text-5xl">O anonimato não é para se esconder. É uma forma de falar com mais liberdade.</p><p className="mt-8 text-[1.05rem] leading-[1.7] text-[#183d3b]/70">Do outro lado, alguém lê e responde. Pode ser uma pessoa que já passou por algo parecido e sabe como é precisar de apoio.</p></div>
         </div>
       </section>
 
-      <section className="border-y border-[#183d3b]/15 bg-[#c8c1d4] px-5 py-24 md:px-10 md:py-32">
+      <section className="border-y border-[#183d3b]/15 bg-[#c8c1d4] px-5 py-16 md:px-10 md:py-32">
         <div ref={conversation.ref} className={`${conversation.className} mx-auto max-w-7xl`}>
-          <div className="grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
+           <div className="tablet-stack grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
            <div><p className="eyebrow">veja como é por dentro</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Um lugar para contar o que está acontecendo.</h2><p className="mt-6 max-w-md text-sm leading-[1.7] text-[#183d3b]/70">Você escreve o que está sentindo. Alguém que entende a situação lê, responde e compartilha o que aprendeu.</p></div>
             <div className="relative rounded-[2rem] bg-[#f3eee4] p-6 shadow-[10px_10px_0_#183d3b] md:p-9">
               <div className="flex items-center gap-3 border-b border-[#183d3b]/15 pb-5"><span className="h-10 w-10 rounded-full bg-[#b7cfc0]" /><div><p className="text-xs font-bold">um nome anônimo</p><p className="text-[.68rem] text-[#183d3b]/50">sem foto · sem perfil · sem plateia</p></div><HeartHandshake className="ml-auto text-[#b85d47]" size={22} /></div>
@@ -538,7 +551,7 @@ function CopyStructureHome() {
         </div>
       </section>
 
-      <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
+      <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-32">
          <p className="eyebrow">como funciona</p><h2 className="serif mt-4 max-w-2xl text-5xl leading-[.94] md:text-7xl">É simples.</h2>
         <div className="mt-12 grid gap-0 border-t border-[#183d3b]/20 md:grid-cols-3">
           {[
@@ -549,7 +562,7 @@ function CopyStructureHome() {
         </div>
       </section>
 
-      <section id="o-que-encontra" className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32">
+      <section id="o-que-encontra" className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-16 text-[#f3eee4] md:px-10 md:py-32">
         <div ref={benefits.ref} className={`${benefits.className} mx-auto max-w-7xl`}>
           <p className="eyebrow !text-[#d8785c]">o que você encontra aqui</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Um espaço para falar do que pesa.</h2>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
@@ -564,18 +577,18 @@ function CopyStructureHome() {
         </div>
       </section>
 
-      <section className="paper-crease px-5 py-24 md:px-10 md:py-32">
-        <div ref={origin.ref} className={`${origin.className} mx-auto grid max-w-7xl gap-10 md:grid-cols-[.7fr_1.3fr] md:gap-24`}><div><p className="eyebrow">por que estamos criando isso</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Começou com quem precisava de um lugar para falar.</h2></div><div className="max-w-2xl space-y-5 text-[1.05rem] leading-[1.7] text-[#183d3b]/70"><p>Todos os dias chegam mensagens de pessoas querendo desabafar, mas com medo de se expor na internet. São histórias que não cabem em uma resposta rápida.</p><p>Esta comunidade nasceu dessa necessidade e de quem também quer ouvir.</p><p>Estamos começando agora. Se você sente falta de um lugar assim, pode entrar na lista.</p></div></div>
+      <section className="paper-crease px-5 py-16 md:px-10 md:py-32">
+         <div ref={origin.ref} className={`${origin.className} tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.7fr_1.3fr] md:gap-24`}><div><p className="eyebrow">por que estamos criando isso</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Começou com quem precisava de um lugar para falar.</h2></div><div className="max-w-2xl space-y-5 text-[1.05rem] leading-[1.7] text-[#183d3b]/70"><p>Todos os dias chegam mensagens de pessoas querendo desabafar, mas com medo de se expor na internet. São histórias que não cabem em uma resposta rápida.</p><p>Esta comunidade nasceu dessa necessidade e de quem também quer ouvir.</p><p>Estamos começando agora. Se você sente falta de um lugar assim, pode entrar na lista.</p></div></div>
       </section>
 
-      <section className="border-y border-[#183d3b]/15 bg-[#d8785c] px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#f3eee4]">sem pegadinha</p><h2 className="serif mt-4 text-5xl leading-[.94] text-[#f3eee4] md:text-7xl">É de graça.<br />E queremos manter assim.</h2></div><div className="rounded-[1.5rem] bg-[#f3eee4] p-7 text-[#183d3b] md:p-9"><p className="serif text-4xl">R$ 0</p><p className="mt-5 text-sm leading-[1.7] text-[#183d3b]/70">Você não paga para entrar, desabafar ou ajudar. É um projeto <strong>sem fins lucrativos</strong> e não tem anúncio no meio do seu desabafo.</p><p className="mt-5 text-sm leading-[1.7] text-[#183d3b]/70"><strong>O anonimato vem primeiro:</strong> você entra sem nome real, sem cartão e sem cadastro pesado. Pode sair quando quiser.</p></div></div>
+      <section className="border-y border-[#183d3b]/15 bg-[#d8785c] px-5 py-16 md:px-10 md:py-32">
+         <div className="tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#f3eee4]">sem pegadinha</p><h2 className="serif mt-4 text-5xl leading-[.94] text-[#f3eee4] md:text-7xl">É de graça.<br />E queremos manter assim.</h2></div><div className="rounded-[1.5rem] bg-[#f3eee4] p-7 text-[#183d3b] md:p-9"><p className="serif text-4xl">R$ 0</p><p className="mt-5 text-sm leading-[1.7] text-[#183d3b]/70">Você não paga para entrar, desabafar ou ajudar. É um projeto <strong>sem fins lucrativos</strong> e não tem anúncio no meio do seu desabafo.</p><p className="mt-5 text-sm leading-[1.7] text-[#183d3b]/70"><strong>O anonimato vem primeiro:</strong> você entra sem nome real, sem cartão e sem cadastro pesado. Pode sair quando quiser.</p></div></div>
         <div className="mx-auto mt-12 max-w-7xl"><CompactWaitlistForm /></div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32"><p className="eyebrow">dúvidas comuns</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Antes de entrar, talvez você queira saber.</h2><div className="mt-12 border-t border-[#183d3b]/20">{[['É mesmo anônimo?', 'Para a comunidade, sim. Ninguém vê seu nome, rosto ou perfil. Você escolhe um apelido e é só isso que aparece.'], ['Vocês são psicólogos ou terapeutas?', 'Não. Aqui você encontra pessoas, não profissionais de saúde mental. É conversa e apoio entre gente comum.'], ['E se alguém me tratar mal?', 'A comunidade sinaliza o que foge das regras e a moderação decide o que fazer.'], ['É pago?', 'É gratuito e sem fins lucrativos. Apoiar o projeto é opcional e não libera nenhuma função.']].map(([question, answer]) => <FaqItem key={question} question={question} answer={answer} />)}</div></section>
 
-      <section id="entrar" className="border-t border-[#183d3b]/15 bg-[#183d3b] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32"><div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#d8785c]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Você não precisa segurar tudo <span className="text-[#b7cfc0]">sozinho.</span></h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#f3eee4]/70">Quando a comunidade abrir, você vai poder falar sem revelar quem é. Do outro lado, alguém estará pronto para ouvir.</p></div><SignupForm /></div></section>
+       <section id="entrar" className="border-t border-[#183d3b]/15 bg-[#183d3b] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32"><div className="tablet-stack mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#d8785c]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Você não precisa segurar tudo <span className="text-[#b7cfc0]">sozinho.</span></h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#f3eee4]/70">Quando a comunidade abrir, você vai poder falar sem revelar quem é. Do outro lado, alguém estará pronto para ouvir.</p></div><SignupForm /></div></section>
 
       <footer className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 text-xs text-[#183d3b]/55 md:flex-row md:items-center md:justify-between md:px-10"><Mark /><span>Refúgio · comunidade anônima, sem fins lucrativos</span></footer>
     </main>

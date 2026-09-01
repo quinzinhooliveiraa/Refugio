@@ -584,6 +584,25 @@ button, input {
   border-color: var(--refugio-coral-dark);
 }
 
+@media (max-width: 1199px) {
+  .refugio-page .button-primary {
+    gap: .45rem;
+    padding: .7rem 1rem;
+    font-size: .74rem;
+  }
+
+  .refugio-page .button-primary svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .refugio-page .button-quiet {
+    gap: .35rem;
+    font-size: .72rem;
+    padding-bottom: .18rem;
+  }
+}
+
 .orb {
   animation: drift 9s ease-in-out infinite;
 }
@@ -674,6 +693,129 @@ button, input {
   background:
     linear-gradient(118deg, transparent 0 46%, rgba(24,61,59,.08) 46.2%, transparent 46.5%),
     var(--refugio-paper-2);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .refugio-page > header {
+    padding-inline: 2rem;
+  }
+
+  .refugio-page > header nav[aria-label="Navegação principal"] {
+    display: none;
+  }
+
+  .refugio-page > header > button {
+    display: flex;
+  }
+
+  .refugio-page > nav[aria-label="Navegação móvel"] {
+    display: block;
+  }
+
+  .refugio-page > section#top {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .refugio-page > section#top h1 {
+    max-width: 12ch;
+    font-size: clamp(3.25rem, 8vw, 5.5rem);
+    line-height: .92;
+  }
+
+  .refugio-page > section#top > .relative {
+    min-height: 430px;
+  }
+
+  .refugio-page .tablet-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .refugio-page > section h2 {
+    font-size: clamp(3.1rem, 7vw, 5.5rem);
+    line-height: .96;
+  }
+
+  .refugio-page > section#como-funciona > div.mt-12 {
+    grid-template-columns: 1fr;
+  }
+
+  .refugio-page > section#o-que-encontra > div > div.mt-14 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .refugio-page > header {
+    padding-inline: 2.5rem;
+  }
+
+  .refugio-page > section#top {
+    gap: 3rem;
+    padding-inline: 2.5rem;
+  }
+
+  .refugio-page > section#top h1 {
+    max-width: 12ch;
+    font-size: clamp(3.5rem, 5.7vw, 5rem);
+    line-height: .92;
+  }
+
+  .refugio-page > section#top > .relative {
+    min-height: 500px;
+  }
+
+  .refugio-page > section h2 {
+    font-size: clamp(3.25rem, 5.5vw, 5rem);
+  }
+
+  .compact-waitlist form {
+    flex-wrap: nowrap;
+  }
+
+  .compact-waitlist form input {
+    min-width: 0;
+    padding-inline: .75rem;
+  }
+
+  .compact-waitlist .button-primary {
+    gap: .45rem;
+    padding-inline: .9rem;
+    font-size: .72rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .refugio-page > section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .refugio-page > section#top {
+    padding-top: 1.25rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .refugio-page > section h2 {
+    font-size: clamp(2.65rem, 11vw, 3.5rem);
+    line-height: .96;
+  }
+
+  .refugio-page > section h3 {
+    line-height: 1.08;
+  }
+
+  .refugio-page .intent-card {
+    min-height: 132px;
+  }
+
+  .refugio-page .button-primary {
+    padding: .68rem .9rem;
+    font-size: .72rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
