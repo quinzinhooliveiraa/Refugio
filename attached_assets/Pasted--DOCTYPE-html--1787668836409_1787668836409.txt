@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  LANDING PAGE — comunidade anônima de apoio  (v2)
+  Estrutura: os 10 blocos da "Anatomia de uma Página de Venda", adaptados
+  para uma comunidade GRATUITA (a ação é entrar na lista; a "oferta" é
+  grátis/anônimo/sem pegadinha; a "prova ao vivo" é ver uma conversa real).
+  Voz: calma e íntima, no tom do perguntasdeconexao.com.br.
+  Branding: creme + verde + coral (o mesmo da sua LP atual).
+
+  Blocos (na ordem): 01 promessa · 02 espelho · 03 virada/mecanismo ·
+  04 prova ao vivo · 05 como funciona · 06 o que vem junto · 07 por que existe
+  (no lugar do depoimento, que ainda não existe) · 08 oferta · 09 objeções/FAQ
+  · 10 última chance. CTAs após 01, 04, 08 e 10.
+
+  PERSONALIZAR: (1) nome (troque "Refúgio"); (2) fonte da marca em --font-display;
+  (3) WAITLIST_ENDPOINT no <script>; (4) troque a ilustração do topo por um PRINT
+  real do app assim que tiver (o bloco 01 pede prova visual real).
+  ============================================================================
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Refúgio — desabafe sem precisar mostrar quem você é</title>
+<meta name="description" content="Uma comunidade anônima para desabafar e ser acolhido por quem já passou pelo mesmo. Grátis, anônimo, sem julgamento." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3EDE1;
+    --cream-2:#EEE7D8;
+    --paper:#FBF8F1;
+    --ink:#22322B;
+    --ink-2:#46554D;
+    --ink-mute:#7d8a80;
+    --coral:#DE6E4C;
+    --sage:#A6BBA0;
+    --lav:#C7BCE2;
+    --forest:#1F3129;
+    --line:#DCD3C1;
+    --col:40rem;
+    --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+    --font-body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  svg{display:block}
+  .sheet{max-width:var(--col);margin:0 auto;padding:0 1.4rem}
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0}
+  .coral{color:var(--coral)}
+  p{margin:0}
+
+  header.nav{max-width:var(--col);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px 1.4rem}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:19px}
+  .logo .mark{width:24px;height:24px;border-radius:50% 50% 50% 8px;background:linear-gradient(150deg,var(--sage),var(--lav))}
+  .nav a.cta{font-size:14px;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);padding:8px 15px;border-radius:999px;background:var(--paper)}
+
+  .eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin:0 0 1rem}
+
+  /* section rhythm */
+  section{padding:3.6rem 0;border-top:1px solid var(--line)}
+  section.plain{border-top:0}
+  h2.sec{font-size:clamp(1.5rem,3.4vw,2.05rem);margin-bottom:.9rem;text-wrap:balance}
+  .body-p{color:var(--ink-2);margin-top:1rem}
+  .body-p b{color:var(--ink);font-weight:600}
+  .lead-em{font-family:var(--font-display);font-size:1.28rem;color:var(--ink);line-height:1.4;margin-top:1.3rem}
+  .lead-em .coral{color:var(--coral)}
+
+  /* hero */
+  .hero{padding:2.2rem 0 3.4rem}
+  .hero h1{font-size:clamp(2.05rem,6vw,3.15rem);line-height:1.06}
+  .hero .sub{color:var(--ink-2);font-size:1.14rem;margin-top:1.2rem}
+  .hero .sub b{color:var(--ink);font-weight:600}
+  .hero-art{width:100%;max-width:340px;margin:2rem auto .4rem}
+
+  /* form / CTA */
+  .cta-block{margin-top:1.6rem}
+  .field{display:flex;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px;box-shadow:0 12px 34px -22px rgba(34,50,43,.6)}
+  .field input{flex:1;border:0;background:transparent;padding:12px 15px;font-size:1rem;color:var(--ink);outline:none;font-family:var(--font-body)}
+  .btn{border:0;cursor:pointer;background:var(--ink);color:#F3EDE1;font-weight:600;font-size:.95rem;padding:13px 20px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);transition:.2s}
+  .btn:hover{background:#2c4036}
+  .btn .arw{transition:.2s}.btn:hover .arw{transform:translateX(3px)}
+  .micro{font-size:.82rem;color:var(--ink-mute);margin-top:.8rem}
+  .thanks{display:none;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:15px 17px;font-family:var(--font-display);color:var(--ink);font-size:1.05rem}
+  .thanks.show{display:block}
+
+  /* quote (espelho, 1a pessoa) */
+  .fp-quote{margin:1.5rem 0;padding:1.1rem 1.3rem;border-left:3px solid var(--coral);background:var(--paper);border-radius:0 12px 12px 0}
+  .fp-quote p{font-family:var(--font-display);font-style:italic;font-size:1.22rem;color:var(--ink);line-height:1.4}
+
+  /* prova ao vivo — thread */
+  .thread{margin-top:1.6rem;display:flex;flex-direction:column;gap:.8rem}
+  .post{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem}
+  .post.reply{margin-left:1.4rem;background:var(--cream-2)}
+  .post .head{display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem}
+  .post .av{width:26px;height:26px;border-radius:50%;flex:0 0 26px}
+  .av.a{background:linear-gradient(140deg,#8fb2e0,#6f83ff)}
+  .av.b{background:linear-gradient(140deg,var(--sage),#7fa77f)}
+  .av.c{background:linear-gradient(140deg,var(--coral),#e8896b)}
+  .post .who{font-family:var(--font-mono);font-size:.76rem;color:var(--ink-2)}
+  .post .who .t{color:var(--ink-mute)}
+  .post .msg{font-size:1rem;color:var(--ink)}
+  .post .foot{margin-top:.7rem}
+  .useful{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-family:var(--font-mono);color:#5c7a63;background:#EAF0E6;border:1px solid #cdddc6;border-radius:999px;padding:4px 10px}
+  .useful svg{width:13px;height:13px}
+  .ex-note{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-top:.9rem}
+
+  /* como funciona — steps */
+  .steps{margin-top:1.4rem;display:flex;flex-direction:column;gap:0}
+  .steps .st{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--line)}
+  .steps .st:last-child{border-bottom:0}
+  .steps .st .n{font-family:var(--font-mono);color:var(--coral);font-size:.9rem;flex:0 0 1.8rem;padding-top:.15rem}
+  .steps .st p{color:var(--ink);font-size:1.05rem}
+
+  /* o que vem junto — list */
+  .feats{margin-top:1.3rem;list-style:none;padding:0;display:flex;flex-direction:column;gap:0}
+  .feats li{display:flex;gap:.85rem;align-items:flex-start;padding:.8rem 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  .feats li:last-child{border-bottom:0}
+  .feats li .ck{flex:0 0 22px;color:var(--sage);margin-top:2px}.feats li .ck svg{width:20px;height:20px}
+  .feats li b{color:var(--ink);font-weight:600}
+
+  /* oferta highlight */
+  .offer{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.6rem;margin-top:.4rem}
+  .offer .price{font-family:var(--font-display);font-size:2rem;color:var(--ink)}
+  .offer .guar{margin-top:.9rem;color:var(--ink-2)}
+
+  /* faq */
+  .faq{margin-top:1.4rem;display:flex;flex-direction:column}
+  .faq .q{padding:1.1rem 0;border-bottom:1px solid var(--line)}
+  .faq .q:first-child{border-top:1px solid var(--line)}
+  .faq .q h3{font-size:1.08rem;color:var(--ink);margin-bottom:.45rem}
+  .faq .q p{color:var(--ink-2);font-size:1rem}
+  .faq .q p b{color:var(--ink)}
+
+  /* final */
+  .final{text-align:center;padding:4.2rem 0 1rem;border-top:1px solid var(--line)}
+  .final h2{font-size:clamp(1.7rem,4.4vw,2.4rem);text-wrap:balance}
+  .final .body-p{margin-left:auto;margin-right:auto;max-width:34rem}
+  .final .cta-block{max-width:32rem;margin-left:auto;margin-right:auto}
+  .hills{width:100vw;max-width:100%;margin:3rem calc(50% - 50vw) 0;display:block}
+
+  footer.foot{max-width:var(--col);margin:0 auto;padding:1.6rem 1.4rem 2.6rem}
+  .foot-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--ink-mute);font-size:.78rem;border-top:1px solid var(--line);padding-top:1.3rem;font-family:var(--font-mono)}
+
+  @media (max-width:560px){
+    .field{flex-wrap:wrap;border-radius:16px}.field input{flex:1 1 100%}.btn{width:100%;justify-content:center}
+    .post.reply{margin-left:.7rem}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="logo"><span class="mark"></span> Refúgio</div>
+    <a class="cta" href="#lista">Entrar na lista</a>
+  </header>
+
+  <div class="sheet">
+
+    <!-- 01 · PROMESSA -->
+    <div class="hero">
+      <p class="eyebrow">Para quem precisa falar e não tem com quem</p>
+      <h1>Tire o peso do peito hoje — <span class="coral">sem que ninguém saiba quem você é.</span></h1>
+      <p class="sub">Uma comunidade anônima para desabafar e ser acolhido por pessoas que já passaram por algo parecido. <b>Sem seguidores, sem exposição</b>, sem precisar fingir que está tudo bem.</p>
+      <svg class="hero-art" viewBox="0 0 340 250" fill="none" aria-hidden="true">
+        <rect x="30" y="20" width="280" height="210" rx="20" fill="#EFE7D6"/>
+        <path d="M74 200V118a54 54 0 0 1 108 0v82Z" fill="#C7BCE2"/>
+        <path d="M182 200V132a44 44 0 0 1 88 0v68Z" fill="#A6BBA0"/>
+        <circle cx="224" cy="92" r="19" fill="#DE6E4C"/>
+        <ellipse cx="128" cy="162" rx="46" ry="54" fill="#22322B"/>
+        <circle cx="128" cy="128" r="22" fill="#22322B"/>
+        <path d="M252 200c0-36 4-58 4-58" stroke="#4f6a55" stroke-width="5" stroke-linecap="round"/>
+        <path d="M256 156c14-4 19-19 14-30-12 4-17 17-14 30Z" fill="#8AA382"/>
+      </svg>
+      <div class="cta-block">
+        <form class="field" data-form>
+          <input type="email" name="email" required placeholder="Seu melhor e-mail" autocomplete="email" />
+          <button class="btn" type="submit">Quero entrar na lista de espera <span class="arw">→</span></button>
+        </form>
+        <div class="thanks" data-thanks style="margin-top:.8rem">Pronto — você está na lista 💛 A gente te avisa por e-mail quando abrir.</div>
+        <p class="micro">Grátis. Anônimo. Você entra com um nome que não é o seu.</p>
+      </div>
+    </div>
+
+    <!-- 02 · ESPELHO -->
+    <section>
+      <h2 class="sec">Você já teve algo preso na garganta que não conseguiu falar com ninguém.</h2>
+      <p class="body-p">Contar pra família ia virar preocupação, ou sermão. Pros amigos também não dava: e se vazasse, e se te olhassem diferente depois? Então você segurou. De novo. Abriu a conversa de alguém, digitou, apagou, e guardou pra você mais uma vez.</p>
+      <div class="fp-quote"><p>“Não é que eu não tenha ninguém. É que não consigo ser honesto com quem me conhece.”</p></div>
+      <p class="body-p">O problema quase nunca é falta de gente por perto. É que fica difícil falar de verdade com quem sabe o seu nome, o seu rosto, a sua vida. E é exatamente isso que trava.</p>
+    </section>
+
+    <!-- 03 · VIRADA / MECANISMO -->
+    <section>
+      <h2 class="sec">E se você pudesse falar sem que <span class="coral">ninguém</span> soubesse quem você é?</h2>
+      <p class="body-p">É isso que muda tudo aqui. Você não tem nome real, não tem foto, não tem um perfil pra proteger. Sem plateia pra impressionar e sem ninguém pra te julgar depois, dá pra dizer o que você realmente sente — não a versão editada.</p>
+      <p class="lead-em">O anonimato não é pra você se esconder. É o que finalmente te deixa <span class="coral">ser honesto.</span></p>
+      <p class="body-p">Do outro lado, pessoas reais — muitas que já passaram exatamente pelo que você está passando — leem e respondem. Não porque ganham seguidores com isso. Porque um dia também precisaram.</p>
+    </section>
+
+    <!-- 04 · PROVA AO VIVO -->
+    <section>
+      <p class="eyebrow">Veja como é por dentro</p>
+      <h2 class="sec">Assim é uma conversa aqui.</h2>
+      <p class="body-p">Sem áudio de 20 minutos, sem cadastro pra ver. Alguém escreve o que está sentindo — e a comunidade responde.</p>
+      <div class="thread">
+        <div class="post">
+          <div class="head"><span class="av a"></span><span class="who">anônimo_azul <span class="t">· há 2h</span></span></div>
+          <p class="msg">Terminei um namoro de 4 anos semana passada e todo mundo acha que eu já devia estar bem. Eu não estou. Fico fingindo o dia inteiro e desabo quando chego em casa.</p>
+        </div>
+        <div class="post reply">
+          <div class="head"><span class="av b"></span><span class="who">estrela_quieta <span class="t">· há 1h</span></span></div>
+          <p class="msg">Fingir o dia inteiro cansa mais do que a própria dor. Você não tem prazo pra estar bem — 4 anos não somem em uma semana. Vai no seu tempo.</p>
+          <div class="foot"><span class="useful"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-9C1.4 8 3 4.8 6.2 4.8c2 0 3.2 1.2 3.8 2.2.6-1 1.8-2.2 3.8-2.2 3.2 0 4.8 3.2 3.4 6.2C19 15.6 12 20 12 20Z"/></svg> 34 acharam útil</span></div>
+        </div>
+        <div class="post reply">
+          <div class="head"><span class="av c"></span><span class="who">vento_calmo <span class="t">· há 42min</span></span></div>
+          <p class="msg">Passei por isso ano passado. O que me ajudou foi parar de me cobrar “já era pra ter superado”. Se quiser, te conto o que funcionou comigo.</p>
+          <div class="foot"><span class="useful"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-9C1.4 8 3 4.8 6.2 4.8c2 0 3.2 1.2 3.8 2.2.6-1 1.8-2.2 3.8-2.2 3.2 0 4.8 3.2 3.4 6.2C19 15.6 12 20 12 20Z"/></svg> 18 acharam útil</span></div>
+        </div>
+      </div>
+      <p class="ex-note">Exemplo ilustrativo</p>
+      <div class="cta-block">
+        <form class="field" data-form>
+          <input type="email" name="email" required placeholder="Seu melhor e-mail" autocomplete="email" />
+          <button class="btn" type="submit">Quero entrar na lista de espera <span class="arw">→</span></button>
+        </form>
+        <div class="thanks" data-thanks style="margin-top:.8rem">Pronto — você está na lista 💛 A gente te avisa por e-mail quando abrir.</div>
+      </div>
+    </section>
+
+    <!-- 05 · COMO FUNCIONA -->
+    <section>
+      <h2 class="sec">Como funciona</h2>
+      <div class="steps">
+        <div class="st"><span class="n">01</span><p>Entre com um nome anônimo. Nada seu aparece.</p></div>
+        <div class="st"><span class="n">02</span><p>Escreva o que está sentindo — do jeito que sair.</p></div>
+        <div class="st"><span class="n">03</span><p>Pessoas reais leem, acolhem e respondem.</p></div>
+      </div>
+    </section>
+
+    <!-- 06 · O QUE VEM JUNTO -->
+    <section>
+      <h2 class="sec">O que você encontra aqui</h2>
+      <ul class="feats">
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>100% anônimo.</b> Nome, foto e perfil ficam de fora.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Sem seguidores e sem competição.</b> Todo mundo começa igual.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Pessoas que já passaram pelo mesmo.</b> Não são robôs, nem profissionais — é gente de verdade.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Reconhecimento para quem acolhe.</b> Aqui você vale pelo que contribui, não por quem é.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Um espaço moderado.</b> Regras claras para manter tudo seguro e respeitoso.</span></li>
+      </ul>
+    </section>
+
+    <!-- 07 · POR QUE EXISTE (no lugar do depoimento) -->
+    <section>
+      <p class="eyebrow">Por que isso está sendo criado</p>
+      <h2 class="sec">Começou com mensagens de gente que não tinha pra quem contar.</h2>
+      <p class="body-p">Todo dia chegam mensagens de pessoas querendo desabafar — gente sem ninguém pra quem contar, com medo de se expor na internet. São tantas que ficou impossível responder uma a uma. Esta comunidade nasce disso: de um monte de gente precisando falar, e de outras dispostas a ouvir.</p>
+      <p class="body-p">Estamos começando agora — por isso ainda não temos depoimentos pra mostrar. Temos algo mais honesto: pessoas de verdade esperando por um lugar assim. Você pode ser uma delas.</p>
+    </section>
+
+    <!-- 08 · A OFERTA -->
+    <section>
+      <p class="eyebrow">Sem pegadinha</p>
+      <h2 class="sec">É de graça. E a ideia é continuar sendo.</h2>
+      <div class="offer">
+        <div class="price">R$ 0</div>
+        <p class="body-p" style="margin-top:.5rem">Você não paga nada para entrar, para desabafar ou para ajudar. Não tem plano premium escondido, não tem anúncio no meio do seu desabafo. É um projeto <b>sem fins lucrativos</b> — se um dia você quiser apoiar para mantê-lo de pé, é escolha sua, do jeito que puder. Nunca obrigação.</p>
+        <p class="guar"><b>Sua garantia é o anonimato:</b> você entra sem nome real, sem cartão, sem cadastro pesado. E sai quando quiser.</p>
+      </div>
+      <div class="cta-block">
+        <form class="field" data-form>
+          <input type="email" name="email" required placeholder="Seu melhor e-mail" autocomplete="email" />
+          <button class="btn" type="submit">Quero entrar na lista de espera <span class="arw">→</span></button>
+        </form>
+        <div class="thanks" data-thanks style="margin-top:.8rem">Pronto — você está na lista 💛 A gente te avisa por e-mail quando abrir.</div>
+      </div>
+    </section>
+
+    <!-- 09 · AS OBJEÇÕES / FAQ -->
+    <section>
+      <h2 class="sec">Perguntas que talvez você esteja se fazendo</h2>
+      <div class="faq">
+        <div class="q">
+          <h3>É mesmo anônimo?</h3>
+          <p>Para a comunidade, totalmente. Ninguém vê seu nome, seu rosto ou seu perfil — você escolhe um apelido gerado na hora e é só isso que aparece.</p>
+        </div>
+        <div class="q">
+          <h3>Vocês são psicólogos ou terapeutas?</h3>
+          <p>Não. Aqui você encontra <b>pessoas, não profissionais de saúde mental</b> — é escuta e apoio entre gente comum. Se você estiver passando por um momento grave ou pensando em se machucar, fale com o <b>CVV pelo 188</b> (24h, gratuito e sigiloso) ou procure a emergência <b>192</b>. Você não está sozinho.</p>
+        </div>
+        <div class="q">
+          <h3>E se alguém me tratar mal?</h3>
+          <p>A comunidade sinaliza o que foge das regras e a moderação decide. Respeito aqui não é opcional — quem vem para machucar não fica.</p>
+        </div>
+        <div class="q">
+          <h3>Meus dados estão seguros?</h3>
+          <p>A gente coleta o mínimo possível e nunca liga o que você escreve à sua identidade real. O seu desabafo é seu.</p>
+        </div>
+        <div class="q">
+          <h3>Qual é a pegadinha? É pago?</h3>
+          <p>Nenhuma pegadinha. É gratuito e sem fins lucrativos. Apoiar o projeto é totalmente opcional, e nunca desbloqueia nada — todo mundo tem acesso ao mesmo lugar.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 10 · A ÚLTIMA CHANCE -->
+  <div class="final" id="lista">
+    <div class="sheet">
+      <h2>Talvez você não precise ser <span class="coral">forte</span> o tempo todo.</h2>
+      <p class="body-p">Quando a comunidade abrir, você vai ter um lugar para falar sem revelar quem é — e pessoas do outro lado prontas para ouvir. Deixe seu e-mail e a gente te avisa.</p>
+      <div class="cta-block">
+        <form class="field" data-form>
+          <input type="email" name="email" required placeholder="Seu melhor e-mail" autocomplete="email" />
+          <button class="btn" type="submit">Quero entrar na lista de espera <span class="arw">→</span></button>
+        </form>
+        <div class="thanks" data-thanks style="margin-top:.8rem">Pronto — você está na lista 💛 A gente te avisa por e-mail quando abrir.</div>
+        <p class="micro">Grátis e sem fins lucrativos. Você será avisado quando abrir.</p>
+      </div>
+      <svg class="hills" viewBox="0 0 1200 200" preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <path d="M0 200V120c120-40 240-40 360 0s240 40 360 0 240-40 480 10v70Z" fill="#C7BCE2"/>
+        <path d="M0 200V150c160-50 320 20 520 0s320-60 680-10v60Z" fill="#A6BBA0"/>
+        <circle cx="920" cy="80" r="28" fill="#DE6E4C"/>
+        <path d="M0 200V176c200-30 400 20 620 5s360-35 580-5v24Z" fill="#22322B"/>
+      </svg>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div class="foot-meta">
+      <span>Refúgio · comunidade anônima, sem fins lucrativos</span>
+      <span>Feita para acolher.</span>
+    </div>
+  </footer>
+
+<script>
+  const WAITLIST_ENDPOINT = ""; // cole seu endpoint (Formspree/Tally/Getform). Vazio = demonstração.
+  document.querySelectorAll('[data-form]').forEach(function(form){
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const thanks = form.parentElement.querySelector('[data-thanks]');
+      const data = new FormData(form);
+      btn.disabled = true; const label = btn.innerHTML; btn.textContent = 'Enviando…';
+      const done = () => { form.style.display='none'; if(thanks) thanks.classList.add('show'); };
+      if(!WAITLIST_ENDPOINT){ setTimeout(done, 450); return; }
+      try{
+        const r = await fetch(WAITLIST_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:data});
+        if(r.ok){ done(); } else { throw new Error('fail'); }
+      }catch(err){ btn.disabled=false; btn.innerHTML=label; }
+    });
+  });
+</script>
+</body>
+</html>

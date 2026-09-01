@@ -84,11 +84,22 @@ function IntentOption({ intent, title, copy, selected, onSelect }: { intent: Int
 }
 
 function SignupForm() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(() => {
+    try { return sessionStorage.getItem('refugio-pending-email') ?? ''; } catch { return ''; }
+  });
   const [intent, setIntent] = useState<Intent | ''>('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const fillEmail = (event: Event) => {
+      const nextEmail = (event as CustomEvent<string>).detail;
+      if (typeof nextEmail === 'string') setEmail(nextEmail);
+    };
+    window.addEventListener('refugio-fill-email', fillEmail);
+    return () => window.removeEventListener('refugio-fill-email', fillEmail);
+  }, []);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -114,6 +125,7 @@ function SignupForm() {
       if (!response.ok || data.ok !== true) {
         throw new Error(typeof data.error === 'string' ? data.error : 'Não foi possível salvar agora. Tente novamente.');
       }
+      try { sessionStorage.removeItem('refugio-pending-email'); } catch {}
       setSubmitted(true);
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Não foi possível salvar agora. Tente novamente.');
@@ -164,6 +176,45 @@ function SignupForm() {
       <button type="submit" disabled={submitting} className="button-primary mt-7 w-full disabled:cursor-wait disabled:opacity-70" data-testid="button-submit-signup">{submitting ? 'Salvando seu convite...' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}</button>
       <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[.68rem] leading-relaxed text-[#183d3b]/55"><LockKeyhole size={12} /> Grátis. Sem compromisso. Você será avisado quando a comunidade abrir.</p>
     </form>
+  );
+}
+
+function CompactWaitlistForm() {
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
+
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const cleanEmail = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) return;
+    try { sessionStorage.setItem('refugio-pending-email', cleanEmail); } catch {}
+    window.dispatchEvent(new CustomEvent('refugio-fill-email', { detail: cleanEmail }));
+    setSent(true);
+    window.location.hash = 'entrar';
+    window.setTimeout(() => document.getElementById('refugio-email')?.focus(), 200);
+  };
+
+  return (
+    <div className="mt-8 max-w-2xl">
+      <form onSubmit={submit} className="flex flex-wrap gap-2 rounded-[1.2rem] border border-[#183d3b]/15 bg-[#f3eee4] p-2 shadow-[0_12px_34px_-22px_rgba(24,61,59,.6)]">
+        <input type="email" name="email" required value={email} onChange={(event) => { setEmail(event.target.value); setSent(false); }} placeholder="Seu melhor e-mail" autoComplete="email" className="min-w-[13rem] flex-1 rounded-full bg-transparent px-4 py-3 text-sm outline-none" aria-label="Seu melhor e-mail" />
+        <button type="submit" className="button-primary w-full sm:w-auto">{sent ? 'Agora escolha como participar' : 'Quero entrar na lista de espera'} <ArrowRight size={16} /></button>
+      </form>
+      <p className="mt-3 text-xs text-[#183d3b]/55">Grátis. Anônimo. Sem compromisso.</p>
+    </div>
+  );
+}
+
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-[#183d3b]/20">
+      <button type="button" className="flex w-full items-center justify-between gap-6 py-6 text-left" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+        <span className="text-lg font-bold">{question}</span>
+        <ChevronDown size={20} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+      {open && <p className="max-w-3xl pb-6 text-sm leading-[1.7] text-[#183d3b]/65">{answer}</p>}
+    </div>
   );
 }
 
@@ -313,6 +364,7 @@ function Home() {
         </div>
         <HeroArtwork />
       </section>
+      <div className="mx-auto max-w-7xl px-5 pb-20 md:px-10 md:pb-28"><CompactWaitlistForm /></div>
 
       <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-20 text-[#f3eee4] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
@@ -484,6 +536,7 @@ function CopyStructureHome() {
           </div>
         </div>
       </section>
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-20"><CompactWaitlistForm /></div>
 
       <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
         <p className="eyebrow">como funciona</p><h2 className="serif mt-4 max-w-2xl text-5xl leading-[.94] md:text-7xl">É mais simples do que parece.</h2>
@@ -517,9 +570,10 @@ function CopyStructureHome() {
 
       <section className="border-y border-[#183d3b]/15 bg-[#d8785c] px-5 py-24 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#f3eee4]">sem pegadinha</p><h2 className="serif mt-4 text-5xl leading-[.94] text-[#f3eee4] md:text-7xl">É de graça.<br />E a ideia é continuar sendo.</h2></div><div className="rounded-[1.5rem] bg-[#f3eee4] p-7 text-[#183d3b] md:p-9"><p className="serif text-4xl">R$ 0</p><p className="mt-5 text-sm leading-[1.7] text-[#183d3b]/70">Você não paga nada para entrar, para desabafar ou para ajudar. É um projeto <strong>sem fins lucrativos</strong>, sem anúncio no meio do seu desabafo.</p><p className="mt-5 text-sm leading-[1.7] text-[#183d3b]/70"><strong>Sua garantia é o anonimato:</strong> você entra sem nome real, sem cartão, sem cadastro pesado. E sai quando quiser.</p></div></div>
+        <div className="mx-auto mt-12 max-w-7xl"><CompactWaitlistForm /></div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32"><p className="eyebrow">perguntas que talvez você esteja se fazendo</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Antes de entrar, talvez você queira saber.</h2><div className="mt-12 divide-y divide-[#183d3b]/20 border-y border-[#183d3b]/20">{[['É mesmo anônimo?', 'Para a comunidade, sim. Ninguém vê seu nome, rosto ou perfil — você escolhe um apelido e é só isso que aparece.'], ['Vocês são psicólogos ou terapeutas?', 'Não. Aqui você encontra pessoas, não profissionais de saúde mental. É escuta e apoio entre gente comum.'], ['E se alguém me tratar mal?', 'A comunidade sinaliza o que foge das regras e a moderação decide. Quem vem para machucar não fica.'], ['É pago?', 'Nenhuma pegadinha. É gratuito e sem fins lucrativos. Apoiar o projeto é opcional e nunca desbloqueia nada.']].map(([question, answer]) => <div key={question} className="grid gap-3 py-6 md:grid-cols-[.75fr_1.25fr] md:gap-10"><h3 className="text-lg font-bold">{question}</h3><p className="text-sm leading-[1.7] text-[#183d3b]/65">{answer}</p></div>)}</div></section>
+      <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32"><p className="eyebrow">perguntas que talvez você esteja se fazendo</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Antes de entrar, talvez você queira saber.</h2><div className="mt-12 border-t border-[#183d3b]/20">{[['É mesmo anônimo?', 'Para a comunidade, sim. Ninguém vê seu nome, rosto ou perfil — você escolhe um apelido e é só isso que aparece.'], ['Vocês são psicólogos ou terapeutas?', 'Não. Aqui você encontra pessoas, não profissionais de saúde mental. É escuta e apoio entre gente comum.'], ['E se alguém me tratar mal?', 'A comunidade sinaliza o que foge das regras e a moderação decide. Quem vem para machucar não fica.'], ['É pago?', 'Nenhuma pegadinha. É gratuito e sem fins lucrativos. Apoiar o projeto é opcional e nunca desbloqueia nada.']].map(([question, answer]) => <FaqItem key={question} question={question} answer={answer} />)}</div></section>
 
       <section id="entrar" className="border-t border-[#183d3b]/15 bg-[#183d3b] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32"><div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#d8785c]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Talvez você não precise ser <span className="text-[#b7cfc0]">forte</span> o tempo todo.</h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#f3eee4]/70">Quando a comunidade abrir, você vai ter um lugar para falar sem revelar quem é — e pessoas do outro lado prontas para ouvir.</p></div><SignupForm /></div></section>
 
