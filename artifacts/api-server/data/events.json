@@ -102,5 +102,37 @@
     "timestamp": "2026-09-03T22:07:25.639Z",
     "ipHash": "52b7a1878b551303310db328937ec2d5020988ce1abc3e3c24a61add3af66eae",
     "system": "Mac"
+  },
+  {
+    "event": "scroll_faq",
+    "ref": "",
+    "path": "/",
+    "timestamp": "2026-09-03T22:08:57.056Z",
+    "ipHash": "52b7a1878b551303310db328937ec2d5020988ce1abc3e3c24a61add3af66eae",
+    "system": "Mac"
+  },
+  {
+    "event": "pageview",
+    "ref": "",
+    "path": "/",
+    "timestamp": "2026-09-03T22:12:46.768Z",
+    "ipHash": "52b7a1878b551303310db328937ec2d5020988ce1abc3e3c24a61add3af66eae",
+    "system": "Mac"
+  },
+  {
+    "event": "pageview",
+    "ref": "",
+    "path": "/",
+    "timestamp": "2026-09-03T22:12:46.777Z",
+    "ipHash": "52b7a1878b551303310db328937ec2d5020988ce1abc3e3c24a61add3af66eae",
+    "system": "Mac"
+  },
+  {
+    "event": "pageview",
+    "ref": "",
+    "path": "/",
+    "timestamp": "2026-09-03T22:12:47.581Z",
+    "ipHash": "52b7a1878b551303310db328937ec2d5020988ce1abc3e3c24a61add3af66eae",
+    "system": "Mac"
   }
 ]
