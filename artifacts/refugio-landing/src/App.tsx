@@ -193,11 +193,11 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       {error && <p role="alert" className="mt-4 text-xs font-semibold text-[#06392f]" data-testid="status-signup-error">{error}</p>}
 
        <div className="mt-7 lg:flex lg:justify-center">
-        <ButtonPrimary type="submit" disabled={submitting} testId="button-submit-signup">
+        <ButtonPrimary type="submit" disabled={submitting} testId="button-submit-signup" className="w-full whitespace-nowrap text-[.74rem] md:w-auto md:text-[.92rem]">
           {submitting ? 'Guardando seu lugar…' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}
         </ButtonPrimary>
       </div>
-      <p className="mt-4 flex items-center gap-1.5 text-[.7rem] text-[#02110c]/60 lg:justify-center"><LockKeyhole size={12} /> Grátis e anônimo. Você entra se quiser. E sai quando quiser.</p>
+      <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[.7rem] text-[#02110c]/60"><LockKeyhole size={12} className="shrink-0" /><span>Grátis e anônimo. Você entra se quiser. E sai quando quiser.</span></p>
     </form>
   );
 }
