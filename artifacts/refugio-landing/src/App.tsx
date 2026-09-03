@@ -99,6 +99,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState(() => { try { return sessionStorage.getItem('refugio-pending-email') ?? ''; } catch { return ''; } });
   const [intent, setIntent] = useState<Intent | ''>('');
   const [firstIntent, setFirstIntent] = useState<FirstIntent>('');
+  const [showFirstIntentOptions, setShowFirstIntentOptions] = useState(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -203,31 +204,45 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       </fieldset>
 
       <fieldset className="mt-7">
-        <legend className="mb-3">
-          <Eyebrow>Opcional</Eyebrow>
-          <span className="mt-2 block text-xs font-bold text-[#02110c]">O que faria você usar o Refúgio primeiro?</span>
-        </legend>
-        <div className="overflow-hidden rounded-2xl border border-[#a4a9a5]/70">
-          {firstIntentOptions.map(({ value, title, copy }) => {
-            const active = firstIntent === value;
-            return (
-              <button
-                key={value}
-                type="button"
-                onClick={() => { setFirstIntent(active ? '' : value); setError(''); }}
-                aria-pressed={active}
-                data-testid={`button-first-intent-${value}`}
-                className={`flex w-full items-center justify-between gap-4 border-b border-[#a4a9a5]/50 px-4 py-3.5 text-left transition-colors last:border-b-0 ${active ? 'bg-[#06392f] text-white' : 'bg-white text-[#02110c] hover:bg-[#f5f7f4]'}`}
-              >
-                <span className="min-w-0">
-                  <span className="block text-[.9rem] font-bold tracking-[-.02em]">{title}</span>
-                  <span className={`mt-1 block text-[.74rem] leading-[1.4] ${active ? 'text-white/80' : 'text-[#02110c]/65'}`}>{copy}</span>
-                </span>
-                <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${active ? 'border-white bg-white text-[#06392f]' : 'border-[#a4a9a5]'}`}>{active && <Check size={12} strokeWidth={3} />}</span>
-              </button>
-            );
-          })}
-        </div>
+        <legend className="sr-only">Opções opcionais</legend>
+        <button
+          type="button"
+          onClick={() => setShowFirstIntentOptions((open) => !open)}
+          aria-expanded={showFirstIntentOptions}
+          aria-controls="first-intent-options"
+          className="flex w-full items-center justify-between rounded-2xl border border-[#a4a9a5]/70 bg-white px-4 py-3 text-left transition-colors hover:border-[#06392f]"
+        >
+          <span>
+            <Eyebrow>Opcional</Eyebrow>
+            <span className="mt-2 block text-xs font-bold text-[#02110c]">
+              {firstIntent ? firstIntentLabels[firstIntent] : 'O que faria você usar o Refúgio primeiro?'}
+            </span>
+          </span>
+          <ChevronDown size={18} className={`shrink-0 text-[#06392f] transition-transform ${showFirstIntentOptions ? 'rotate-180' : ''}`} />
+        </button>
+        {showFirstIntentOptions && (
+          <div id="first-intent-options" className="mt-3 grid gap-3 sm:grid-cols-3">
+            {firstIntentOptions.map(({ value, title, copy }) => {
+              const active = firstIntent === value;
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => { setFirstIntent(active ? '' : value); setError(''); }}
+                  aria-pressed={active}
+                  data-testid={`button-first-intent-${value}`}
+                  className={`flex h-full flex-col justify-between rounded-2xl border p-4 text-left transition-colors ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/70 bg-white text-[#02110c] hover:border-[#06392f]'}`}
+                >
+                  <span className="flex items-start justify-between gap-2">
+                    <span className="text-[.98rem] font-bold tracking-[-.02em]">{title}</span>
+                    <span className={`flex h-5 w-5 items-center justify-center rounded-full border ${active ? 'border-white bg-white text-[#06392f]' : 'border-[#a4a9a5]'}`}>{active && <Check size={12} strokeWidth={3} />}</span>
+                  </span>
+                  <span className={`mt-6 block text-[.78rem] leading-[1.45] ${active ? 'text-white/85' : 'text-[#02110c]/70'}`}>{copy}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </fieldset>
 
       <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0" />
@@ -455,7 +470,7 @@ function Home() {
         <CompactBar className="mt-8 lg:mx-auto" />
       <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
        <a href="#como-funciona" className="mt-3 block max-w-2xl text-center text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
-         Antes disso, quero ver como funciona ↓
+        Prefiro entender antes de me inscrever ↓
        </a>
       </section>
 
@@ -482,7 +497,7 @@ function Home() {
         <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl">
           <Eyebrow>a virada</Eyebrow>
           <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
-            E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
+            E se <span className="text-[#06392f]">você pudesse falar</span> sem que ninguém soubesse quem você é?
           </h2>
           <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
             Aqui você decide como aparecer. Pode ser um apelido, um nome, uma foto qualquer, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando.
@@ -500,7 +515,7 @@ function Home() {
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="lg:text-center">
-            <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
+            <Eyebrow inverse>uma conversa por dentro</Eyebrow>
             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
               Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
             </h2>
@@ -557,7 +572,7 @@ function Home() {
           <div className="lg:text-center">
             <Eyebrow inverse>o que você encontra aqui</Eyebrow>
             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
-              Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
+              É quase o oposto de uma <span className="text-[#a4a9a5]">rede social.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78 lg:mx-auto">
               Nada de seguidores. Nada de curtidas públicas. Nada de anúncio entre um desabafo e outro. A ideia é o oposto de rede social: você entra pra falar ou pra escutar, não pra performar.
