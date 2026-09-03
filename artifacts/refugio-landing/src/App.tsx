@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowRight, ArrowDownRight, Check, ChevronDown, LockKeyhole, Mail, Menu, X } from 'lucide-react';
-import { getWaitlistCount } from '@workspace/api-client-react';
 import backgroundOne from '@assets/__(1)_1788457940406.jpeg';
 import backgroundTwo from '@assets/__(2)_1788457940406.jpeg';
 import backgroundThree from '@assets/__(3)_1788457940407.jpeg';
@@ -43,32 +42,6 @@ function getRef() {
     return new URLSearchParams(window.location.search).get('ref')?.trim().slice(0, 120) ?? '';
   } catch {
     return '';
-  }
-}
-
-type TrackEventName =
-  | 'pageview'
-  | 'scroll_como_funciona'
-  | 'scroll_faq'
-  | 'form_started'
-  | 'form_submitted'
-  | 'cta_hero_clicked'
-  | 'cta_como_funciona_clicked';
-
-function trackEvent(event: TrackEventName, meta?: Record<string, string | number | boolean>) {
-  try {
-    void fetch('/api/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event,
-        ref: getRef(),
-        path: window.location.pathname,
-        ...(meta ? { meta } : {}),
-      }),
-    }).catch(() => {});
-  } catch {
-    // Analytics must never interrupt the landing experience.
   }
 }
 
@@ -120,42 +93,12 @@ function useReveal() {
   return { ref, style: { opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(14px)', transition: 'opacity .7s ease, transform .7s ease' } as React.CSSProperties };
 }
 
-function useTrackSectionView(event: 'scroll_como_funciona' | 'scroll_faq') {
-  const ref = useRef<HTMLElement>(null);
-  const tracked = useRef(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    const track = () => {
-      if (tracked.current) return;
-      tracked.current = true;
-      trackEvent(event);
-    };
-    if (!node || !('IntersectionObserver' in window)) {
-      track();
-      return;
-    }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        track();
-        observer.disconnect();
-      }
-    }, { threshold: 0.3 });
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [event]);
-
-  return ref;
-}
-
 /* ------------------------- formulário principal ------------------------- */
 
 function SignupForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState(() => { try { return sessionStorage.getItem('refugio-pending-email') ?? ''; } catch { return ''; } });
   const [intent, setIntent] = useState<Intent | ''>('');
   const [firstIntent, setFirstIntent] = useState<FirstIntent>('');
-  const [showFirstIntent, setShowFirstIntent] = useState(false);
-  const formStarted = useRef(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -186,7 +129,6 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.ok !== true) throw new Error(typeof data.error === 'string' ? data.error : 'Não foi possível salvar agora. Tente de novo.');
       try { sessionStorage.removeItem('refugio-pending-email'); } catch {}
-      trackEvent('form_submitted', { form: 'full' });
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível salvar agora. Tente de novo.');
@@ -227,14 +169,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
           id="refugio-email"
           type="email"
           value={email}
-           onChange={(e) => {
-             if (e.target.value && !formStarted.current) {
-               formStarted.current = true;
-               trackEvent('form_started', { form: compact ? 'compact' : 'full' });
-             }
-             setEmail(e.target.value);
-             setError('');
-           }}
+          onChange={(e) => { setEmail(e.target.value); setError(''); }}
           placeholder="voce@exemplo.com"
           className="w-full rounded-full border border-[#a4a9a5]/70 bg-white py-3.5 pl-11 pr-5 text-sm text-[#02110c] outline-none placeholder:text-[#a4a9a5] focus:border-[#06392f]"
           data-testid="input-email"
@@ -268,21 +203,11 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       </fieldset>
 
       <fieldset className="mt-7">
-        <legend className="w-full">
-          <button
-            type="button"
-            onClick={() => setShowFirstIntent((value) => !value)}
-            aria-expanded={showFirstIntent}
-            aria-controls="first-intent-options"
-            className="flex w-full items-center justify-between gap-4 text-left"
-          >
-            <span className="text-xs font-bold text-[#02110c]">
-              O que faria você usar o Refúgio primeiro? <span className="font-normal text-[#a4a9a5]">(opcional)</span>
-            </span>
-            <ChevronDown size={16} className={`shrink-0 text-[#06392f] transition-transform ${showFirstIntent ? 'rotate-180' : ''}`} />
-          </button>
+        <legend className="mb-3">
+          <Eyebrow>Opcional</Eyebrow>
+          <span className="mt-2 block text-xs font-bold text-[#02110c]">O que faria você usar o Refúgio primeiro?</span>
         </legend>
-        {showFirstIntent && <div id="first-intent-options" className="mt-3 grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-3">
           {firstIntentOptions.map(({ value, title, copy }) => {
             const active = firstIntent === value;
             return (
@@ -302,7 +227,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
               </button>
             );
           })}
-        </div>}
+        </div>
       </fieldset>
 
       <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0" />
@@ -319,9 +244,8 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function CompactBar({ className = 'mt-8', location = 'inline' }: { className?: string; location?: 'hero' | 'inline' } = {}) {
+function CompactBar({ className = 'mt-8' }: { className?: string } = {}) {
   const [email, setEmail] = useState('');
-  const formStarted = useRef(false);
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const clean = email.trim();
@@ -337,18 +261,12 @@ function CompactBar({ className = 'mt-8', location = 'inline' }: { className?: s
         type="email"
         required
         value={email}
-       onChange={(e) => {
-         if (e.target.value && !formStarted.current) {
-           formStarted.current = true;
-           trackEvent('form_started', { form: location });
-         }
-         setEmail(e.target.value);
-       }}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="Seu melhor e-mail"
         className="min-w-0 w-full flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-[#02110c] outline-none placeholder:text-[#a4a9a5]"
         aria-label="Seu melhor e-mail"
       />
-      <ButtonPrimary type="submit" onClick={location === 'hero' ? () => trackEvent('cta_hero_clicked') : undefined} className="w-full shrink-0 sm:w-auto">Entrar na lista <ArrowRight size={16} /></ButtonPrimary>
+      <ButtonPrimary type="submit" className="w-full shrink-0 sm:w-auto">Entrar na lista <ArrowRight size={16} /></ButtonPrimary>
     </form>
   );
 }
@@ -489,38 +407,6 @@ function ConversationShowcase() {
   );
 }
 
-function WaitlistSocialProof() {
-  const [total, setTotal] = useState<number | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-    void getWaitlistCount()
-      .then(({ total: nextTotal }) => {
-        if (mounted && Number.isFinite(nextTotal)) setTotal(Math.floor(nextTotal));
-      })
-      .catch(() => {
-        // A private count endpoint must never affect the landing page.
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  if (total === null || total <= 50) return null;
-
-  return (
-    <section aria-label="Prova social" className="border-y border-[#a4a9a5]/50 bg-white px-5 py-16 md:px-10 md:py-24">
-      <div className="mx-auto max-w-7xl text-center">
-        <Eyebrow>gente esperando para falar</Eyebrow>
-        <p className="serif mt-4 text-[clamp(2.6rem,6vw,5rem)] leading-[.94] text-[#06392f]">
-          {total} pessoas já estão esperando.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 /* ------------------------- HOME ------------------------- */
 
 function Home() {
@@ -528,15 +414,10 @@ function Home() {
   const espelho = useReveal();
   const virada = useReveal();
   const como = useReveal();
-  const comoTracked = useTrackSectionView('scroll_como_funciona');
   const encontra = useReveal();
   const origem = useReveal();
-  const faqTracked = useTrackSectionView('scroll_faq');
 
-  useEffect(() => {
-    document.title = 'Refúgio — desabafe sem revelar quem você é';
-    trackEvent('pageview');
-  }, []);
+  useEffect(() => { document.title = 'Refúgio — desabafe sem revelar quem você é'; }, []);
 
   return (
     <main className="min-h-screen bg-white text-[#02110c] antialiased">
@@ -571,10 +452,10 @@ function Home() {
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
-        <CompactBar location="hero" className="mt-8 lg:mx-auto" />
+        <CompactBar className="mt-8 lg:mx-auto" />
       <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
-        <a href="#como-funciona" onClick={() => trackEvent('cta_como_funciona_clicked')} className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
-         Prefiro entender antes de me inscrever ↓
+       <a href="#como-funciona" className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
+         Antes disso, quero ver como funciona ↓
        </a>
       </section>
 
@@ -601,7 +482,7 @@ function Home() {
         <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl">
           <Eyebrow>a virada</Eyebrow>
           <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
-            E se <span className="text-[#06392f]">você pudesse falar</span> sem que ninguém soubesse quem você é?
+            E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
           </h2>
           <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
             Aqui você decide como aparecer. Pode ser um apelido, um nome, uma foto qualquer, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando.
@@ -619,7 +500,7 @@ function Home() {
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="lg:text-center">
-            <Eyebrow inverse>uma conversa por dentro</Eyebrow>
+            <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
               Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
             </h2>
@@ -636,7 +517,7 @@ function Home() {
       </section>
 
       {/* 05 COMO FUNCIONA — 3 passos */}
-      <section id="como-funciona" ref={comoTracked} className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
+      <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
         <div ref={como.ref} style={como.style}>
           <div className="lg:text-center">
             <Eyebrow>como funciona</Eyebrow>
@@ -644,7 +525,7 @@ function Home() {
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3 md:gap-5">
             {[
-              ['01', 'Você escolhe como aparecer.', 'Nome, apelido, foto que fizer sentido, ou nada disso. Sem perfil público, sem gente te procurando pelo nome.', howItWorksOne],
+              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.', howItWorksOne],
               ['02', 'Escreve o que está sentindo.', 'Do jeito que sair. Sem precisar organizar, sem precisar explicar de onde veio.', howItWorksTwo],
               ['03', 'Alguém lê e responde.', 'Uma pessoa comum que talvez já tenha passado por algo parecido. Você decide o que faz sentido levar.', howItWorksThree],
             ].map(([n, title, copy, background]) => (
@@ -676,7 +557,7 @@ function Home() {
           <div className="lg:text-center">
             <Eyebrow inverse>o que você encontra aqui</Eyebrow>
             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
-              É <span className="text-[#a4a9a5]">quase o oposto de uma rede social.</span>
+              Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78 lg:mx-auto">
               Nada de seguidores. Nada de curtidas públicas. Nada de anúncio entre um desabafo e outro. A ideia é o oposto de rede social: você entra pra falar ou pra escutar, não pra performar.
@@ -684,7 +565,7 @@ function Home() {
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
-              ['100% anônimo.', 'Nome, apelido, foto — ou nada disso. Sem perfil público. Só o que você escolher mostrar aparece.', backgroundOne],
+              ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido. Só isso aparece.', backgroundOne],
               ['Sem seguidores.', 'Ninguém está construindo audiência aqui. Todo mundo começa do zero, todo dia.', backgroundTwo],
               ['Pessoas que já passaram pelo mesmo.', 'Quem responde não é robô nem plantonista. É gente que sabe, pela própria vida, o que é precisar de apoio.', backgroundThree],
               ['Moderação de verdade.', 'Regras publicadas em uma página, sem letra miúda. Denúncia em um toque, e a equipe olha caso a caso. Quem passa do limite sai.', backgroundFour],
@@ -707,9 +588,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* 07 PROVA SOCIAL — contador factual da lista */}
-      <WaitlistSocialProof />
 
       {/* 08 OFERTA — grátis + garantia = anonimato */}
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
@@ -759,6 +637,12 @@ function Home() {
              <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93] lg:mx-auto">
               Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
             </h2>
+            <p className="mx-auto mt-7 max-w-2xl text-[1.05rem] leading-[1.7] text-white/78">
+              A comunidade ainda não abriu. Quando abrir, você vai poder falar sem revelar quem é. E é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-[.9rem] leading-[1.7] text-white/60">
+              Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir. E vai querer saber, sem pressão, o que você espera encontrar aqui.
+            </p>
             <ul className="mt-7 space-y-4 text-left text-sm leading-[1.55] text-white">
               <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Anônimo de verdade. Sem nome real, sem foto, sem perfil público.</span></li>
               <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Grátis, sem anúncio no meio do desabafo, sem revenda de dados.</span></li>
@@ -775,7 +659,7 @@ function Home() {
       </section>
 
       {/* 10 FAQ — objeções reais */}
-      <section id="faq" ref={faqTracked} className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
+      <section className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
             <div className="text-center">
              <Eyebrow>as dúvidas que mais chegam</Eyebrow>
@@ -817,42 +701,30 @@ function Home() {
 
 type AdminEntry = { email: string; intent: Intent; firstIntent: FirstIntent; source: string | null; createdAt: string };
 type AdminSummary = { total: number; counts: Record<Intent, number>; firstIntentCounts: Record<Exclude<FirstIntent, ''>, number> };
-type BehaviorSummary = {
-  visitors: { today: number; sevenDays: number; thirtyDays: number };
-  conversionRate: number;
-  funnel: { event: string; label: string; count: number; rate: number }[];
-  topOrigins: { ref: string; visitors: number; conversions: number; conversionRate: number }[];
-};
 
 function Admin() {
   const [password, setPassword] = useState('');
   const [auth, setAuth] = useState('');
   const [summary, setSummary] = useState<AdminSummary | null>(null);
-  const [behavior, setBehavior] = useState<BehaviorSummary | null>(null);
   const [entries, setEntries] = useState<AdminEntry[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
-  useEffect(() => {
-    document.title = 'Refúgio · Painel';
-    trackEvent('pageview');
-  }, []);
+  useEffect(() => { document.title = 'Refúgio · Painel'; }, []);
 
   const load = async (secret = auth) => {
     setLoading(true); setError('');
     const headers = { Authorization: `Basic ${btoa(`admin:${secret}`)}` };
     try {
-      const [s, e, b] = await Promise.all([
+      const [s, e] = await Promise.all([
         fetch('/api/admin/summary', { headers }),
         fetch('/api/admin/waitlist', { headers }),
-        fetch('/api/admin/behavior', { headers }),
       ]);
-      if (s.status === 401 || e.status === 401 || b.status === 401) throw new Error('Senha inválida ou ADMIN_PASSWORD não configurado.');
-      if (!s.ok || !e.ok || !b.ok) throw new Error('Não foi possível carregar.');
+      if (s.status === 401 || e.status === 401) throw new Error('Senha inválida ou ADMIN_PASSWORD não configurado.');
+      if (!s.ok || !e.ok) throw new Error('Não foi possível carregar.');
       setSummary(await s.json());
       setEntries((await e.json()).entries);
-      setBehavior(await b.json());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível carregar.');
     } finally { setLoading(false); }
@@ -944,81 +816,8 @@ function Admin() {
                   ))}
                 </div>
               </div>
-             </div>
-             {behavior && (
-               <section className="mt-14" aria-labelledby="behavior-title">
-                 <div className="flex flex-wrap items-end justify-between gap-4">
-                   <div>
-                     <Eyebrow>comportamento</Eyebrow>
-                     <h2 id="behavior-title" className="serif mt-3 text-4xl text-[#02110c] md:text-5xl">O que as pessoas fazem aqui.</h2>
-                   </div>
-                   <p className="text-xs text-[#a4a9a5]">Eventos anônimos · últimos 7 dias</p>
-                 </div>
-                 <div className="mt-7 grid gap-4 sm:grid-cols-4">
-                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
-                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">visitas hoje</p>
-                     <p className="serif mt-4 text-5xl text-[#02110c]">{behavior.visitors.today}</p>
-                     <p className="mt-1 text-xs text-[#a4a9a5]">visitantes únicos por dia</p>
-                   </div>
-                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
-                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">visitas 7 dias</p>
-                     <p className="serif mt-4 text-5xl text-[#02110c]">{behavior.visitors.sevenDays}</p>
-                     <p className="mt-1 text-xs text-[#a4a9a5]">visitantes únicos por dia</p>
-                   </div>
-                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
-                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">visitas 30 dias</p>
-                     <p className="serif mt-4 text-5xl text-[#02110c]">{behavior.visitors.thirtyDays}</p>
-                     <p className="mt-1 text-xs text-[#a4a9a5]">visitantes únicos por dia</p>
-                   </div>
-                   <div className="rounded-2xl bg-[#06392f] p-6 text-white">
-                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-white/70">conversão 7 dias</p>
-                     <p className="serif mt-4 text-5xl">{behavior.conversionRate}%</p>
-                     <p className="mt-1 text-xs text-white/70">cadastros por visita</p>
-                   </div>
-                 </div>
-                 <div className="mt-4 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
-                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6 md:p-7">
-                     <div className="flex items-baseline justify-between gap-4">
-                       <h3 className="text-sm font-bold text-[#02110c]">Funil da página</h3>
-                       <span className="text-xs text-[#a4a9a5]">últimos 7 dias</span>
-                     </div>
-                     <div className="mt-5 space-y-3">
-                       {behavior.funnel.map((step, index) => (
-                         <div key={step.event} className="rounded-xl bg-[#f7f8f7] p-4">
-                           <div className="flex items-center justify-between gap-4">
-                             <span className="text-sm font-semibold text-[#02110c]">{index + 1}. {step.label}</span>
-                             <span className="text-lg font-bold text-[#06392f]">{step.count}</span>
-                           </div>
-                           <p className="mt-1 text-xs text-[#a4a9a5]">{index === 0 ? 'base do funil' : `${step.rate}% do nível anterior`}</p>
-                         </div>
-                       ))}
-                     </div>
-                   </div>
-                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6 md:p-7">
-                     <div className="flex items-baseline justify-between gap-4">
-                       <h3 className="text-sm font-bold text-[#02110c]">Top origens</h3>
-                       <span className="text-xs text-[#a4a9a5]">últimos 30 dias</span>
-                     </div>
-                     {behavior.topOrigins.length > 0 ? (
-                       <div className="mt-5 space-y-4">
-                         {behavior.topOrigins.map((origin) => (
-                           <div key={origin.ref} className="flex items-center justify-between gap-4 border-b border-[#a4a9a5]/30 pb-3 last:border-0 last:pb-0">
-                             <div className="min-w-0">
-                               <p className="truncate text-sm font-semibold text-[#02110c]">{origin.ref}</p>
-                               <p className="mt-1 text-xs text-[#a4a9a5]">{origin.visitors} visitantes · {origin.conversions} cadastro(s)</p>
-                             </div>
-                             <span className="shrink-0 text-sm font-bold text-[#06392f]">{origin.conversionRate}%</span>
-                           </div>
-                         ))}
-                       </div>
-                     ) : (
-                       <p className="mt-5 text-sm text-[#a4a9a5]">Ainda não há origens registradas.</p>
-                     )}
-                   </div>
-                 </div>
-               </section>
-             )}
-             <div className="mt-10 overflow-x-auto rounded-2xl border border-[#a4a9a5]/60 bg-white">
+            </div>
+            <div className="mt-10 overflow-x-auto rounded-2xl border border-[#a4a9a5]/60 bg-white">
               <table className="w-full min-w-[820px] text-left text-sm">
                 <thead className="border-b border-[#a4a9a5]/50 text-xs uppercase tracking-wider text-[#a4a9a5]">
                   <tr><th className="px-5 py-4">E-mail</th><th className="px-5 py-4">Intenção</th><th className="px-5 py-4">Primeira intenção</th><th className="px-5 py-4">Data</th><th className="px-5 py-4">Origem</th></tr>

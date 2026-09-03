@@ -12,21 +12,9 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 const DATA_DIR = path.join(__dirname, "data");
 const DATA_FILE = path.join(DATA_DIR, "signups.json");
-const EVENTS_FILE = path.join(DATA_DIR, "events.json");
-const TRACKED_EVENTS = new Set([
-  "pageview",
-  "scroll_como_funciona",
-  "scroll_faq",
-  "form_started",
-  "form_submitted",
-  "cta_hero_clicked",
-  "cta_como_funciona_clicked",
-]);
-const ANALYTICS_TIME_ZONE = "America/Sao_Paulo";
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]");
-if (!fs.existsSync(EVENTS_FILE)) fs.writeFileSync(EVENTS_FILE, "[]");
 
 function loadSignups() {
   try {
@@ -38,133 +26,6 @@ function loadSignups() {
 
 function saveSignups(list) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(list, null, 2));
-}
-
-function loadEvents() {
-  try {
-    return JSON.parse(fs.readFileSync(EVENTS_FILE, "utf8")) || [];
-  } catch {
-    return [];
-  }
-}
-
-function saveEvents(list) {
-  fs.writeFileSync(EVENTS_FILE, JSON.stringify(list, null, 2));
-}
-
-function cleanText(value, maxLength) {
-  return typeof value === "string"
-    ? value.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, maxLength)
-    : "";
-}
-
-function cleanRef(value) {
-  return cleanText(value, 120).replace(/[^a-zA-Z0-9._-]/g, "");
-}
-
-function summarizeSystem(userAgent) {
-  const ua = String(userAgent || "").toLowerCase();
-  if (/iphone|ipad|ipod/.test(ua)) return "iOS";
-  if (/android/.test(ua)) return "Android";
-  if (/windows/.test(ua)) return "Windows";
-  if (/macintosh|mac os/.test(ua)) return "Mac";
-  if (/linux/.test(ua)) return "Linux";
-  return "Outro";
-}
-
-function hashIp(req) {
-  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
-  const ip = forwarded || req.socket.remoteAddress || "unknown";
-  return crypto.createHash("sha256").update(ip).digest("hex");
-}
-
-function safeMeta(value) {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
-  const result = {};
-  for (const [key, item] of Object.entries(value)) {
-    if (key !== "form" || typeof item !== "string") continue;
-    if (["hero", "full", "inline", "compact"].includes(item)) result.form = item;
-  }
-  return Object.keys(result).length ? result : undefined;
-}
-
-function dayKey(value) {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: ANALYTICS_TIME_ZONE,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(new Date(value));
-  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-  return `${values.year}-${values.month}-${values.day}`;
-}
-
-function eventsInLastDays(events, days, now = Date.now()) {
-  const cutoff = now - days * 24 * 60 * 60 * 1000;
-  return events.filter((event) => {
-    const time = Date.parse(event.timestamp);
-    return Number.isFinite(time) && time >= cutoff && time <= now;
-  });
-}
-
-function uniqueVisitorsPerDay(events) {
-  return new Set(events.map((event) => `${dayKey(event.timestamp)}:${event.ipHash}`)).size;
-}
-
-function visitorCountForRef(events, ref) {
-  return new Set(events.filter((event) => (event.ref || "direto") === ref).map((event) => event.ipHash)).size;
-}
-
-function buildBehaviorSummary() {
-  const events = loadEvents();
-  const last7 = eventsInLastDays(events, 7);
-  const last30 = eventsInLastDays(events, 30);
-  const todayKey = dayKey(new Date());
-  const todayEvents = events.filter((event) => dayKey(event.timestamp) === todayKey);
-  const pageviews = last7.filter((event) => event.event === "pageview").length;
-  const submissions = last7.filter((event) => event.event === "form_submitted").length;
-  const funnelEvents = [
-    ["pageview", "Visita à página"],
-    ["scroll_como_funciona", "Viu como funciona"],
-    ["form_started", "Começou o formulário"],
-    ["form_submitted", "Enviou o formulário"],
-  ];
-  let previousCount = 0;
-  const funnel = funnelEvents.map(([event, label], index) => {
-    const count = last7.filter((item) => item.event === event).length;
-    const rate = index === 0 ? 100 : (previousCount ? Math.round((count / previousCount) * 1000) / 10 : 0);
-    previousCount = count;
-    return { event, label, count, rate };
-  });
-
-  const refs = new Set(last30.map((event) => event.ref || "direto"));
-  const topOrigins = [...refs]
-    .map((ref) => {
-      const originEvents = last30.filter((event) => (event.ref || "direto") === ref);
-      const visitors = visitorCountForRef(originEvents, ref);
-      const submittedVisitors = new Set(
-        originEvents.filter((event) => event.event === "form_submitted").map((event) => event.ipHash),
-      ).size;
-      return {
-        ref,
-        visitors,
-        conversions: submittedVisitors,
-        conversionRate: visitors ? Math.round((submittedVisitors / visitors) * 1000) / 10 : 0,
-      };
-    })
-    .sort((a, b) => b.visitors - a.visitors)
-    .slice(0, 5);
-
-  return {
-    visitors: {
-      today: uniqueVisitorsPerDay(todayEvents),
-      sevenDays: uniqueVisitorsPerDay(last7),
-      thirtyDays: uniqueVisitorsPerDay(last30),
-    },
-    conversionRate: pageviews ? Math.round((submissions / pageviews) * 1000) / 10 : 0,
-    funnel,
-    topOrigins,
-  };
 }
 
 const MOTIVOS = {
@@ -308,50 +169,6 @@ const server = http.createServer(async (req, res) => {
     list.push({ email, motivo, primeira_intencao: primeiraIntencao, ref, created_at: new Date().toISOString() });
     saveSignups(list);
     return json(res, 200, { ok: true });
-  }
-
-  if (req.method === "GET" && pathname === "/api/waitlist/count") {
-    const total = loadSignups().length;
-    res.writeHead(200, {
-      "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
-      "Content-Type": "application/json; charset=utf-8",
-    });
-    return res.end(JSON.stringify({ total }));
-  }
-
-  if (req.method === "POST" && pathname === "/api/track") {
-    const raw = await readBody(req);
-    let body = {};
-    try {
-      body = JSON.parse(raw || "{}");
-    } catch {
-      return json(res, 400, { ok: false, error: "JSON inválido." });
-    }
-    const event = cleanText(body.event, 50);
-    if (!TRACKED_EVENTS.has(event)) return json(res, 400, { ok: false, error: "Evento inválido." });
-    const entry = {
-      event,
-      ref: cleanRef(body.ref),
-      path: cleanText(body.path, 240),
-      timestamp: new Date().toISOString(),
-      ipHash: hashIp(req),
-      system: summarizeSystem(req.headers["user-agent"]),
-    };
-    const meta = safeMeta(body.meta);
-    if (meta) entry.meta = meta;
-    try {
-      const events = loadEvents();
-      events.push(entry);
-      saveEvents(events);
-      return json(res, 200, { ok: true });
-    } catch {
-      return json(res, 200, { ok: true });
-    }
-  }
-
-  if (req.method === "GET" && pathname === "/api/admin/behavior") {
-    if (!checkAuth(req)) return requireAuth(res);
-    return json(res, 200, buildBehaviorSummary());
   }
 
   if (req.method === "GET" && pathname === "/api/admin/summary") {

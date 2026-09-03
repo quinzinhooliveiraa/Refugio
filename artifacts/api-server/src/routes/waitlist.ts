@@ -71,17 +71,6 @@ router.post("/waitlist", async (req, res): Promise<void> => {
   }
 });
 
-router.get("/waitlist/count", async (req, res): Promise<void> => {
-  try {
-    const totalResult = await db.select({ total: count() }).from(waitlistTable);
-    res.setHeader("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
-    res.json({ total: Number(totalResult[0]?.total ?? 0) });
-  } catch (error) {
-    req.log.error({ err: error }, "Failed to load public waitlist count");
-    res.status(500).json({ error: "Não foi possível carregar a contagem agora." });
-  }
-});
-
 router.get("/admin/summary", async (req, res): Promise<void> => {
   if (!requireAdmin(req, res)) return;
   const rows = await db

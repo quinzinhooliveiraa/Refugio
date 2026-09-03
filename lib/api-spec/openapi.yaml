@@ -10,10 +10,6 @@ servers:
 tags:
   - name: health
     description: Health operations
-  - name: waitlist
-    description: Public waitlist operations
-  - name: analytics
-    description: First-party analytics operations
 paths:
   /healthz:
     get:
@@ -28,53 +24,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
-  /waitlist/count:
-    get:
-      operationId: getWaitlistCount
-      tags: [waitlist]
-      summary: Get public waitlist count
-      description: Returns the total number of people currently on the waitlist without exposing personal data
-      responses:
-        "200":
-          description: Current waitlist count
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WaitlistCount"
-  /track:
-    post:
-      operationId: trackEvent
-      tags: [analytics]
-      summary: Track an anonymous product event
-      description: Records a validated, non-identifying product event
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TrackEventRequest"
-      responses:
-        "200":
-          description: Event accepted
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TrackEventAck"
-        "400":
-          description: Invalid event
-  /admin/behavior:
-    get:
-      operationId: getAdminBehavior
-      tags: [analytics]
-      summary: Get anonymous behavior summary
-      description: Returns aggregate behavior metrics for the validation panel
-      responses:
-        "200":
-          description: Behavior summary
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/BehaviorSummary"
 components:
   schemas:
     HealthStatus:
@@ -84,97 +33,4 @@ components:
           type: string
       required:
         - status
-    WaitlistCount:
-      type: object
-      properties:
-        total:
-          type: number
-          minimum: 0
-      required:
-        - total
-    TrackEventRequest:
-      type: object
-      properties:
-        event:
-          type: string
-          enum:
-            - pageview
-            - scroll_como_funciona
-            - scroll_faq
-            - form_started
-            - form_submitted
-            - cta_hero_clicked
-            - cta_como_funciona_clicked
-        ref:
-          type: string
-          maxLength: 120
-        path:
-          type: string
-          maxLength: 240
-        meta:
-          type: object
-          properties:
-            form:
-              type: string
-              enum:
-                - hero
-                - full
-                - inline
-                - compact
-          additionalProperties: false
-      required:
-        - event
-        - ref
-        - path
-    TrackEventAck:
-      type: object
-      properties:
-        ok:
-          type: boolean
-      required:
-        - ok
-    BehaviorSummary:
-      type: object
-      properties:
-        visitors:
-          type: object
-          properties:
-            today:
-              type: number
-            sevenDays:
-              type: number
-            thirtyDays:
-              type: number
-          required: [today, sevenDays, thirtyDays]
-        conversionRate:
-          type: number
-        funnel:
-          type: array
-          items:
-            type: object
-            properties:
-              event:
-                type: string
-              label:
-                type: string
-              count:
-                type: number
-              rate:
-                type: number
-            required: [event, label, count, rate]
-        topOrigins:
-          type: array
-          items:
-            type: object
-            properties:
-              ref:
-                type: string
-              visitors:
-                type: number
-              conversions:
-                type: number
-              conversionRate:
-                type: number
-            required: [ref, visitors, conversions, conversionRate]
-      required: [visitors, conversionRate, funnel, topOrigins]
 

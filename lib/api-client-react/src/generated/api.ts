@@ -6,29 +6,21 @@
  * OpenAPI spec version: 0.1.0
  */
 import {
-  useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
-  MutationFunction,
   QueryFunction,
   QueryKey,
-  UseMutationOptions,
-  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
-  BehaviorSummary,
-  HealthStatus,
-  TrackEventAck,
-  TrackEventRequest,
-  WaitlistCount
+  HealthStatus
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
-import type { ErrorType , BodyType } from '../custom-fetch';
+import type { ErrorType } from '../custom-fetch';
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -120,234 +112,6 @@ export function useHealthCheck<TData = Awaited<ReturnType<typeof healthCheck>>, 
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
   const queryOptions = getHealthCheckQueryOptions(options)
-
-  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
-
-  return withQueryKey(query, queryOptions.queryKey);
-}
-
-
-
-
-
-
-
-export const getGetWaitlistCountUrl = () => {
-
-
-
-
-  return `/api/waitlist/count`
-}
-
-/**
- * Returns the total number of people currently on the waitlist without exposing personal data
- * @summary Get public waitlist count
- */
-export const getWaitlistCount = async ( options?: Parameters<typeof customFetch>[1]): Promise<WaitlistCount> => {
-
-  return customFetch<WaitlistCount>(getGetWaitlistCountUrl(),
-  {
-    ...options,
-    method: 'GET'
-
-
-  }
-);}
-
-
-
-
-
-export const getGetWaitlistCountQueryKey = () => {
-    return [
-    `/api/waitlist/count`
-    ] as const;
-    }
-
-
-export const getGetWaitlistCountQueryOptions = <TData = Awaited<ReturnType<typeof getWaitlistCount>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getWaitlistCount>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
-) => {
-
-const {query: queryOptions, request: requestOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getGetWaitlistCountQueryKey();
-
-
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getWaitlistCount>>> = ({ signal }) => getWaitlistCount({ signal, ...requestOptions });
-
-
-
-
-
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getWaitlistCount>>, TError, TData> & { queryKey: QueryKey }
-}
-
-export type GetWaitlistCountQueryResult = NonNullable<Awaited<ReturnType<typeof getWaitlistCount>>>
-export type GetWaitlistCountQueryError = ErrorType<unknown>
-
-
-/**
- * @summary Get public waitlist count
- */
-
-export function useGetWaitlistCount<TData = Awaited<ReturnType<typeof getWaitlistCount>>, TError = ErrorType<unknown>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getWaitlistCount>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
-
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-
-  const queryOptions = getGetWaitlistCountQueryOptions(options)
-
-  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
-
-  return withQueryKey(query, queryOptions.queryKey);
-}
-
-
-
-
-
-
-
-export const getTrackEventUrl = () => {
-
-
-
-
-  return `/api/track`
-}
-
-/**
- * Records a validated, non-identifying product event
- * @summary Track an anonymous product event
- */
-export const trackEvent = async (trackEventRequest: TrackEventRequest, options?: Parameters<typeof customFetch>[1]): Promise<TrackEventAck> => {
-
-  return customFetch<TrackEventAck>(getTrackEventUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(trackEventRequest)
-  }
-);}
-
-
-
-
-
-export const getTrackEventMutationOptions = <TError = ErrorType<void>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof trackEvent>>, TError,{data: BodyType<TrackEventRequest>}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof trackEvent>>, TError,{data: BodyType<TrackEventRequest>}, TContext> => {
-
-const mutationKey = ['trackEvent'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof trackEvent>>, {data: BodyType<TrackEventRequest>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  trackEvent(data,requestOptions)
-        }
-
-
-
-
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type TrackEventMutationResult = NonNullable<Awaited<ReturnType<typeof trackEvent>>>
-    export type TrackEventMutationBody = BodyType<TrackEventRequest>
-    export type TrackEventMutationError = ErrorType<void>
-
-    /**
- * @summary Track an anonymous product event
- */
-export const useTrackEvent = <TError = ErrorType<void>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof trackEvent>>, TError,{data: BodyType<TrackEventRequest>}, TContext>, request?: SecondParameter<typeof customFetch>}
- ): UseMutationResult<
-        Awaited<ReturnType<typeof trackEvent>>,
-        TError,
-        {data: BodyType<TrackEventRequest>},
-        TContext
-      > => {
-      return useMutation(getTrackEventMutationOptions(options));
-    }
-
-export const getGetAdminBehaviorUrl = () => {
-
-
-
-
-  return `/api/admin/behavior`
-}
-
-/**
- * Returns aggregate behavior metrics for the validation panel
- * @summary Get anonymous behavior summary
- */
-export const getAdminBehavior = async ( options?: Parameters<typeof customFetch>[1]): Promise<BehaviorSummary> => {
-
-  return customFetch<BehaviorSummary>(getGetAdminBehaviorUrl(),
-  {
-    ...options,
-    method: 'GET'
-
-
-  }
-);}
-
-
-
-
-
-export const getGetAdminBehaviorQueryKey = () => {
-    return [
-    `/api/admin/behavior`
-    ] as const;
-    }
-
-
-export const getGetAdminBehaviorQueryOptions = <TData = Awaited<ReturnType<typeof getAdminBehavior>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getAdminBehavior>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
-) => {
-
-const {query: queryOptions, request: requestOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getGetAdminBehaviorQueryKey();
-
-
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAdminBehavior>>> = ({ signal }) => getAdminBehavior({ signal, ...requestOptions });
-
-
-
-
-
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getAdminBehavior>>, TError, TData> & { queryKey: QueryKey }
-}
-
-export type GetAdminBehaviorQueryResult = NonNullable<Awaited<ReturnType<typeof getAdminBehavior>>>
-export type GetAdminBehaviorQueryError = ErrorType<unknown>
-
-
-/**
- * @summary Get anonymous behavior summary
- */
-
-export function useGetAdminBehavior<TData = Awaited<ReturnType<typeof getAdminBehavior>>, TError = ErrorType<unknown>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getAdminBehavior>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
-
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-
-  const queryOptions = getGetAdminBehaviorQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
