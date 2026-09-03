@@ -7,6 +7,9 @@ import backgroundFour from '@assets/__(4)_1788457940407.jpeg';
 import backgroundFive from '@assets/__(5)_1788457940407.jpeg';
 import backgroundSix from '@assets/50_shades_of_green_1788457954054.jpeg';
 import eagleLogo from '@assets/refugio-eagle-logo.png';
+import howItWorksOne from '@assets/__(1)_1788459710224.jpeg';
+import howItWorksTwo from '@assets/__(2)_1788459710226.jpeg';
+import howItWorksThree from '@assets/__(3)_1788459710226.jpeg';
 
 /* -------------------------------------------------------------------------
  * Refúgio — landing (uma única página) + rota /admin.
@@ -382,17 +385,26 @@ function Home() {
         <div ref={como.ref} style={como.style}>
           <Eyebrow>como funciona</Eyebrow>
           <h2 className="serif mt-4 max-w-2xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">É simples — de propósito.</h2>
-          <div className="mt-14 grid gap-0 border-t border-[#a4a9a5]/60 md:grid-cols-3">
+          <div className="mt-14 grid gap-4 md:grid-cols-3 md:gap-5">
             {[
-              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você — ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.'],
-              ['02', 'Escreve o que está sentindo.', 'Do jeito que sair. Sem precisar organizar, sem precisar explicar de onde veio.'],
-              ['03', 'Alguém lê e responde.', 'Uma pessoa comum que talvez já tenha passado por algo parecido. Você decide o que faz sentido levar.'],
-            ].map(([n, title, copy]) => (
-              <div key={n} className="border-b border-[#a4a9a5]/60 py-8 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
-                <span className="text-xs font-bold text-[#06392f]">{n}</span>
-                <h3 className="mt-8 text-xl font-bold text-[#02110c]">{title}</h3>
-                <p className="mt-3 text-sm leading-[1.7] text-[#02110c]/75">{copy}</p>
-              </div>
+              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você — ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.', howItWorksOne],
+              ['02', 'Escreve o que está sentindo.', 'Do jeito que sair. Sem precisar organizar, sem precisar explicar de onde veio.', howItWorksTwo],
+              ['03', 'Alguém lê e responde.', 'Uma pessoa comum que talvez já tenha passado por algo parecido. Você decide o que faz sentido levar.', howItWorksThree],
+            ].map(([n, title, copy, background]) => (
+              <article
+                key={n}
+                style={{ backgroundImage: `url("${background}")` }}
+                className="group relative isolate flex min-h-[280px] flex-col overflow-hidden rounded-[2rem] border border-white/35 bg-[#06392f]/30 p-7 text-white shadow-[0_18px_45px_rgba(2,17,12,.14),inset_0_1px_0_rgba(255,255,255,.42)] backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 md:min-h-[330px] md:p-8"
+              >
+                <div className="absolute inset-0 -z-20 bg-[#02110c]/35" aria-hidden="true" />
+                <div className="absolute -right-12 -top-14 -z-10 h-40 w-40 rounded-full bg-white/15 blur-3xl transition-opacity duration-300 group-hover:opacity-80" aria-hidden="true" />
+                <div className="absolute -bottom-20 -left-14 -z-10 h-44 w-44 rounded-full bg-[#9de1c8]/15 blur-3xl" aria-hidden="true" />
+                <div className="relative z-10 flex h-full flex-col">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/45 bg-white/15 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.45)] backdrop-blur-md">{n}</span>
+                  <h3 className="mt-10 text-xl font-bold tracking-[-.02em] text-white">{title}</h3>
+                  <p className="mt-3 text-sm leading-[1.7] text-white/82">{copy}</p>
+                </div>
+              </article>
             ))}
           </div>
           <p className="mt-8 max-w-2xl text-sm leading-[1.7] text-[#02110c]/75">
