@@ -192,7 +192,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
 
       {error && <p role="alert" className="mt-4 text-xs font-semibold text-[#06392f]" data-testid="status-signup-error">{error}</p>}
 
-      <div className="mt-7">
+       <div className="mt-7 lg:flex lg:justify-center">
         <ButtonPrimary type="submit" disabled={submitting} testId="button-submit-signup">
           {submitting ? 'Guardando seu lugar…' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}
         </ButtonPrimary>
@@ -290,7 +290,7 @@ function Home() {
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
         <CompactBar className="mt-8 lg:mx-auto" />
-        <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+      <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto lg:text-center">Grátis. Anônimo. A gente te avisa quando abrir.</p>
       </section>
 
       {/* 02 ESPELHO — narrativa em primeira pessoa, agita o problema */}
@@ -333,13 +333,15 @@ function Home() {
       {/* 04 PROVA AO VIVO — mockup de conversa (ilustrativo, sem depoimento fake) */}
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
-          <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
-            Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
-          </h2>
-          <p className="mt-6 max-w-2xl text-[1rem] leading-[1.7] text-white/75">
-            Um exemplo de como uma conversa costuma acontecer aqui. Nomes e situação são inventados. O Refúgio ainda não abriu.
-          </p>
+          <div className="lg:text-center">
+            <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
+            <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
+              Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
+            </h2>
+            <p className="mt-6 max-w-2xl text-[1rem] leading-[1.7] text-white/75 lg:mx-auto">
+              Um exemplo de como uma conversa costuma acontecer aqui. Nomes e situação são inventados. O Refúgio ainda não abriu.
+            </p>
+          </div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-start">
             <div className="rounded-3xl bg-white p-6 text-[#02110c] md:p-7">
@@ -375,16 +377,18 @@ function Home() {
             </div>
           </div>
 
-          <CompactBar className="mt-14" />
-          <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-white/70">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+          <CompactBar className="mt-14 lg:mx-auto" />
+          <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-white/70 lg:mx-auto lg:text-center">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         </div>
       </section>
 
       {/* 05 COMO FUNCIONA — 3 passos */}
       <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
         <div ref={como.ref} style={como.style}>
-          <Eyebrow>como funciona</Eyebrow>
-          <h2 className="serif mt-4 max-w-2xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">É simples — de propósito.</h2>
+          <div className="lg:text-center">
+            <Eyebrow>como funciona</Eyebrow>
+            <h2 className="serif mt-4 max-w-2xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c] lg:mx-auto">É simples — de propósito.</h2>
+          </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3 md:gap-5">
             {[
               ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.', howItWorksOne],
@@ -407,7 +411,7 @@ function Home() {
               </article>
             ))}
           </div>
-          <p className="mt-8 max-w-2xl text-sm leading-[1.7] text-[#02110c]/75">
+          <p className="mt-8 max-w-2xl text-sm leading-[1.7] text-[#02110c]/75 lg:mx-auto lg:text-center">
             Sem anúncio, sem algoritmo te empurrando pro próximo post. Um lugar calmo pra sair da correria por alguns minutos.
           </p>
         </div>
@@ -416,13 +420,15 @@ function Home() {
       {/* 06 O QUE VEM JUNTO — features concretas */}
       <section id="por-que" className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div ref={encontra.ref} style={encontra.style} className="mx-auto max-w-7xl">
-          <Eyebrow inverse>o que você encontra aqui</Eyebrow>
-          <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
-            Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
-          </h2>
-          <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78">
-            Nada de seguidores. Nada de curtidas públicas. Nada de anúncio entre um desabafo e outro. A ideia é o oposto de rede social: você entra pra falar ou pra escutar, não pra performar.
-          </p>
+          <div className="lg:text-center">
+            <Eyebrow inverse>o que você encontra aqui</Eyebrow>
+            <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
+              Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78 lg:mx-auto">
+              Nada de seguidores. Nada de curtidas públicas. Nada de anúncio entre um desabafo e outro. A ideia é o oposto de rede social: você entra pra falar ou pra escutar, não pra performar.
+            </p>
+          </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
               ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido. Só isso aparece.', backgroundOne],
@@ -513,8 +519,10 @@ function Home() {
       {/* 10 FAQ — objeções reais */}
       <section className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <Eyebrow>as dúvidas que mais chegam</Eyebrow>
-          <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">Antes de deixar o e-mail.</h2>
+           <div className="lg:text-center">
+             <Eyebrow>as dúvidas que mais chegam</Eyebrow>
+             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c] lg:mx-auto">Antes de deixar o e-mail.</h2>
+           </div>
           <div className="mt-12 border-t border-[#a4a9a5]/50">
             <FaqItem q="É mesmo anônimo?" a={<p>Sim. Você participa sem nome real, sem foto e sem perfil público. A comunidade vê só o apelido que você escolher. A gente também deixa sempre claro o mínimo que fica guardado no servidor.</p>} />
             <FaqItem q="Vocês são psicólogos ou terapeutas?" a={<p>Não. O Refúgio é uma comunidade de apoio entre pessoas. <strong>Não substitui atendimento psicológico, médico ou serviços de emergência.</strong> Se você estiver passando por um momento grave ou pensando em se machucar, ligue para o <strong className="text-[#06392f]">CVV no 188</strong> (24h, gratuito e sigiloso) ou procure a emergência no 192. Você não está sozinho.</p>} />
