@@ -33,9 +33,9 @@ function getRef() {
 
 function Mark({ inverse = false }: { inverse?: boolean }) {
   return (
-    <div className="flex items-center gap-2" data-testid="brand-refugio">
+    <div className="flex items-center gap-1.5" data-testid="brand-refugio">
       <span className={`flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ${inverse ? '' : 'bg-[#06392f]'}`}>
-        <img src={eagleLogo} alt="" className="h-6 w-6 object-contain" />
+        <img src={eagleLogo} alt="" className="h-7 w-7 object-contain" />
       </span>
       <span className={`text-[1.02rem] font-bold tracking-[-.04em] ${inverse ? 'text-white' : 'text-[#02110c]'}`}>refúgio</span>
     </div>
