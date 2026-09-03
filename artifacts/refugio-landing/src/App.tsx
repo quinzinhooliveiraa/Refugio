@@ -207,7 +207,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
           <Eyebrow>Opcional</Eyebrow>
           <span className="mt-2 block text-xs font-bold text-[#02110c]">O que faria você usar o Refúgio primeiro?</span>
         </legend>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="overflow-hidden rounded-2xl border border-[#a4a9a5]/70">
           {firstIntentOptions.map(({ value, title, copy }) => {
             const active = firstIntent === value;
             return (
@@ -217,13 +217,13 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
                 onClick={() => { setFirstIntent(active ? '' : value); setError(''); }}
                 aria-pressed={active}
                 data-testid={`button-first-intent-${value}`}
-                className={`flex h-full flex-col justify-between rounded-2xl border p-4 text-left transition-colors ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/70 bg-white text-[#02110c] hover:border-[#06392f]'}`}
+                className={`flex w-full items-center justify-between gap-4 border-b border-[#a4a9a5]/50 px-4 py-3.5 text-left transition-colors last:border-b-0 ${active ? 'bg-[#06392f] text-white' : 'bg-white text-[#02110c] hover:bg-[#f5f7f4]'}`}
               >
-                <span className="flex items-start justify-between gap-2">
-                  <span className="text-[.98rem] font-bold tracking-[-.02em]">{title}</span>
-                  <span className={`flex h-5 w-5 items-center justify-center rounded-full border ${active ? 'border-white bg-white text-[#06392f]' : 'border-[#a4a9a5]'}`}>{active && <Check size={12} strokeWidth={3} />}</span>
+                <span className="min-w-0">
+                  <span className="block text-[.9rem] font-bold tracking-[-.02em]">{title}</span>
+                  <span className={`mt-1 block text-[.74rem] leading-[1.4] ${active ? 'text-white/80' : 'text-[#02110c]/65'}`}>{copy}</span>
                 </span>
-                <span className={`mt-6 block text-[.78rem] leading-[1.45] ${active ? 'text-white/85' : 'text-[#02110c]/70'}`}>{copy}</span>
+                <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${active ? 'border-white bg-white text-[#06392f]' : 'border-[#a4a9a5]'}`}>{active && <Check size={12} strokeWidth={3} />}</span>
               </button>
             );
           })}
@@ -234,8 +234,8 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
 
       {error && <p role="alert" className="mt-4 text-xs font-semibold text-[#06392f]" data-testid="status-signup-error">{error}</p>}
 
-       <div className="mt-7 lg:flex lg:justify-center">
-        <ButtonPrimary type="submit" disabled={submitting} testId="button-submit-signup" className="w-full whitespace-nowrap text-[.74rem] md:w-auto md:text-[.92rem]">
+       <div className="mt-7 flex justify-center">
+         <ButtonPrimary type="submit" disabled={submitting} testId="button-submit-signup" className="w-full whitespace-nowrap text-[.74rem] sm:w-auto md:text-[.92rem]">
           {submitting ? 'Guardando seu lugar…' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}
         </ButtonPrimary>
       </div>
@@ -352,7 +352,7 @@ function ConversationShowcase() {
 
   return (
     <>
-      <div className="mt-10 flex gap-2 overflow-x-auto pb-1 md:mt-12 md:justify-center" role="tablist" aria-label="Exemplos de conversa">
+      <div className="mt-10 flex flex-wrap justify-center gap-2 md:mt-12" role="tablist" aria-label="Exemplos de conversa">
         {conversationExamples.map((example, index) => {
           const active = activeConversation === index;
           return (
@@ -364,7 +364,7 @@ function ConversationShowcase() {
               aria-controls="conversation-panel"
               onClick={() => setActiveConversation(index)}
               data-testid={`conversation-tab-${index + 1}`}
-              className={`min-h-9 shrink-0 rounded-full border px-3 py-1.5 text-left text-[.7rem] font-semibold leading-tight transition-colors md:px-3.5 md:text-center md:text-[.68rem] ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/60 bg-transparent text-white/70 hover:border-white/80 hover:text-white'}`}
+              className={`min-h-9 max-w-full rounded-full border px-3 py-1.5 text-left text-[.7rem] font-semibold leading-tight transition-colors md:px-3.5 md:text-center md:text-[.68rem] ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/60 bg-transparent text-white/70 hover:border-white/80 hover:text-white'}`}
             >
               {example.label}
             </button>
