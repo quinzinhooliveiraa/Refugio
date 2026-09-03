@@ -60,7 +60,7 @@ function ButtonPrimary({ children, onClick, type = 'button', disabled = false, t
       onClick={onClick}
       disabled={disabled}
       data-testid={testId}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#06392f] px-6 py-3.5 text-[.92rem] font-semibold text-white transition-colors hover:bg-[#02110c] disabled:cursor-wait disabled:opacity-70 ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#06392f] px-5 py-3 text-[.82rem] font-semibold text-white transition-colors hover:bg-[#02110c] disabled:cursor-wait disabled:opacity-70 md:px-6 md:py-3.5 md:text-[.92rem] ${className}`}
     >
       {children}
     </button>
@@ -290,7 +290,7 @@ function Home() {
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
         <CompactBar className="mt-8 lg:mx-auto" />
-      <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto lg:text-center">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+      <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
       </section>
 
       {/* 02 ESPELHO — narrativa em primeira pessoa, agita o problema */}
@@ -378,7 +378,7 @@ function Home() {
           </div>
 
           <CompactBar className="mt-14 lg:mx-auto" />
-          <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-white/70 lg:mx-auto lg:text-center">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+           <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-white/70 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         </div>
       </section>
 
@@ -411,7 +411,7 @@ function Home() {
               </article>
             ))}
           </div>
-          <p className="mt-8 max-w-2xl text-sm leading-[1.7] text-[#02110c]/75 lg:mx-auto lg:text-center">
+           <p className="mt-8 max-w-2xl text-center text-sm leading-[1.7] text-[#02110c]/75 lg:mx-auto">
             Sem anúncio, sem algoritmo te empurrando pro próximo post. Um lugar calmo pra sair da correria por alguns minutos.
           </p>
         </div>
@@ -498,9 +498,9 @@ function Home() {
       {/* 09 ÚLTIMA CHANCE + CTA final */}
       <section id="entrar" className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <div ref={origem.ref} style={origem.style} className="mx-auto max-w-3xl text-center">
+           <div ref={origem.ref} style={origem.style} className="mx-auto max-w-3xl text-left lg:text-center">
             <Eyebrow inverse>a última coisa</Eyebrow>
-            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93]">
+             <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93] lg:mx-auto">
               Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
             </h2>
             <p className="mx-auto mt-7 max-w-2xl text-[1.05rem] leading-[1.7] text-white/78">
@@ -519,9 +519,9 @@ function Home() {
       {/* 10 FAQ — objeções reais */}
       <section className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
-           <div className="lg:text-center">
+            <div className="text-center">
              <Eyebrow>as dúvidas que mais chegam</Eyebrow>
-             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c] lg:mx-auto">Antes de deixar o e-mail.</h2>
+             <h2 className="serif mx-auto mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">Antes de deixar o e-mail.</h2>
            </div>
           <div className="mt-12 border-t border-[#a4a9a5]/50">
             <FaqItem q="É mesmo anônimo?" a={<p>Sim. Você participa sem nome real, sem foto e sem perfil público. A comunidade vê só o apelido que você escolher. A gente também deixa sempre claro o mínimo que fica guardado no servidor.</p>} />
