@@ -1,0 +1,1 @@
+- [Workflow entrypoints](workflow-entrypoints.md) — confirm the managed command before changing an API; runtime behavior may come from a standalone entrypoint rather than source files.

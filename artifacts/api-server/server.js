@@ -9,7 +9,7 @@ const path = require("path");
 const crypto = require("crypto");
 
 const PORT = process.env.PORT || 3000;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "troque-esta-senha";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 const DATA_DIR = path.join(__dirname, "data");
 const DATA_FILE = path.join(DATA_DIR, "signups.json");
 
@@ -32,6 +32,11 @@ const MOTIVOS = {
   desabafar: "Quero desabafar",
   acolher: "Quero acolher",
   ambos: "Os dois",
+};
+const INTENT_FROM_LEGACY = {
+  desabafar: "desabafar",
+  acolher: "ajudar",
+  ambos: "os-dois",
 };
 const isEmail = (s) => typeof s === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 const esc = (s) =>
@@ -56,10 +61,13 @@ function json(res, code, obj) {
 }
 
 function checkAuth(req) {
+  if (!ADMIN_PASSWORD) return false;
   const header = req.headers.authorization || "";
   const [, b64] = header.split(" ");
   if (!b64) return false;
-  const [, given = ""] = Buffer.from(b64, "base64").toString().split(":");
+  const decoded = Buffer.from(b64, "base64").toString();
+  const separator = decoded.indexOf(":");
+  const given = separator >= 0 ? decoded.slice(separator + 1) : "";
   const actual = Buffer.from(given);
   const expected = Buffer.from(ADMIN_PASSWORD);
   return actual.length === expected.length && crypto.timingSafeEqual(actual, expected);
@@ -130,14 +138,62 @@ const server = http.createServer(async (req, res) => {
     }
     if (body.website) return json(res, 200, { ok: true });
     const email = String(body.email || "").trim().toLowerCase();
-    const motivo = String(body.motivo || "").slice(0, 40);
-    const ref = String(body.ref || "").slice(0, 80);
+    const rawIntent = body.intencao ?? body.intent ?? body.motivo ?? "";
+    const canonicalIntent = String(rawIntent).trim().slice(0, 40);
+    const motivo = ({ ajudar: "acolher", "os-dois": "ambos" }[canonicalIntent] || canonicalIntent);
+    const queryRef = url.searchParams.get("ref") || "";
+    const ref = String(body.ref ?? queryRef).trim().slice(0, 120);
     if (!isEmail(email)) return json(res, 400, { ok: false, error: "E-mail inválido." });
+    if (!["desabafar", "acolher", "ambos"].includes(motivo)) {
+      return json(res, 400, { ok: false, error: "Escolha uma intenção para continuar." });
+    }
     const list = loadSignups();
     if (list.some((x) => x.email === email)) return json(res, 200, { ok: true, already: true });
     list.push({ email, motivo, ref, created_at: new Date().toISOString() });
     saveSignups(list);
     return json(res, 200, { ok: true });
+  }
+
+  if (req.method === "GET" && pathname === "/api/admin/summary") {
+    if (!checkAuth(req)) return requireAuth(res);
+    const list = loadSignups();
+    const counts = { desabafar: 0, ajudar: 0, "os-dois": 0 };
+    for (const entry of list) {
+      const intent = INTENT_FROM_LEGACY[entry.motivo] || entry.motivo;
+      if (intent in counts) counts[intent]++;
+    }
+    return json(res, 200, { total: list.length, counts });
+  }
+
+  if (req.method === "GET" && pathname === "/api/admin/waitlist") {
+    if (!checkAuth(req)) return requireAuth(res);
+    const entries = loadSignups().map((entry) => ({
+      email: entry.email,
+      intent: INTENT_FROM_LEGACY[entry.motivo] || entry.motivo,
+      source: entry.ref || null,
+      createdAt: entry.created_at,
+    }));
+    return json(res, 200, { entries });
+  }
+
+  if (req.method === "GET" && pathname === "/api/admin/waitlist.csv") {
+    if (!checkAuth(req)) return requireAuth(res);
+    const csvCell = (value) => `"${String(value == null ? "" : value).replace(/"/g, '""')}"`;
+    const entries = loadSignups().map((entry) => [
+      entry.email,
+      INTENT_FROM_LEGACY[entry.motivo] || entry.motivo,
+      entry.created_at,
+      entry.ref || "",
+    ]);
+    const csv = [
+      ["email", "intencao", "data", "origem"].map(csvCell).join(","),
+      ...entries.map((entry) => entry.map(csvCell).join(",")),
+    ].join("\r\n");
+    res.writeHead(200, {
+      "Content-Type": "text/csv; charset=utf-8",
+      "Content-Disposition": 'attachment; filename="refugio-waitlist.csv"',
+    });
+    return res.end(`\uFEFF${csv}`);
   }
 
   if (req.method === "GET" && pathname === "/admin/export.csv") {
@@ -162,5 +218,5 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`Refúgio API rodando em http://localhost:${PORT}`);
   console.log(`Painel: http://localhost:${PORT}/admin (usuário: admin)`);
-  if (ADMIN_PASSWORD === "troque-esta-senha") console.log("⚠ Defina ADMIN_PASSWORD no Secret do Replit.");
+  if (!ADMIN_PASSWORD) console.log("⚠ Defina ADMIN_PASSWORD no Secret do Replit.");
 });

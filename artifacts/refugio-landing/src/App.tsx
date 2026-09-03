@@ -5,6 +5,10 @@ type Intent = 'desabafar' | 'ajudar' | 'os-dois';
 
 const FUTURE_FORM_ENDPOINT = import.meta.env.VITE_REFUGIO_FORM_ENDPOINT ?? '/api/waitlist';
 
+function getCampaignRef() {
+  return new URLSearchParams(window.location.search).get('ref')?.trim().slice(0, 120) ?? '';
+}
+
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -119,7 +123,12 @@ function SignupForm() {
       const response = await fetch(FUTURE_FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: cleanEmail, intencao: intent, website: (event.currentTarget.elements.namedItem('website') as HTMLInputElement)?.value ?? '' }),
+        body: JSON.stringify({
+          email: cleanEmail,
+          intencao: intent,
+          ref: getCampaignRef(),
+          website: (event.currentTarget.elements.namedItem('website') as HTMLInputElement)?.value ?? '',
+        }),
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || data.ok !== true) {
@@ -229,6 +238,10 @@ function Admin() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [downloading, setDownloading] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Refúgio · Painel de validação';
+  }, []);
 
   const load = async (secret = auth) => {
     setLoading(true);

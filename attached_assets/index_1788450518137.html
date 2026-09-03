@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refúgio — Comunidade anônima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* PALETA PRINCIPAL — repetir em toda a LP */
+      --paper: #f1ede4;
+      --paper-2: #e7e1d6;
+      --green: #193f3c;
+      --green-mid: #2c5550;
+      --green-soft: #536a64;
+      --gray: #9a9c98;
+      --gray-dark: #69736f;
+      --coral: #d7775d;
+      --coral-dark: #b95e48;
+      --white: #fbf9f4;
+      --line: rgba(25, 63, 60, 0.17);
+      --line-light: rgba(25, 63, 60, 0.11);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--green);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    button,
+    input {
+      font: inherit;
+    }
+    .container {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .serif {
+      font-family: var(--serif);
+      letter-spacing: -0.045em;
+    }
+    .eyebrow {
+      margin: 0 0 17px;
+      color: var(--coral);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+    /* =========================
+       HEADER
+    ========================== */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      padding: 19px 0;
+      transition: 0.25s ease;
+    }
+    header.scrolled {
+      background: rgba(241, 237, 228, 0.9);
+      border-bottom: 1px solid var(--line-light);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+    .brand-mark {
+      width: 27px;
+      height: 27px;
+      flex: 0 0 auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: var(--green);
+      font-size: 12px;
+    }
+    .nav-links a {
+      opacity: 0.82;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover {
+      opacity: 1;
+    }
+    .nav-cta {
+      padding: 11px 17px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      font-weight: 700;
+      opacity: 1 !important;
+    }
+    .nav-cta:hover {
+      background: var(--green);
+      color: var(--paper);
+    }
+    /* =========================
+       FORMS
+    ========================== */
+    .waitlist {
+      display: flex;
+      width: min(520px, 100%);
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--white);
+      box-shadow: 0 9px 28px rgba(25, 63, 60, 0.05);
+    }
+    .waitlist input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 0 15px;
+      background: transparent;
+      color: var(--green);
+      font-size: 12px;
+    }
+    .waitlist input::placeholder {
+      color: var(--gray);
+    }
+    .hp {
+      position: absolute !important;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+    .button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 19px;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--green-mid);
+    }
+    .micro {
+      margin-top: 9px;
+      color: var(--gray-dark);
+      font-size: 9px;
+    }
+    /* =========================
+       GENERIC SECTION
+    ========================== */
+    .section {
+      padding: 120px 0;
+    }
+    /* =========================
+       HERO
+    ========================== */
+    .hero {
+      min-height: 800px;
+      padding: 150px 0 95px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 65px;
+      align-items: center;
+    }
+    .hero h1 {
+      max-width: 710px;
+      margin: 0 0 27px;
+      font-family: var(--serif);
+      font-size: clamp(55px, 6.2vw, 88px);
+      font-weight: 500;
+      line-height: 0.97;
+      letter-spacing: -0.058em;
+    }
+    .hero h1 .muted {
+      color: var(--gray);
+    }
+    .hero-description {
+      max-width: 570px;
+      margin: 0 0 25px;
+      color: var(--gray-dark);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .hero-art {
+      position: relative;
+      height: 570px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-line {
+      position: absolute;
+      width: 525px;
+      height: 555px;
+      border: 1px solid rgba(25, 63, 60, 0.17);
+      border-radius: 48% 52% 45% 55%;
+      transform: rotate(15deg);
+    }
+    .hero-image {
+      position: relative;
+      width: min(470px, 100%);
+      height: 540px;
+      overflow: hidden;
+      border-radius: 185px 185px 28px 28px;
+      background:
+        linear-gradient(rgba(241, 237, 228, 0.02), rgba(25, 63, 60, 0.18)),
+        url("https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1100&q=85")
+        center / cover;
+      box-shadow: 0 35px 80px rgba(25, 63, 60, 0.14);
+    }
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 53%,
+        rgba(25, 63, 60, 0.18)
+      );
+    }
+    .logo-orb {
+      position: absolute;
+      right: 0;
+      bottom: 29px;
+      z-index: 2;
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(25, 63, 60, 0.09);
+    }
+    /* =========================
+       STORY
+    ========================== */
+    .story {
+      padding: 95px 0;
+      background: var(--paper);
+    }
+    .story-card {
+      min-height: 575px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      border: 1px solid var(--line-light);
+      border-radius: 28px;
+      background: var(--paper-2);
+      box-shadow: 0 18px 40px rgba(25, 63, 60, 0.04);
+    }
+    .story-copy {
+      padding: 68px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .story h2 {
+      max-width: 570px;
+      margin: 0 0 18px;
+      font-family: var(--serif);
+      font-size: clamp(43px, 4.4vw, 67px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+    .story p {
+      max-width: 510px;
+      margin: 0;
+      color: var(--gray-dark);
+      font-size: 13px;
+      line-height: 1.72;
+    }
+    .quote {
+      max-width: 500px;
+      margin: 24px 0;
+      padding: 17px 20px;
+      border-left: 2px solid var(--coral);
+      background: rgba(255, 255, 255, 0.34);
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.3;
+    }
+    .story-ending {
+      max-width: 520px;
+      font-family: var(--serif);
+      color: var(--green);
+      font-size: 26px;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+    }
+    .story-image {
+      min-height: 575px;
+      background:
+        linear-gradient(90deg, rgba(25,63,60,.07), transparent),
+        url("https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=85")
+        center / cover;
+      filter: saturate(.55) contrast(.95);
+    }
+    /* =========================
+       ANONIMATO
+    ========================== */
+    .anon {
+      position: relative;
+      overflow: hidden;
+    }
+    .anon::after {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      top: -190px;
+      right: -245px;
+      border: 1px solid rgba(25, 63, 60, 0.11);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 82px rgba(25, 63, 60, 0.024),
+        0 0 0 164px rgba(25, 63, 60, 0.016);
+      pointer-events: none;
+    }
+    .anon-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 100px;
+      align-items: center;
+    }
+    .anon h2 {
+      max-width: 650px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(49px, 5vw, 75px);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+    .anon h2 span {
+      color: var(--coral);
+    }
+    .anon-copy {
+      max-width: 600px;
+      color: var(--gray-dark);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .anon-copy p {
+      margin: 0 0 18px;
+    }
+    .anon-copy h3 {
+      max-width: 560px;
+      margin: 22px 0;
+      color: var(--coral);
+      font-family: var(--serif);
+      font-size: 35px;
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+    }
+    .hands {
+      width: 180px;
+      margin: 35px auto 0;
+      display: block;
+      opacity: .62;
+    }
+    /* =========================
+       INSIDE
+       OBS: mantém o MESMO núcleo
+       de verde + cinza + laranja.
+       ========================== */
+    .inside {
+      background: var(--paper-2);
+    }
+    .inside-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 90px;
+      align-items: center;
+    }
+    .inside h2 {
+      max-width: 600px;
+      margin: 0 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(46px, 5vw, 71px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.052em;
+    }
+    .inside-copy p {
+      max-width: 530px;
+      margin: 0 0 24px;
+      color: var(--gray-dark);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .message {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--white);
+      box-shadow: 0 25px 65px rgba(25, 63, 60, 0.09);
+      transform: rotate(0.7deg);
+    }
+    .message-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 17px;
+      border-bottom: 1px solid var(--line-light);
+      color: var(--green);
+      font-size: 11px;
+    }
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(25,63,60,.15);
+      border-radius: 50%;
+      background: var(--paper-2);
+    }
+    .message-text {
+      margin: 25px 0;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: 25px;
+      line-height: 1.26;
+      letter-spacing: -0.035em;
+    }
+    .reply {
+      margin-left: 30px;
+      padding: 18px;
+      border: 1px solid var(--line-light);
+      border-radius: 15px;
+      background: rgba(231, 225, 214, 0.66);
+      color: var(--gray-dark);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .reply strong {
+      color: var(--green);
+    }
+    .reply-accent {
+      display: block;
+      margin-top: 11px;
+      color: var(--coral-dark);
+      font-size: 10px;
+    }
+    /* =========================
+       HOW
+    ========================== */
+    .how h2,
+    .features h2,
+    .origin h2,
+    .faq h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(48px, 5vw, 73px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 54px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .step {
+      padding: 35px 30px 40px 0;
+      border-right: 1px solid var(--line);
+    }
+    .step:not(:first-child) {
+      padding-left: 30px;
+    }
+    .step:last-child {
+      border-right: 0;
+    }
+    .step-icon {
+      margin-bottom: 26px;
+      color: var(--green);
+      font-size: 27px;
+    }
+    .step-number {
+      color: var(--coral);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .15em;
+    }
+    .step h3 {
+      margin: 13px 0 9px;
+      color: var(--green);
+      font-size: 15px;
+      letter-spacing: -.02em;
+    }
+    .step p {
+      margin: 0;
+      color: var(--gray-dark);
+      font-size: 11px;
+      line-height: 1.65;
+    }
+    /* =========================
+       FEATURES
+       Mesmo verde principal.
+       Sem verde claro.
+    ========================== */
+    .features {
+      background: var(--green);
+      color: var(--paper);
+    }
+    .features .eyebrow {
+      color: var(--coral);
+    }
+    .feature-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+    .feature-header p {
+      max-width: 430px;
+      margin: 0;
+      color: #b7b9b2;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .feature {
+      min-height: 190px;
+      padding: 25px;
+      border: 1px solid rgba(241, 237, 228, 0.14);
+      border-radius: 20px;
+      background: rgba(241, 237, 228, 0.035);
+      transition: 0.25s ease;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      background: rgba(241, 237, 228, 0.065);
+    }
+    /* Laranja só em alguns poucos pontos */
+    .feature:nth-child(3),
+    .feature:nth-child(5) {
+      background: rgba(215, 119, 93, 0.10);
+    }
+    .feature .icon {
+      margin-bottom: 39px;
+      color: var(--paper);
+      font-size: 22px;
+    }
+    .feature h3 {
+      margin: 0 0 8px;
+      color: var(--paper);
+      font-size: 14px;
+    }
+    .feature p {
+      margin: 0;
+      color: #b7bbb6;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    /* =========================
+       ORIGIN
+    ========================== */
+    .origin {
+      background: var(--paper);
+    }
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 100px;
+      align-items: center;
+    }
+    .origin h2 {
+      max-width: 560px;
+    }
+    .origin-copy p {
+      max-width: 610px;
+      margin: 0 0 20px;
+      color: var(--gray-dark);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .branch {
+      position: relative;
+      width: 205px;
+      height: 215px;
+      margin: 33px auto 0;
+      opacity: .6;
+    }
+    .branch::before {
+      content: "";
+      position: absolute;
+      left: 102px;
+      bottom: 0;
+      width: 2px;
+      height: 185px;
+      background: var(--green-soft);
+      transform: rotate(10deg);
+    }
+    .leaf {
+      position: absolute;
+      width: 60px;
+      height: 29px;
+      border: 1.5px solid var(--green-soft);
+      border-radius: 100% 0 100% 0;
+    }
+    .leaf:nth-child(1) {
+      left: 97px;
+      top: 20px;
+      transform: rotate(-30deg);
+    }
+    .leaf:nth-child(2) {
+      left: 46px;
+      top: 66px;
+      transform: rotate(45deg);
+    }
+    .leaf:nth-child(3) {
+      left: 110px;
+      top: 107px;
+      transform: rotate(-35deg);
+    }
+    .leaf:nth-child(4) {
+      left: 56px;
+      top: 148px;
+      transform: rotate(38deg);
+    }
+    /* =========================
+       FINAL
+       Laranja permanece como
+       campo de chamada, não como
+       cor generalizada.
+    ========================== */
+    .final {
+      background: var(--coral);
+      color: #fff7ef;
+    }
+    .final-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .final h2 {
+      max-width: 580px;
+      margin: 0 0 20px;
+      font-family: var(--serif);
+      font-size: clamp(50px, 5vw, 76px);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -0.055em;
+    }
+    .final-copy p {
+      max-width: 510px;
+      margin: 0;
+      color: rgba(255, 247, 239, 0.82);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .final-card {
+      padding: 30px;
+      border-radius: 25px;
+      background: var(--white);
+      color: var(--green);
+      box-shadow: 0 30px 65px rgba(95,45,35,.13);
+    }
+    .final-card .eyebrow {
+      color: var(--coral);
+    }
+    .final-card h3 {
+      margin: 0 0 12px;
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .final-card > p {
+      margin: 0 0 18px;
+      color: var(--gray-dark);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .choice {
+      min-height: 82px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 10px;
+    }
+    .choice input { accent-color: var(--coral); }
+    .choice:has(input:checked) {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 2px rgba(215,119,93,.25);
+    }
+    .choice strong {
+      display: block;
+      margin: 9px 0 4px;
+      color: var(--green);
+    }
+    .choice span {
+      color: var(--gray-dark);
+    }
+    /* =========================
+       FAQ
+    ========================== */
+    .faq-list {
+      margin-top: 45px;
+      border-top: 1px solid var(--line);
+    }
+    details {
+      border-bottom: 1px solid var(--line);
+    }
+    summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 23px 0;
+      list-style: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::after {
+      content: "+";
+      font-size: 18px;
+      font-weight: 400;
+    }
+    details[open] summary::after {
+      content: "−";
+    }
+    details p {
+      max-width: 760px;
+      padding: 0 0 24px;
+      margin: 0;
+      color: var(--gray-dark);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    details p strong { color: var(--green); }
+    /* =========================
+       FOOTER
+    ========================== */
+    footer {
+      padding: 30px 0;
+      background: #153a37;
+      color: var(--paper);
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 10px;
+    }
+    .footer-crisis {
+      margin: 14px auto 0;
+      font-size: 10px;
+      line-height: 1.6;
+      color: rgba(241, 237, 228, 0.62);
+    }
+    .footer-crisis strong { color: var(--paper); }
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity .7s ease,
+        transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    /* =========================
+       MOBILE
+    ========================== */
+    @media (max-width: 850px) {
+      .container {
+        width: min(100% - 32px, 650px);
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        min-height: auto;
+        padding-top: 125px;
+      }
+      .hero-grid,
+      .story-card,
+      .anon-grid,
+      .inside-grid,
+      .origin-grid,
+      .final-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+      .hero-art {
+        height: 440px;
+      }
+      .hero-image {
+        height: 420px;
+      }
+      .story-copy {
+        padding: 60px 30px;
+      }
+      .story-image {
+        min-height: 430px;
+      }
+      .section {
+        padding: 85px 0;
+      }
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      .step,
+      .step:not(:first-child) {
+        padding: 28px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .step:last-child {
+        border-bottom: 0;
+      }
+      .feature-header {
+        display: block;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 49px;
+      }
+      .hero-art {
+        height: 370px;
+      }
+      .hero-image {
+        height: 360px;
+      }
+      .waitlist {
+        flex-direction: column;
+        gap: 5px;
+      }
+      .waitlist input {
+        height: 42px;
+      }
+      .waitlist .button {
+        width: 100%;
+      }
+      .feature-grid,
+      .choices {
+        grid-template-columns: 1fr;
+      }
+      .footer-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<header id="header">
+  <div class="container nav">
+    <a href="#" class="brand" aria-label="Refúgio">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path
+          d="M20 34C17 29 7 24 7 15.8C7 11 10.5 8 14.2 8c2.6 0 4.7 1.4 5.8 3.4C21.1 9.4 23.2 8 25.8 8 29.5 8 33 11 33 15.8 33 24 23 29 20 34Z"
+          stroke="currentColor"
+          stroke-width="2.2"
+        />
+        <path
+          d="M13 15.2c2.5 1.1 5 3.6 7 7.2 2-3.6 4.5-6.1 7-7.2"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span>refúgio</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#como">Como funciona</a>
+      <a href="#encontra">O que você encontra</a>
+      <a class="nav-cta" href="#entrar">Entrar na lista →</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">
+          Para quem precisa falar e não tem com quem
+        </div>
+        <h1>
+          Tem um peso que<br>
+          você carrega porque<br>
+          não tem com quem falar.<br>
+          <span class="muted">
+            Aqui, você fala —<br>
+            e ninguém sabe<br>
+            quem é você.
+          </span>
+        </h1>
+        <p class="hero-description">
+          Um lugar anônimo para desabafar e ser ouvido por quem entende.
+          Você fala do seu jeito, na hora que quiser — sem seguidores, sem
+          exposição e sem precisar fingir que está tudo bem.
+        </p>
+        <form class="waitlist" onsubmit="join(event)">
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" required placeholder="Seu melhor e-mail">
+          <button class="button" type="submit">
+            Quero entrar na lista de espera →
+          </button>
+        </form>
+        <div class="micro">
+          ♧ Grátis. Anônimo. Sem compromisso.
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="hero-line"></div>
+        <div class="hero-image">
+          <div class="logo-orb">
+            <svg width="42" height="42" viewBox="0 0 40 40" fill="none">
+              <path
+                d="M20 34C17 29 7 24 7 15.8C7 11 10.5 8 14.2 8c2.6 0 4.7 1.4 5.8 3.4C21.1 9.4 23.2 8 25.8 8 29.5 8 33 11 33 15.8 33 24 23 29 20 34Z"
+                stroke="#193f3c"
+                stroke-width="2"
+              />
+              <path
+                d="M13 15.2c2.5 1.1 5 3.6 7 7.2 2-3.6 4.5-6.1 7-7.2"
+                stroke="#193f3c"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= STORY ================= -->
+  <section class="story">
+    <div class="container">
+      <div class="story-card reveal">
+        <div class="story-copy">
+          <div class="eyebrow">
+            O que segura a sua voz
+          </div>
+          <h2>
+            Com quem você fala quando não dá pra falar com ninguém?
+          </h2>
+          <p>
+            Com a família, vira preocupação. Com os amigos, vem o medo de
+            ser julgado. Então você engole tudo, escreve uma mensagem que
+            nunca envia, e carrega o peso mais uma vez.
+          </p>
+          <div class="quote">
+            “Não é que eu não tenha ninguém. É que não consigo ser
+            honesto com quem me conhece.”
+          </div>
+          <div class="story-ending">
+            Às vezes, o que falta não é gente por perto. É liberdade
+            para falar sem pensar no que vão achar.
+          </div>
+        </div>
+        <div class="story-image"></div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= ANONIMATO ================= -->
+  <section class="section anon">
+    <div class="container anon-grid">
+      <div class="reveal">
+        <div class="eyebrow">A virada</div>
+        <h2>
+          E se você pudesse falar sem que
+          <span>ninguém</span> soubesse quem você é?
+        </h2>
+        <svg class="hands" viewBox="0 0 180 180" fill="none" aria-hidden="true">
+          <path d="M35 135C28 119 27 96 38 86c7-6 14-2 18 5l12 22"
+                stroke="#536a64" stroke-width="1.7"/>
+          <path d="M145 135c7-16 8-39-3-49-7-6-14-2-18 5l-12 22"
+                stroke="#536a64" stroke-width="1.7"/>
+          <path d="M45 105c20 7 33 20 45 40 12-20 25-33 45-40"
+                stroke="#536a64" stroke-width="1.7"/>
+          <path d="M90 145V79"
+                stroke="#536a64" stroke-width="1.7"/>
+          <path
+            d="M90 91C82 78 70 73 64 62c-5-9 1-17 11-15 7 2 12 9 15 15 3-6 8-13 15-15 10-2 16 6 11 15-6 11-18 16-26 29Z"
+            stroke="#536a64"
+            stroke-width="1.7"
+          />
+        </svg>
+      </div>
+      <div class="anon-copy reveal">
+        <p>
+          Aqui você não precisa usar seu nome, colocar foto ou montar
+          um perfil. Sem a pressão de ser reconhecido, fica mais fácil
+          dizer o que está sentindo.
+        </p>
+        <h3>
+          O anonimato não é para se esconder — é o que te devolve
+          a liberdade de falar.
+        </h3>
+        <p>
+          Do outro lado, alguém lê e responde — muitas vezes alguém que
+          já passou por isso e sabe, na pele, como é precisar de apoio.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- ================= POR DENTRO ================= -->
+  <section class="section inside">
+    <div class="container inside-grid">
+      <div class="inside-copy reveal">
+        <div class="eyebrow">
+          Veja como é por dentro
+        </div>
+        <h2>
+          Um lugar para contar o que está acontecendo.
+        </h2>
+        <p>
+          Você escreve o que está sentindo, e alguém que entende lê,
+          responde e compartilha o que aprendeu. E quando você inverte os
+          lados, do outro ponto tem alguém que precisa exatamente do que
+          você já viveu.
+        </p>
+        <form class="waitlist" onsubmit="join(event)">
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" required placeholder="Seu melhor e-mail">
+          <button class="button" type="submit">
+            Quero entrar na lista →
+          </button>
+        </form>
+        <div class="micro">
+          ♧ Grátis. Anônimo. Sem compromisso.
+        </div>
+      </div>
+      <div class="message reveal">
+        <div class="message-head">
+          <div class="avatar"></div>
+          <div>
+            <strong>um nome anônimo</strong><br>
+            <span style="color:var(--gray)">
+              em silêncio, sem mostrar sua identidade
+            </span>
+          </div>
+          <div style="margin-left:auto;font-size:20px;color:var(--coral)">
+            ♡
+          </div>
+        </div>
+        <div class="message-text">
+          “Eu precisava falar isso em algum lugar, mas não queria que
+          ninguém conhecido soubesse.”
+        </div>
+        <div class="reply">
+          <strong>Você não precisa achar as palavras perfeitas.</strong>
+          Começar já ajuda a não carregar tudo sozinho.
+          <span class="reply-accent">
+            ✓ resposta considerada útil
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= COMO FUNCIONA ================= -->
+  <section class="section how" id="como">
+    <div class="container">
+      <div class="eyebrow">Como funciona</div>
+      <h2>É simples.</h2>
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step-icon">⌁</div>
+          <div class="step-number">01</div>
+          <h3>Entre com um nome anônimo.</h3>
+          <p>
+            Nada seu aparece. Você escolhe um apelido e é só isso que
+            a comunidade vê.
+          </p>
+        </article>
+        <article class="step reveal">
+          <div class="step-icon">✎</div>
+          <div class="step-number">02</div>
+          <h3>Escreva o que está sentindo.</h3>
+          <p>
+            Pode ser do jeito que vier. Você não precisa editar nem
+            explicar tudo.
+          </p>
+        </article>
+        <article class="step reveal">
+          <div class="step-icon">♡</div>
+          <div class="step-number">03</div>
+          <h3>Alguém lê e responde.</h3>
+          <p>
+            Gente comum acolhe, compartilha o que viveu e oferece
+            ideias. Você decide o que faz sentido.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- ================= FEATURES ================= -->
+  <section class="section features" id="encontra">
+    <div class="container">
+      <div class="feature-header reveal">
+        <div>
+          <div class="eyebrow">O que você encontra aqui</div>
+          <h2>
+            Um espaço para<br>
+            falar do que pesa.
+          </h2>
+        </div>
+        <p>
+          Não é mais uma rede social — é quase o oposto dela. A gente
+          cuidou de cada detalhe para proteger quem fala e dar liberdade
+          para ouvir e acolher.
+        </p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature reveal">
+          <div class="icon">♢</div>
+          <h3>100% anônimo.</h3>
+          <p>Nome, foto e perfil ficam de fora.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="icon">♧</div>
+          <h3>Sem seguidores e sem competição.</h3>
+          <p>Todo mundo começa igual.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="icon">♡</div>
+          <h3>Pessoas que já passaram pelo mesmo.</h3>
+          <p>Gente de verdade, não robôs nem profissionais.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="icon">⌁</div>
+          <h3>Reconhecimento para quem acolhe.</h3>
+          <p>Você vale pelo que contribui, não por quem é.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="icon">✓</div>
+          <h3>Um espaço moderado.</h3>
+          <p>Regras claras para manter tudo seguro e respeitoso.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="icon">□</div>
+          <h3>Sem pressão para responder.</h3>
+          <p>Você entra, lê, fala ou sai quando quiser.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- ================= ORIGEM ================= -->
+  <section class="section origin">
+    <div class="container origin-grid">
+      <div class="reveal">
+        <div class="eyebrow">
+          Por que estamos criando isso
+        </div>
+        <h2>
+          Começou com quem precisava de um lugar para falar.
+        </h2>
+        <div class="branch" aria-hidden="true">
+          <i class="leaf"></i>
+          <i class="leaf"></i>
+          <i class="leaf"></i>
+          <i class="leaf"></i>
+        </div>
+      </div>
+      <div class="origin-copy reveal">
+        <p>
+          Todos os dias chegam mensagens de gente querendo desabafar —
+          e muitas desistem no meio, com medo de se expor. São desabafos
+          que não cabem em uma resposta rápida.
+        </p>
+        <p>
+          Por isso o Refúgio existe: para essas pessoas, e para quem
+          também quer ouvir.
+        </p>
+        <p>
+          Sendo honesto: estamos começando agora, e o Refúgio não resolve
+          tudo nem substitui terapia. Mas ninguém devia ter que segurar
+          tudo sozinho. Se você sente falta de um lugar assim, o próximo
+          passo é seu — entre na lista.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- ================= CTA FINAL ================= -->
+  <section class="section final" id="entrar">
+    <div class="container final-grid">
+      <div class="final-copy reveal">
+        <div class="eyebrow" style="color:#fff0e6">
+          A última coisa
+        </div>
+        <h2>
+          Você não precisa segurar tudo sozinho.
+        </h2>
+        <p>
+          Quando a comunidade abrir, você vai poder falar sem revelar
+          quem é — e é você quem decide o quanto quer contar. Do outro
+          lado, alguém estará pronto para ouvir.
+        </p>
+      </div>
+      <div class="final-card reveal">
+        <div class="eyebrow">Entre na lista de interesse</div>
+        <h3>
+          Receba o convite quando o Refúgio abrir.
+        </h3>
+        <p>
+          Se fizer sentido para você, deixe seu e-mail. A gente te avisa
+          quando abrir — e vai querer saber o que você espera encontrar
+          aqui.
+        </p>
+        <form onsubmit="join(event)">
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="waitlist">
+            <input type="email" required placeholder="Seu melhor e-mail">
+          </div>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="motivo" value="desabafar">
+              <strong>Quero desabafar</strong>
+              <span>Tenho algo para colocar para fora.</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="motivo" value="acolher">
+              <strong>Quero acolher</strong>
+              <span>Quero estar presente para alguém.</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="motivo" value="ambos">
+              <strong>Os dois</strong>
+              <span>Quero alternar entre os dois lados.</span>
+            </label>
+          </div>
+          <button
+            type="submit"
+            class="button"
+            style="width:100%"
+          >
+            Quero entrar na lista de espera →
+          </button>
+        </form>
+        <div class="micro">
+          ♧ Grátis e anônimo. Você entra se quiser — e a gente te avisa
+          quando o Refúgio abrir.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= FAQ ================= -->
+  <section class="section faq">
+    <div class="container">
+      <div class="eyebrow">Dúvidas comuns</div>
+      <h2>
+        As perguntas que mais chegam pra gente.
+      </h2>
+      <div class="faq-list">
+        <details>
+          <summary>É mesmo anônimo?</summary>
+          <p>
+            Sim. Você participa sem nome real, sem foto e sem perfil
+            público — a comunidade vê só o apelido que você escolher.
+            E a gente deixa sempre claro o mínimo que fica guardado.
+          </p>
+        </details>
+        <details>
+          <summary>Vocês são psicólogos ou terapeutas?</summary>
+          <p>
+            Não. O Refúgio é uma comunidade de apoio entre pessoas.
+            Não substitui atendimento psicológico, médico ou serviços
+            de emergência. <strong>Se você estiver passando por um momento grave
+            ou pensando em se machucar, ligue para o CVV no 188</strong> (24h,
+            gratuito e sigiloso) ou procure a emergência 192. Você não
+            está sozinho.
+          </p>
+        </details>
+        <details>
+          <summary>E se alguém me tratar mal?</summary>
+          <p>
+            A gente tem regras de convivência e moderação. Você pode
+            denunciar qualquer conteúdo que passe do limite, e a equipe
+            responsável cuida disso. Respeito aqui não é opcional.
+          </p>
+        </details>
+        <details>
+          <summary>É pago?</summary>
+          <p>
+            Não. É gratuito e sem compromisso, porque a ideia é que
+            ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia
+            você quiser apoiar o projeto, é escolha sua.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container footer-row">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
+        <path
+          d="M20 34C17 29 7 24 7 15.8C7 11 10.5 8 14.2 8c2.6 0 4.7 1.4 5.8 3.4C21.1 9.4 23.2 8 25.8 8 29.5 8 33 11 33 15.8 33 24 23 29 20 34Z"
+          stroke="currentColor"
+          stroke-width="2.2"
+        />
+      </svg>
+      refúgio
+    </div>
+    <div>
+      Refúgio — comunidade anônima, sem fins lucrativos.
+    </div>
+  </div>
+  <div class="container">
+    <p class="footer-crisis">
+      Este espaço não substitui atendimento profissional. Em um momento de
+      crise, ligue para o CVV: <strong>188</strong> · Emergência: <strong>192</strong>.
+    </p>
+  </div>
+</footer>
+<script>
+  const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document
+    .querySelectorAll(".reveal")
+    .forEach((element) => observer.observe(element));
+
+  async function join(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const email = (form.querySelector('input[type="email"]')?.value || "").trim();
+    if (!email) return;
+    if (form.querySelector('input[name="website"]')?.value) return; // honeypot
+    const motivo = form.querySelector('input[name="motivo"]:checked')?.value || "";
+    const ref = new URLSearchParams(location.search).get("ref") || "";
+    const btn =
+      form.querySelector('button[type="submit"]') || form.querySelector("button");
+    const original = btn ? btn.innerHTML : "";
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Enviando…";
+    }
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, motivo, ref }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || "Falha ao enviar");
+      showThanks(form);
+    } catch (err) {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = original;
+      }
+      showError(form, "Não consegui enviar agora. Tente de novo em instantes.");
+    }
+  }
+
+  function showThanks(form) {
+    const box = document.createElement("div");
+    box.setAttribute("role", "status");
+    box.style.cssText =
+      "padding:16px 18px;border:1px solid var(--line);border-radius:15px;background:var(--white);font-family:var(--serif);font-size:20px;line-height:1.25;color:var(--green)";
+    box.innerHTML =
+      "Pronto — você está na lista. 💚<br><span style=\"font-family:var(--sans);font-size:12px;color:var(--gray-dark)\">A gente te avisa por e-mail quando o Refúgio abrir.</span>";
+    form.replaceWith(box);
+  }
+
+  function showError(form, msg) {
+    let e = form.querySelector(".form-error");
+    if (!e) {
+      e = document.createElement("div");
+      e.className = "form-error";
+      e.style.cssText = "margin-top:9px;color:var(--coral-dark);font-size:11px";
+      form.appendChild(e);
+    }
+    e.textContent = msg;
+  }
+</script>
+</body>
+</html>

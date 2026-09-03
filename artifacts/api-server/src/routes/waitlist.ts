@@ -35,9 +35,12 @@ function requireAdmin(req: Request, res: Response) {
 }
 
 router.post("/waitlist", async (req, res): Promise<void> => {
-  const { email, intencao, intent, website } = req.body ?? {};
+  const { email, intencao, intent, motivo, ref: bodyRef, website } = req.body ?? {};
   const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
-  const normalizedIntent = intencao ?? intent;
+  const rawIntent = intencao ?? intent ?? motivo;
+  // The first landing used the Portuguese labels "acolher" and "ambos".
+  // Keep accepting them so old forms and shared links remain compatible.
+  const normalizedIntent = rawIntent === "acolher" ? "ajudar" : rawIntent === "ambos" ? "os-dois" : rawIntent;
 
   if (typeof website === "string" && website.trim() !== "") {
     res.json({ ok: true });
@@ -53,7 +56,8 @@ router.post("/waitlist", async (req, res): Promise<void> => {
     return;
   }
 
-  const ref = typeof req.query.ref === "string" ? req.query.ref.trim().slice(0, 120) : null;
+  const refValue = typeof bodyRef === "string" ? bodyRef : req.query.ref;
+  const ref = typeof refValue === "string" ? refValue.trim().slice(0, 120) : null;
   try {
     await db.insert(waitlistTable).values({
       email: normalizedEmail,
