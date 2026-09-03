@@ -193,7 +193,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function CompactBar() {
+function CompactBar({ className = 'mt-8' }: { className?: string } = {}) {
   const [email, setEmail] = useState('');
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -205,7 +205,7 @@ function CompactBar() {
     setTimeout(() => document.getElementById('refugio-email')?.focus(), 200);
   };
   return (
-    <form onSubmit={submit} className="mt-8 flex max-w-2xl flex-wrap gap-2 rounded-full border border-[#a4a9a5]/70 bg-white p-2">
+    <form onSubmit={submit} className={`${className} flex max-w-2xl flex-wrap gap-2 rounded-full border border-[#a4a9a5]/70 bg-white p-2`}>
       <input
         type="email"
         required
@@ -366,7 +366,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="mt-14"><a href="#entrar"><ButtonPrimary>Quero fazer parte disso <ArrowDownRight size={16} /></ButtonPrimary></a></div>
+          <CompactBar className="mt-14" />
         </div>
       </section>
 
