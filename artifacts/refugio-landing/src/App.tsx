@@ -454,6 +454,9 @@ function Home() {
         </p>
         <CompactBar className="mt-8 lg:mx-auto" />
       <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+       <a href="#como-funciona" className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
+         Antes disso, quero ver como funciona ↓
+       </a>
       </section>
 
       {/* 02 ESPELHO — narrativa em primeira pessoa, agita o problema */}
