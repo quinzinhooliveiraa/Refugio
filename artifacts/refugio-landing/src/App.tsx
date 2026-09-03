@@ -281,29 +281,29 @@ function Home() {
       )}
 
       {/* 01 PROMESSA — hero */}
-      <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 text-left md:px-10 md:pb-20 md:pt-10 lg:max-w-3xl lg:text-center">
+      <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 md:px-10 md:pb-20 md:pt-10 lg:max-w-3xl">
         <Eyebrow>para quem precisa falar e não tem com quem</Eyebrow>
         <h1 className="serif mt-5 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] font-normal leading-[1] text-[#02110c]">
           Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#06392f]">Aqui, você fala. E ninguém sabe quem é você.</span>
         </h1>
-        <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem] lg:mx-auto">
+        <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
         <CompactBar className="mt-8 lg:mx-auto" />
-        <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+        <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</p>
       </section>
 
       {/* 02 ESPELHO — narrativa em primeira pessoa, agita o problema */}
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
-        <div ref={espelho.ref} style={espelho.style} className="mx-auto max-w-7xl lg:max-w-3xl lg:text-center">
+        <div ref={espelho.ref} style={espelho.style} className="mx-auto max-w-7xl lg:max-w-3xl">
           <Eyebrow inverse>o que segura a sua voz</Eyebrow>
-          <h2 className="serif mt-4 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
+          <h2 className="serif mt-4 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
             Com quem você fala <span className="text-[#a4a9a5]">quando não dá pra falar com ninguém?</span>
           </h2>
-          <p className="mt-10 max-w-4xl text-[1.06rem] leading-[1.75] text-white/85 lg:mx-auto">
+          <p className="mt-10 max-w-4xl text-[1.06rem] leading-[1.75] text-white/85">
             Com a família, vira preocupação. Com os amigos mais próximos, vem o medo de ser lido diferente depois. Com colega, chefe, terapeuta esperando três semanas. Nada disso serve pro que você está sentindo agora, dentro do carro parado, ou às três da manhã com o celular na mão. Então você engole. Abre a caixa de mensagem de alguém, digita, apaga. Escreve nos rascunhos e nunca envia. Fecha o app. E carrega mais um dia.
           </p>
-          <blockquote className="mt-14 max-w-3xl border-l-2 border-[#a4a9a5]/60 pl-5 md:pl-8 lg:mx-auto lg:border-l-0 lg:border-t-2 lg:pl-0 lg:pt-6">
+          <blockquote className="mt-14 max-w-3xl border-l-2 border-[#a4a9a5]/60 pl-5 md:pl-8">
             <p className="serif text-lg leading-[1.3] text-white md:text-2xl">
               “O problema quase nunca é falta de gente por perto. É que fica difícil ser honesto com quem sabe o seu nome, o seu rosto, a sua vida.”
             </p>
@@ -313,7 +313,7 @@ function Home() {
 
       {/* 03 VIRADA + MECANISMO — anonimato como liberdade */}
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
-        <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl lg:text-center">
+        <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl">
           <Eyebrow>a virada</Eyebrow>
           <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
             E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
@@ -321,7 +321,7 @@ function Home() {
           <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
             Aqui você decide como aparecer. Pode ser um apelido, um nome, uma foto qualquer, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando.
           </p>
-           <p className="serif mt-8 border-l-2 border-[#06392f] pl-5 text-xl leading-[1.25] text-[#06392f] md:pl-6 md:text-2xl lg:border-l-0 lg:border-t-2 lg:pl-0 lg:pt-6">
+          <p className="serif mt-8 border-l-2 border-[#06392f] pl-5 text-xl leading-[1.25] text-[#06392f] md:pl-6 md:text-2xl">
             O anonimato não é para se esconder. É o que devolve a liberdade de falar.
           </p>
           <p className="mt-8 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
@@ -375,7 +375,7 @@ function Home() {
             </div>
           </div>
 
-           <CompactBar className="mt-14 lg:mx-auto" />
+          <CompactBar className="mt-14" />
           <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-white/70">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         </div>
       </section>
