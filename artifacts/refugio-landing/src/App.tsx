@@ -152,8 +152,8 @@ function SignupForm() {
     <form onSubmit={submit} noValidate className="rounded-[1.5rem] border border-[#183d3b]/20 bg-[#f3eee4]/80 p-5 md:p-7" data-testid="form-waitlist">
       <div className="mb-7">
         <p className="eyebrow">entre na lista de interesse</p>
-        <h3 className="serif mt-2 text-3xl leading-[1.02]">Receba o convite quando o Refúgio abrir.</h3>
-        <p className="mt-3 max-w-md text-sm leading-relaxed text-[#183d3b]/65">Se fizer sentido para você, deixe seu e-mail. Vamos avisar quando houver um espaço seguro para entrar e entender o que você espera encontrar aqui.</p>
+         <h3 className="serif mt-2 text-3xl leading-[1.02]">Se fizer sentido para você, deixe seu e-mail.</h3>
+         <p className="mt-3 max-w-md text-sm leading-relaxed text-[#183d3b]/65">A gente te avisa quando abrir — e vai querer saber o que você espera encontrar aqui.</p>
       </div>
       <div className="space-y-2">
         <label htmlFor="refugio-email" className="text-xs font-bold">Seu melhor e-mail</label>
@@ -165,16 +165,16 @@ function SignupForm() {
       </div>
       <fieldset className="mt-7">
         <legend className="mb-3 text-xs font-bold">Eu quero...</legend>
-        <div className="grid gap-3 sm:grid-cols-3">
-           <IntentOption intent="desabafar" title="Quero desabafar" copy="Tenho algo para colocar para fora." selected={intent === 'desabafar'} onSelect={(value) => { setIntent(value); setError(''); }} />
-           <IntentOption intent="ajudar" title="Quero ajudar alguém" copy="Quero estar presente para alguém." selected={intent === 'ajudar'} onSelect={(value) => { setIntent(value); setError(''); }} />
-           <IntentOption intent="os-dois" title="Os dois" copy="Quero alternar entre os dois lados." selected={intent === 'os-dois'} onSelect={(value) => { setIntent(value); setError(''); }} />
+           <div className="grid gap-3 sm:grid-cols-3">
+            <IntentOption intent="desabafar" title="Quero desabafar" copy="Tenho algo para colocar para fora." selected={intent === 'desabafar'} onSelect={(value) => { setIntent(value); setError(''); }} />
+            <IntentOption intent="ajudar" title="Quero acolher" copy="Quero estar presente para alguém." selected={intent === 'ajudar'} onSelect={(value) => { setIntent(value); setError(''); }} />
+            <IntentOption intent="os-dois" title="Os dois" copy="Quero alternar entre os dois lados." selected={intent === 'os-dois'} onSelect={(value) => { setIntent(value); setError(''); }} />
         </div>
       </fieldset>
       <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="honeypot" />
       {error && <p id="signup-error" role="alert" className="mt-4 text-xs font-semibold text-[#a7493c]" data-testid="status-signup-error">{error}</p>}
       <button type="submit" disabled={submitting} className="button-primary mt-7 w-full disabled:cursor-wait disabled:opacity-70" data-testid="button-submit-signup">{submitting ? 'Salvando seu convite...' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}</button>
-      <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[.68rem] leading-relaxed text-[#183d3b]/55"><LockKeyhole size={12} /> Grátis. Sem compromisso. Você será avisado quando a comunidade abrir.</p>
+       <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[.68rem] leading-relaxed text-[#183d3b]/55"><LockKeyhole size={12} /> Grátis e anônimo. Você entra se quiser — e a gente te avisa quando o Refúgio abrir.</p>
     </form>
   );
 }
@@ -513,8 +513,8 @@ function CopyStructureHome() {
       <section id="top" className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-14 pt-5 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 md:px-10 md:pb-32 md:pt-16">
         <div className="max-w-2xl">
           <p className="eyebrow">para quem precisa falar e não tem com quem</p>
-          <h1 className="serif mt-5 text-[clamp(2.75rem,11vw,7rem)] leading-[.9] text-[#183d3b]">Tem coisas que ficam mais leves quando a gente fala. <span className="text-[#d8785c]">Aqui, ninguém precisa saber que foi você.</span></h1>
-          <p className="mt-8 max-w-2xl text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:text-[1.2rem]">Um espaço anônimo para desabafar e conversar com quem entende. Você fala do seu jeito, sem seguidores, sem exposição e sem precisar fingir que está tudo bem.</p>
+          <h1 className="serif mt-5 text-[clamp(2.75rem,11vw,7rem)] leading-[.9] text-[#183d3b]">Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#d8785c]">Aqui, você fala — e ninguém sabe quem é você.</span></h1>
+          <p className="mt-8 max-w-2xl text-[1.06rem] leading-[1.55] text-[#183d3b]/72 md:text-[1.2rem]">Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser — sem seguidores, sem exposição e sem precisar fingir que está tudo bem.</p>
            <div className="mt-7 md:mt-8"><CompactWaitlistForm /></div>
         </div>
         <HeroArtwork />
@@ -522,9 +522,9 @@ function CopyStructureHome() {
 
       <section className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-16 text-[#f3eee4] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <p className="eyebrow !text-[#d8785c]">o que talvez esteja travando você</p>
-          <h2 className="serif mt-4 max-w-4xl text-5xl leading-[.94] md:text-7xl">Tem coisa que a gente guarda porque não sabe com quem falar.</h2>
-          <p className="mt-8 max-w-3xl text-[1.05rem] leading-[1.7] text-[#f3eee4]/72">Com a família, pode virar preocupação. Com os amigos, pode bater o medo de ser julgado. Aí você escreve uma mensagem, apaga e guarda tudo mais uma vez.</p>
+          <p className="eyebrow !text-[#d8785c]">o que segura a sua voz</p>
+          <h2 className="serif mt-4 max-w-4xl text-5xl leading-[.94] md:text-7xl">Com quem você fala quando não dá pra falar com ninguém?</h2>
+          <p className="mt-8 max-w-3xl text-[1.05rem] leading-[1.7] text-[#f3eee4]/72">Com a família, vira preocupação. Com os amigos, vem o medo de ser julgado. Então você engole tudo, escreve uma mensagem que nunca envia, e carrega o peso mais uma vez.</p>
           <div className="mt-10 max-w-2xl border-l-2 border-[#d8785c] bg-[#f3eee4]/[.06] px-6 py-5"><p className="serif text-2xl italic leading-[1.25] text-[#f3eee4] md:text-3xl">“Não é que eu não tenha ninguém. É que não consigo ser honesto com quem me conhece.”</p></div>
           <p className="serif mt-12 max-w-3xl text-3xl leading-[1.02] text-[#b7cfc0] md:text-5xl">Às vezes, o que falta não é gente por perto. É liberdade para falar sem pensar no que vão achar.</p>
         </div>
@@ -533,14 +533,14 @@ function CopyStructureHome() {
       <section className="paper-crease px-5 py-16 md:px-10 md:py-32">
          <div className="tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
           <div><p className="eyebrow">a virada</p><h2 className="serif mt-4 max-w-2xl text-5xl leading-[.94] md:text-7xl">E se você pudesse falar sem que <span className="text-[#b85d47]">ninguém</span> soubesse quem você é?</h2></div>
-          <div><p className="text-[1.05rem] leading-[1.7] text-[#183d3b]/70">Aqui você não precisa usar seu nome, colocar foto ou montar um perfil. Sem a pressão de ser reconhecido, fica mais fácil dizer o que está sentindo.</p><p className="serif mt-8 text-3xl leading-tight text-[#b85d47] md:text-5xl">O anonimato não é para se esconder. É uma forma de falar com mais liberdade.</p><p className="mt-8 text-[1.05rem] leading-[1.7] text-[#183d3b]/70">Do outro lado, alguém lê e responde. Pode ser uma pessoa que já passou por algo parecido e sabe como é precisar de apoio.</p></div>
+           <div><p className="text-[1.05rem] leading-[1.7] text-[#183d3b]/70">Aqui você não precisa usar seu nome, colocar foto ou montar um perfil. Sem a pressão de ser reconhecido, fica mais fácil dizer o que está sentindo.</p><p className="serif mt-8 text-3xl leading-tight text-[#b85d47] md:text-5xl">O anonimato não é para se esconder — é o que te devolve a liberdade de falar.</p><p className="mt-8 text-[1.05rem] leading-[1.7] text-[#183d3b]/70">Do outro lado, alguém lê e responde — muitas vezes alguém que já passou por isso e sabe, na pele, como é precisar de apoio.</p></div>
         </div>
       </section>
 
       <section className="border-y border-[#183d3b]/15 bg-[#c8c1d4] px-5 py-16 md:px-10 md:py-32">
         <div ref={conversation.ref} className={`${conversation.className} mx-auto max-w-7xl`}>
            <div className="tablet-stack grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
-           <div><p className="eyebrow">veja como é por dentro</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Um lugar para contar o que está acontecendo.</h2><p className="mt-6 max-w-md text-sm leading-[1.7] text-[#183d3b]/70">Você escreve o que está sentindo. Alguém que entende a situação lê, responde e compartilha o que aprendeu.</p></div>
+            <div><p className="eyebrow">veja como é por dentro</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Um lugar para contar o que está acontecendo.</h2><p className="mt-6 max-w-md text-sm leading-[1.7] text-[#183d3b]/70">Você escreve o que está sentindo, e alguém que entende lê, responde e compartilha o que aprendeu. E quando você inverte os lados, do outro ponto tem alguém que precisa exatamente do que você já viveu.</p></div>
             <div className="relative rounded-[2rem] bg-[#f3eee4] p-6 shadow-[10px_10px_0_#183d3b] md:p-9">
               <div className="flex items-center gap-3 border-b border-[#183d3b]/15 pb-5"><span className="h-10 w-10 rounded-full bg-[#b7cfc0]" /><div><p className="text-xs font-bold">um nome anônimo</p><p className="text-[.68rem] text-[#183d3b]/50">sem foto · sem perfil · sem plateia</p></div><HeartHandshake className="ml-auto text-[#b85d47]" size={22} /></div>
               <p className="serif mt-7 text-2xl leading-tight md:text-3xl">“Eu precisava falar isso em algum lugar, mas não queria que ninguém conhecido soubesse.”</p>
@@ -564,7 +564,7 @@ function CopyStructureHome() {
 
       <section id="o-que-encontra" className="border-y border-[#183d3b]/15 bg-[#151515] px-5 py-16 text-[#f3eee4] md:px-10 md:py-32">
         <div ref={benefits.ref} className={`${benefits.className} mx-auto max-w-7xl`}>
-          <p className="eyebrow !text-[#d8785c]">o que você encontra aqui</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Um espaço para falar do que pesa.</h2>
+           <p className="eyebrow !text-[#d8785c]">o que você encontra aqui</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Um espaço para falar do que pesa.</h2><p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.7] text-[#f3eee4]/72">Não é mais uma rede social — é quase o oposto dela. A gente cuidou de cada detalhe para proteger quem fala e dar liberdade para ouvir e acolher.</p>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
               ['100% anônimo.', 'Nome, foto e perfil ficam de fora.'],
@@ -578,7 +578,7 @@ function CopyStructureHome() {
       </section>
 
       <section className="paper-crease px-5 py-16 md:px-10 md:py-32">
-         <div ref={origin.ref} className={`${origin.className} tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.7fr_1.3fr] md:gap-24`}><div><p className="eyebrow">por que estamos criando isso</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Começou com quem precisava de um lugar para falar.</h2></div><div className="max-w-2xl space-y-5 text-[1.05rem] leading-[1.7] text-[#183d3b]/70"><p>Todos os dias chegam mensagens de pessoas querendo desabafar, mas com medo de se expor na internet. São histórias que não cabem em uma resposta rápida.</p><p>Esta comunidade nasceu dessa necessidade e de quem também quer ouvir.</p><p>Estamos começando agora. Se você sente falta de um lugar assim, pode entrar na lista.</p></div></div>
+         <div ref={origin.ref} className={`${origin.className} tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.7fr_1.3fr] md:gap-24`}><div><p className="eyebrow">por que estamos criando isso</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Começou com quem precisava de um lugar para falar.</h2></div><div className="max-w-2xl space-y-5 text-[1.05rem] leading-[1.7] text-[#183d3b]/70"><p>Todos os dias chegam mensagens de pessoas querendo desabafar, mas com medo de se expor na internet. São histórias que não cabem em uma resposta rápida.</p><p>Esta comunidade nasceu dessa necessidade e de quem também quer ouvir.</p><p>Sendo honesto: estamos começando agora, e o Refúgio não resolve tudo nem substitui terapia. Mas ninguém devia ter que segurar tudo sozinho. Se você sente falta de um lugar assim, o próximo passo é seu — entre na lista.</p></div></div>
       </section>
 
       <section className="border-y border-[#183d3b]/15 bg-[#d8785c] px-5 py-16 md:px-10 md:py-32">
@@ -586,11 +586,11 @@ function CopyStructureHome() {
         <div className="mx-auto mt-12 max-w-7xl"><CompactWaitlistForm /></div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32"><p className="eyebrow">dúvidas comuns</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Antes de entrar, talvez você queira saber.</h2><div className="mt-12 border-t border-[#183d3b]/20">{[['É mesmo anônimo?', 'Para a comunidade, sim. Ninguém vê seu nome, rosto ou perfil. Você escolhe um apelido e é só isso que aparece.'], ['Vocês são psicólogos ou terapeutas?', 'Não. Aqui você encontra pessoas, não profissionais de saúde mental. É conversa e apoio entre gente comum.'], ['E se alguém me tratar mal?', 'A comunidade sinaliza o que foge das regras e a moderação decide o que fazer.'], ['É pago?', 'É gratuito e sem fins lucrativos. Apoiar o projeto é opcional e não libera nenhuma função.']].map(([question, answer]) => <FaqItem key={question} question={question} answer={answer} />)}</div></section>
+       <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32"><p className="eyebrow">dúvidas comuns</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">As perguntas que mais chegam pra gente.</h2><div className="mt-12 border-t border-[#183d3b]/20">{[['É mesmo anônimo?', 'Sim. Você participa sem nome real, sem foto e sem perfil público — a comunidade vê só o apelido que você escolher. E a gente deixa sempre claro o mínimo que fica guardado.'], ['Vocês são psicólogos ou terapeutas?', 'Não. O Refúgio é uma comunidade de apoio entre pessoas. Não substitui atendimento psicológico, médico ou serviços de emergência. Se você estiver passando por um momento grave ou pensando em se machucar, ligue para o CVV no 188 (24h, gratuito e sigiloso) ou procure a emergência 192. Você não está sozinho.'], ['E se alguém me tratar mal?', 'A gente tem regras de convivência e moderação. Você pode denunciar qualquer conteúdo que passe do limite, e a equipe responsável cuida disso. Respeito aqui não é opcional.'], ['É pago?', 'Não. É gratuito e sem compromisso, porque a ideia é que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, é escolha sua.']].map(([question, answer]) => <FaqItem key={question} question={question} answer={answer} />)}</div></section>
 
-       <section id="entrar" className="border-t border-[#183d3b]/15 bg-[#183d3b] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32"><div className="tablet-stack mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#d8785c]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Você não precisa segurar tudo <span className="text-[#b7cfc0]">sozinho.</span></h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#f3eee4]/70">Quando a comunidade abrir, você vai poder falar sem revelar quem é. Do outro lado, alguém estará pronto para ouvir.</p></div><SignupForm /></div></section>
+       <section id="entrar" className="border-t border-[#183d3b]/15 bg-[#183d3b] px-5 py-24 text-[#f3eee4] md:px-10 md:py-32"><div className="tablet-stack mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#d8785c]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Você não precisa segurar tudo <span className="text-[#b7cfc0]">sozinho.</span></h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#f3eee4]/70">Quando a comunidade abrir, você vai poder falar sem revelar quem é — e é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto para ouvir.</p></div><SignupForm /></div></section>
 
-      <footer className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 text-xs text-[#183d3b]/55 md:flex-row md:items-center md:justify-between md:px-10"><Mark /><span>Refúgio · comunidade anônima, sem fins lucrativos</span></footer>
+       <footer className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 text-xs text-[#183d3b]/55 md:flex-row md:items-center md:justify-between md:px-10"><Mark /><span>Refúgio · comunidade anônima, sem fins lucrativos</span><span>Este espaço não substitui atendimento profissional. Em um momento de crise, ligue para o CVV: 188 · Emergência: 192.</span></footer>
     </main>
   );
 }

@@ -1,0 +1,80 @@
+Você criou esta landing page (a comunidade anônima "Refúgio"). Atualize APENAS os
+textos para as versões abaixo, mantendo exatamente o mesmo design, layout, cores,
+imagens e estrutura. Não mude o visual, só o texto. Mantenha o formulário de lista
+de espera funcionando (salvando e-mail + a intenção escolhida).
+
+HERO
+- Selo: Para quem precisa falar e não tem com quem
+- Título: Tem um peso que você carrega porque não tem com quem falar. Aqui, você
+  fala — e ninguém sabe quem é você.
+- Descrição: Um lugar anônimo para desabafar e ser ouvido por quem entende. Você
+  fala do seu jeito, na hora que quiser — sem seguidores, sem exposição e sem
+  precisar fingir que está tudo bem.
+- Abaixo do botão: Grátis. Anônimo. Sem compromisso.
+
+SEÇÃO "O QUE SEGURA A SUA VOZ"
+- Selo: O que segura a sua voz
+- Título: Com quem você fala quando não dá pra falar com ninguém?
+- Texto: Com a família, vira preocupação. Com os amigos, vem o medo de ser
+  julgado. Então você engole tudo, escreve uma mensagem que nunca envia, e
+  carrega o peso mais uma vez.
+- Citação: "Não é que eu não tenha ninguém. É que não consigo ser honesto com
+  quem me conhece."
+- Fecho: Às vezes, o que falta não é gente por perto. É liberdade para falar sem
+  pensar no que vão achar.
+
+SEÇÃO "A VIRADA"
+- Selo: A virada
+- Título: E se você pudesse falar sem que ninguém soubesse quem você é?
+- Texto: Aqui você não precisa usar seu nome, colocar foto ou montar um perfil.
+  Sem a pressão de ser reconhecido, fica mais fácil dizer o que está sentindo.
+- Destaque: O anonimato não é para se esconder — é o que te devolve a liberdade
+  de falar.
+- Texto: Do outro lado, alguém lê e responde — muitas vezes alguém que já passou
+  por isso e sabe, na pele, como é precisar de apoio.
+
+SEÇÃO "VEJA COMO É POR DENTRO"
+- Título: Um lugar para contar o que está acontecendo.
+- Texto: Você escreve o que está sentindo, e alguém que entende lê, responde e
+  compartilha o que aprendeu. E quando você inverte os lados, do outro ponto tem
+  alguém que precisa exatamente do que você já viveu.
+
+SEÇÃO "O QUE VOCÊ ENCONTRA AQUI"
+- Apoio: Não é mais uma rede social — é quase o oposto dela. A gente cuidou de
+  cada detalhe para proteger quem fala e dar liberdade para ouvir e acolher.
+
+SEÇÃO "POR QUE ESTAMOS CRIANDO ISSO" (último parágrafo)
+- Sendo honesto: estamos começando agora, e o Refúgio não resolve tudo nem
+  substitui terapia. Mas ninguém devia ter que segurar tudo sozinho. Se você
+  sente falta de um lugar assim, o próximo passo é seu — entre na lista.
+
+CTA FINAL
+- Texto: Quando a comunidade abrir, você vai poder falar sem revelar quem é — e
+  é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto
+  para ouvir.
+- No card: Se fizer sentido para você, deixe seu e-mail. A gente te avisa quando
+  abrir — e vai querer saber o que você espera encontrar aqui.
+- Opções de intenção: "Quero desabafar", "Quero acolher", "Os dois"
+- Abaixo do botão: Grátis e anônimo. Você entra se quiser — e a gente te avisa
+  quando o Refúgio abrir.
+
+FAQ
+- Título: As perguntas que mais chegam pra gente.
+- É mesmo anônimo? -> Sim. Você participa sem nome real, sem foto e sem perfil
+  público — a comunidade vê só o apelido que você escolher. E a gente deixa
+  sempre claro o mínimo que fica guardado.
+- Vocês são psicólogos ou terapeutas? -> Não. O Refúgio é uma comunidade de
+  apoio entre pessoas. Não substitui atendimento psicológico, médico ou serviços
+  de emergência. Se você estiver passando por um momento grave ou pensando em se
+  machucar, ligue para o CVV no 188 (24h, gratuito e sigiloso) ou procure a
+  emergência 192. Você não está sozinho.
+- E se alguém me tratar mal? -> A gente tem regras de convivência e moderação.
+  Você pode denunciar qualquer conteúdo que passe do limite, e a equipe
+  responsável cuida disso. Respeito aqui não é opcional.
+- É pago? -> Não. É gratuito e sem compromisso, porque a ideia é que ninguém
+  deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o
+  projeto, é escolha sua.
+
+RODAPÉ (aviso de crise, se ainda não existir): Este espaço não substitui
+atendimento profissional. Em um momento de crise, ligue para o CVV: 188 ·
+Emergência: 192.
