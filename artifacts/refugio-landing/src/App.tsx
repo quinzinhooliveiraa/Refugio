@@ -304,24 +304,20 @@ function Home() {
 
       {/* 03 VIRADA + MECANISMO — anonimato como liberdade */}
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
-        <div ref={virada.ref} style={virada.style} className="grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-start md:gap-20">
-          <div>
-            <Eyebrow>a virada</Eyebrow>
-            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
-              E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
-            </h2>
-          </div>
-          <div>
-            <p className="text-[1.06rem] leading-[1.75] text-[#02110c]/80">
-              Aqui você não usa seu nome. Não coloca foto. Não monta perfil. Você escolhe um apelido, escreve, e é isso.
-            </p>
-            <p className="serif mt-8 text-3xl leading-[1.1] text-[#06392f] md:text-4xl">
-              O anonimato não é para se esconder. É o que devolve a liberdade de falar.
-            </p>
-            <p className="mt-8 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
-              Do outro lado, alguém lê e responde — muitas vezes alguém que já passou por isso e sabe, na pele, como é precisar de apoio. A gente sabe que isso não é terapia, e não vai fingir que é. Mas ninguém devia ter que segurar tudo sozinho até a próxima consulta.
-            </p>
-          </div>
+        <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl">
+          <Eyebrow>a virada</Eyebrow>
+          <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
+            E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
+          </h2>
+          <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
+            Aqui você não usa seu nome. Não coloca foto. Não monta perfil. Você escolhe um apelido, escreve, e é isso.
+          </p>
+          <p className="serif mt-8 border-l-2 border-[#06392f] pl-5 text-xl leading-[1.25] text-[#06392f] md:pl-6 md:text-2xl">
+            O anonimato não é para se esconder. É o que devolve a liberdade de falar.
+          </p>
+          <p className="mt-8 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
+            Do outro lado, alguém lê e responde — muitas vezes alguém que já passou por isso e sabe, na pele, como é precisar de apoio. A gente sabe que isso não é terapia, e não vai fingir que é. Mas ninguém devia ter que segurar tudo sozinho até a próxima consulta.
+          </p>
         </div>
       </section>
 
