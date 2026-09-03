@@ -652,9 +652,6 @@ function Home() {
              <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93] lg:mx-auto">
               Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
             </h2>
-            <p className="mx-auto mt-7 max-w-2xl text-[1.05rem] leading-[1.7] text-white/78">
-              A comunidade ainda não abriu. Quando abrir, você vai poder falar sem revelar quem é. E é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
-            </p>
              <ul className="mt-7 space-y-4 text-left text-sm leading-[1.55] text-white">
                <li className="flex items-start gap-3 lg:justify-center lg:text-center"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Anônimo de verdade. Sem nome real, sem foto, sem perfil público.</span></li>
                <li className="flex items-start gap-3 lg:justify-center lg:text-center"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Grátis, sem anúncio no meio do desabafo, sem revenda de dados.</span></li>
