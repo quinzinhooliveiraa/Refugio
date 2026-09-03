@@ -69,77 +69,77 @@
 
 /* LIGHT MODE */
 :root {
-  --button-outline: rgba(0, 0, 0, 0.1);
-  --badge-outline: rgba(0, 0, 0, 0.05);
+  --button-outline: rgba(2, 17, 12, 0.1);
+  --badge-outline: rgba(2, 17, 12, 0.05);
 
   /* Automatic computation of border around primary / danger buttons */
   --opaque-button-border-intensity: -8; /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(0, 0, 0, 0.03);
-  --elevate-2: rgba(0, 0, 0, 0.08);
+  --elevate-1: rgba(2, 17, 12, 0.03);
+  --elevate-2: rgba(2, 17, 12, 0.08);
 
-  --background: 39 33% 93%;
+  --background: 43.448 54.717% 89.608%;
 
-  --foreground: 174 31% 18%;
+  --foreground: 168.235 80.952% 12.353%;
 
-  --border: 36 23% 82%;
+  --border: 168.235 80.952% 12.353%;
 
-  --card: 41 38% 96%;
+  --card: 43.448 54.717% 89.608%;
 
-  --card-foreground: 174 31% 18%;
+  --card-foreground: 168.235 80.952% 12.353%;
 
-  --card-border: 36 23% 82%;
+  --card-border: 168.235 80.952% 12.353%;
 
-  --sidebar: 174 31% 18%;
+  --sidebar: 160 78.947% 3.725%;
 
-  --sidebar-foreground: 39 33% 93%;
+  --sidebar-foreground: 43.448 54.717% 89.608%;
 
-  --sidebar-border: 174 24% 28%;
+  --sidebar-border: 168.235 80.952% 12.353%;
 
-  --sidebar-primary: 15 59% 56%;
+  --sidebar-primary: 168.235 80.952% 12.353%;
 
-  --sidebar-primary-foreground: 41 38% 96%;
+  --sidebar-primary-foreground: 43.448 54.717% 89.608%;
 
-  --sidebar-accent: 169 22% 34%;
+  --sidebar-accent: 168.235 80.952% 12.353%;
 
-  --sidebar-accent-foreground: 41 38% 96%;
+  --sidebar-accent-foreground: 43.448 54.717% 89.608%;
 
-  --sidebar-ring: 15 59% 56%;
+  --sidebar-ring: 168.235 80.952% 12.353%;
 
-  --popover: 41 38% 96%;
+  --popover: 43.448 54.717% 89.608%;
 
-  --popover-foreground: 174 31% 18%;
+  --popover-foreground: 168.235 80.952% 12.353%;
 
-  --popover-border: 36 23% 82%;
+  --popover-border: 168.235 80.952% 12.353%;
 
-  --primary: 174 31% 18%;
+  --primary: 168.235 80.952% 12.353%;
 
-  --primary-foreground: 41 38% 96%;
+  --primary-foreground: 43.448 54.717% 89.608%;
 
-  --secondary: 169 22% 76%;
+  --secondary: 168.235 80.952% 12.353%;
 
-  --secondary-foreground: 174 31% 18%;
+  --secondary-foreground: 43.448 54.717% 89.608%;
 
-  --muted: 36 22% 87%;
+  --muted: 43.448 54.717% 89.608%;
 
-  --muted-foreground: 174 13% 43%;
+  --muted-foreground: 168.235 80.952% 12.353%;
 
-  --accent: 15 59% 56%;
+  --accent: 168.235 80.952% 12.353%;
 
-  --accent-foreground: 41 38% 96%;
+  --accent-foreground: 43.448 54.717% 89.608%;
 
-  --destructive: 5 62% 48%;
+  --destructive: 168.235 80.952% 12.353%;
 
-  --destructive-foreground: 41 38% 96%;
+  --destructive-foreground: 43.448 54.717% 89.608%;
 
-  --input: 36 23% 74%;
-  --ring: 15 59% 56%;
-  --chart-1: 174 31% 18%;
-  --chart-2: 15 59% 56%;
-  --chart-3: 169 22% 50%;
-  --chart-4: 38 64% 58%;
-  --chart-5: 275 18% 56%;
+  --input: 168.235 80.952% 12.353%;
+  --ring: 168.235 80.952% 12.353%;
+  --chart-1: 168.235 80.952% 12.353%;
+  --chart-2: 160 78.947% 3.725%;
+  --chart-3: 43.448 54.717% 89.608%;
+  --chart-4: 168.235 80.952% 12.353%;
+  --chart-5: 160 78.947% 3.725%;
 
   --app-font-sans: 'DM Sans', sans-serif;
   --app-font-serif: 'Fraunces', Georgia, serif;
@@ -219,77 +219,77 @@
 }
 
 .dark {
-  --button-outline: rgba(255, 255, 255, 0.1);
-  --badge-outline: rgba(255, 255, 255, 0.05);
+  --button-outline: rgba(243, 235, 214, 0.1);
+  --badge-outline: rgba(243, 235, 214, 0.05);
 
   --opaque-button-border-intensity: 9; /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255, 255, 255, 0.04);
-  --elevate-2: rgba(255, 255, 255, 0.09);
+  --elevate-1: rgba(243, 235, 214, 0.04);
+  --elevate-2: rgba(243, 235, 214, 0.09);
 
-  --background: 174 31% 12%;
+  --background: 160 78.947% 3.725%;
 
-  --foreground: 39 33% 93%;
+  --foreground: 43.448 54.717% 89.608%;
 
-  --border: 174 22% 26%;
+  --border: 168.235 80.952% 12.353%;
 
-  --card: 174 28% 16%;
+  --card: 168.235 80.952% 12.353%;
 
-  --card-foreground: 39 33% 93%;
+  --card-foreground: 43.448 54.717% 89.608%;
 
-  --card-border: 174 22% 26%;
+  --card-border: 168.235 80.952% 12.353%;
 
-  --sidebar: 174 31% 10%;
+  --sidebar: 160 78.947% 3.725%;
 
-  --sidebar-foreground: 39 33% 93%;
+  --sidebar-foreground: 43.448 54.717% 89.608%;
 
-  --sidebar-border: 174 22% 22%;
+  --sidebar-border: 168.235 80.952% 12.353%;
 
-  --sidebar-primary: 15 59% 56%;
+  --sidebar-primary: 168.235 80.952% 12.353%;
 
-  --sidebar-primary-foreground: 39 33% 93%;
+  --sidebar-primary-foreground: 43.448 54.717% 89.608%;
 
-  --sidebar-accent: 174 24% 28%;
+  --sidebar-accent: 168.235 80.952% 12.353%;
 
-  --sidebar-accent-foreground: 39 33% 93%;
+  --sidebar-accent-foreground: 43.448 54.717% 89.608%;
 
-  --sidebar-ring: 15 59% 56%;
+  --sidebar-ring: 168.235 80.952% 12.353%;
 
-  --popover: 174 28% 16%;
+  --popover: 168.235 80.952% 12.353%;
 
-  --popover-foreground: 39 33% 93%;
+  --popover-foreground: 43.448 54.717% 89.608%;
 
-  --popover-border: 174 22% 26%;
+  --popover-border: 168.235 80.952% 12.353%;
 
-  --primary: 15 59% 56%;
+  --primary: 168.235 80.952% 12.353%;
 
-  --primary-foreground: 174 31% 12%;
+  --primary-foreground: 43.448 54.717% 89.608%;
 
-  --secondary: 169 22% 31%;
+  --secondary: 168.235 80.952% 12.353%;
 
-  --secondary-foreground: 39 33% 93%;
+  --secondary-foreground: 43.448 54.717% 89.608%;
 
-  --muted: 174 22% 23%;
+  --muted: 168.235 80.952% 12.353%;
 
-  --muted-foreground: 169 13% 69%;
+  --muted-foreground: 43.448 54.717% 89.608%;
 
-  --accent: 38 64% 58%;
+  --accent: 168.235 80.952% 12.353%;
 
-  --accent-foreground: 174 31% 12%;
+  --accent-foreground: 43.448 54.717% 89.608%;
 
-  --destructive: 5 62% 52%;
+  --destructive: 168.235 80.952% 12.353%;
 
-  --destructive-foreground: 39 33% 93%;
+  --destructive-foreground: 43.448 54.717% 89.608%;
 
   /* Used as the border around inputs. Dark mode: Should be a border that is light enough to have high contrast when rendered on a --card background. More contrast than standard --border */
-  --input: 174 22% 34%;
-  --ring: 15 59% 56%;
-  --chart-1: 169 22% 76%;
-  --chart-2: 15 59% 56%;
-  --chart-3: 38 64% 58%;
-  --chart-4: 275 18% 66%;
-  --chart-5: 5 62% 52%;
+  --input: 168.235 80.952% 12.353%;
+  --ring: 168.235 80.952% 12.353%;
+  --chart-1: 43.448 54.717% 89.608%;
+  --chart-2: 168.235 80.952% 12.353%;
+  --chart-3: 160 78.947% 3.725%;
+  --chart-4: 43.448 54.717% 89.608%;
+  --chart-5: 168.235 80.952% 12.353%;
 
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
   --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
@@ -436,15 +436,15 @@
 /* Refúgio editorial system */
 :root {
   color-scheme: light;
-  --refugio-ink: #151515;
-  --refugio-deep: #080808;
-  --refugio-paper: #f3eee4;
-  --refugio-paper-2: #ebe3d5;
-  --refugio-coral: #d8785c;
-  --refugio-coral-dark: #b85d47;
-  --refugio-sage: #b7cfc0;
-  --refugio-lilac: #c8c1d4;
-  --refugio-line: rgba(21, 21, 21, 0.2);
+  --refugio-ink: #02110c;
+  --refugio-deep: #02110c;
+  --refugio-paper: #f3ebd6;
+  --refugio-paper-2: #f3ebd6;
+  --refugio-coral: #06392f;
+  --refugio-coral-dark: #06392f;
+  --refugio-sage: #06392f;
+  --refugio-lilac: #06392f;
+  --refugio-line: rgba(6, 57, 47, 0.2);
 }
 
 html {
@@ -518,7 +518,7 @@ button, input {
 }
 
 .nav-link {
-  color: rgba(24, 61, 59, .76);
+  color: rgba(6, 57, 47, .76);
   font-size: .78rem;
   font-weight: 600;
   letter-spacing: .02em;
@@ -535,7 +535,7 @@ button, input {
 .button-quiet:focus-visible,
 .intent-card:focus-visible,
 .email-field:focus-visible {
-  outline: 3px solid rgba(216, 120, 92, .44);
+  outline: 3px solid rgba(6, 57, 47, .44);
   outline-offset: 4px;
 }
 
@@ -626,20 +626,21 @@ button, input {
   border-radius: 1.2rem;
   padding: 1.1rem;
   text-align: left;
-  background: rgba(243, 238, 228, .64);
+  background: rgba(243, 235, 214, .64);
   transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .intent-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(24, 61, 59, .55);
-  background: rgba(243, 238, 228, .94);
-  box-shadow: 0 12px 0 rgba(24, 61, 59, .06);
+  border-color: rgba(6, 57, 47, .55);
+  background: rgba(243, 235, 214, .94);
+  box-shadow: 0 12px 0 rgba(6, 57, 47, .06);
 }
 
 .intent-card.is-selected {
-  border-color: var(--refugio-ink);
-  background: var(--refugio-sage);
+  border-color: var(--refugio-paper);
+  background: var(--refugio-ink);
+  color: var(--refugio-paper);
   box-shadow: 5px 5px 0 var(--refugio-coral);
 }
 
@@ -653,7 +654,7 @@ button, input {
   place-items: center;
   width: 1.45rem;
   height: 1.45rem;
-  border: 1px solid rgba(24, 61, 59, .5);
+  border: 1px solid rgba(6, 57, 47, .5);
   border-radius: 50%;
   opacity: .55;
   transform: scale(.9);
@@ -662,10 +663,10 @@ button, input {
 
 .email-field {
   width: 100%;
-  border: 1px solid rgba(24, 61, 59, .35);
+  border: 1px solid rgba(6, 57, 47, .35);
   border-radius: 999px;
   color: var(--refugio-ink);
-  background: rgba(255,255,255,.3);
+  background: rgba(243,235,214,.3);
   padding: .9rem 1rem;
   font-size: .9rem;
   transition: border-color 180ms ease, background-color 180ms ease;
@@ -673,11 +674,11 @@ button, input {
 
 .email-field:hover, .email-field:focus {
   border-color: var(--refugio-ink);
-  background: rgba(255,255,255,.66);
+  background: rgba(243,235,214,.66);
 }
 
 .email-field[aria-invalid="true"] {
-  border-color: #a7493c;
+  border-color: #06392f;
 }
 
 .honeypot {
@@ -691,7 +692,7 @@ button, input {
 
 .paper-crease {
   background:
-    linear-gradient(118deg, transparent 0 46%, rgba(24,61,59,.08) 46.2%, transparent 46.5%),
+    linear-gradient(118deg, transparent 0 46%, rgba(6,57,47,.08) 46.2%, transparent 46.5%),
     var(--refugio-paper-2);
 }
 
