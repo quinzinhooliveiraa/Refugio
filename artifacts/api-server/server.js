@@ -41,27 +41,17 @@ function saveSignups(list) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(list, null, 2));
 }
 
-const MOTIVOS = {
-  desabafar: "Quero desabafar",
-  acolher: "Quero acolher",
-  ambos: "Os dois",
-};
 const INTENT_FROM_LEGACY = {
   desabafar: "desabafar",
   acolher: "ajudar",
   ambos: "os-dois",
 };
-const FIRST_INTENT_LABELS = {
-  "desabafar-especifico": "Desabafar algo específico",
-  "ouvir-primeiro": "Ouvir gente parecida comigo",
-  "entender-antes": "Entender como funciona",
-};
-const FIRST_INTENT_KEYS = Object.keys(FIRST_INTENT_LABELS);
+const FIRST_INTENT_KEYS = [
+  "desabafar-especifico",
+  "ouvir-primeiro",
+  "entender-antes",
+];
 const isEmail = (s) => typeof s === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
-const esc = (s) =>
-  String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
-  );
 
 function readBody(req) {
   return new Promise((resolve) => {
@@ -139,52 +129,6 @@ function serveFrontend(res, pathname) {
 
   if (serveFrontendFile(res, candidate)) return true;
   return serveFrontendFile(res, path.join(FRONTEND_DIST, "index.html"));
-}
-
-function adminPage(list) {
-  const total = list.length;
-  const c = (m) => list.filter((x) => x.motivo === m).length;
-  const d = c("desabafar"), a = c("acolher"), amb = c("ambos");
-  const querAjudar = a + amb;
-  const pct = (n) => (total ? Math.round((n / total) * 100) : 0);
-  const firstIntentCounts = Object.fromEntries(FIRST_INTENT_KEYS.map((key) => [key, 0]));
-  for (const entry of list) {
-    const firstIntent = String(entry.primeira_intencao || "");
-    if (Object.prototype.hasOwnProperty.call(firstIntentCounts, firstIntent)) firstIntentCounts[firstIntent]++;
-  }
-  const rows = list.slice().reverse().map((x) => `<tr>
-    <td>${esc(x.email)}</td>
-    <td>${esc(MOTIVOS[x.motivo] || x.motivo || "—")}</td>
-    <td>${esc(FIRST_INTENT_LABELS[x.primeira_intencao] || "—")}</td>
-    <td>${esc(x.ref || "—")}</td>
-    <td>${esc(new Date(x.created_at).toLocaleString("pt-BR"))}</td>
-  </tr>`).join("");
-
-  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Refúgio · Admin</title>
-<style>
-  :root{--green:#193f3c;--coral:#d7775d;--paper:#f1ede4;--paper2:#e7e1d6;--line:rgba(25,63,60,.15);--gray:#69736f}
-  *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--green);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-  .wrap{max-width:1000px;margin:0 auto;padding:34px 22px 70px}h1{font-size:26px;letter-spacing:-.02em;margin:0 0 4px}.sub{color:var(--gray);font-size:13px;margin:0 0 26px}
-  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}.card{background:#fbf9f4;border:1px solid var(--line);border-radius:14px;padding:16px}.card .n{font-size:30px;font-weight:700;letter-spacing:-.03em}.card .l{font-size:11px;color:var(--gray);margin-top:2px}.card.hi{background:var(--coral);color:#fff7ef;border-color:transparent}.card.hi .l{color:rgba(255,247,239,.85)}
-  .bar{height:8px;border-radius:99px;background:var(--paper2);overflow:hidden;margin-top:18px}.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--coral))}.barlabel{display:flex;justify-content:space-between;font-size:12px;color:var(--gray);margin-top:8px}
-  .actions{margin:26px 0 14px}.btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:10px 16px;border-radius:99px}
-  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;background:#fbf9f4;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);background:var(--paper2)}tr:last-child td{border-bottom:0}.empty{padding:40px;text-align:center;color:var(--gray);background:#fbf9f4;border:1px solid var(--line);border-radius:14px}
-  @media(max-width:640px){.cards{grid-template-columns:1fr 1fr}table{display:block;overflow-x:auto;white-space:nowrap}}
-</style></head><body><div class="wrap">
-  <h1>Refúgio · Painel</h1><p class="sub">Cadastros da lista de espera. Atualize a página para ver os novos.</p>
-  <div class="cards">
-    <div class="card"><div class="n">${total}</div><div class="l">Total de inscritos</div></div>
-    <div class="card hi"><div class="n">${pct(querAjudar)}%</div><div class="l">Querem ajudar (acolher + os dois)</div></div>
-    <div class="card"><div class="n">${d}</div><div class="l">Só desabafar · ${pct(d)}%</div></div>
-    <div class="card"><div class="n">${querAjudar}</div><div class="l">Dispostos a acolher</div></div>
-     <div class="card"><div class="l">Primeira intenção (%)</div>${FIRST_INTENT_KEYS.map((key) => `<div class="barlabel"><span>${esc(FIRST_INTENT_LABELS[key])}</span><span>${pct(firstIntentCounts[key])}%</span></div>`).join("")}</div>
-  </div>
-  <div class="bar"><i style="width:${pct(querAjudar)}%"></i></div><div class="barlabel"><span>Quem topa acolher — o sinal que importa</span><span>${querAjudar} de ${total}</span></div>
-  <div class="actions"><a class="btn" href="/admin/export.csv">Baixar CSV ↓</a></div>
-  ${total ? `<table><thead><tr><th>E-mail</th><th>Intenção</th><th>Primeira intenção</th><th>Origem</th><th>Quando</th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">Ainda não há cadastros. Compartilhe o link e volte aqui.</div>`}
-</div></body></html>`;
 }
 
 const server = http.createServer(async (req, res) => {
@@ -279,12 +223,6 @@ const server = http.createServer(async (req, res) => {
     const csv = ["email,motivo,primeira_intencao,ref,created_at", ...list.map((x) => [x.email, x.motivo, x.primeira_intencao || "", x.ref, x.created_at].map(escCsv).join(","))].join("\n");
     res.writeHead(200, {"Content-Type":"text/csv; charset=utf-8","Content-Disposition":'attachment; filename="refugio-signups.csv"'});
     return res.end(csv);
-  }
-
-  if (req.method === "GET" && pathname === "/admin") {
-    if (!checkAuth(req)) return requireAuth(res);
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    return res.end(adminPage(loadSignups()));
   }
 
   if (req.method === "GET" && pathname !== "/api" && !pathname.startsWith("/api/")) {

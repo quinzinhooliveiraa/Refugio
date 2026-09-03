@@ -787,7 +787,12 @@ function Admin() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
-            <Mark />
+             <div className="flex items-center gap-4">
+               <Mark />
+               <a href="/" className="text-xs text-[#a4a9a5] transition-colors hover:text-[#06392f]">
+                 ← voltar para o site
+               </a>
+             </div>
             <Eyebrow>painel de validação</Eyebrow>
             <h1 className="serif mt-4 text-5xl leading-none text-[#02110c] md:text-7xl">Lista de espera.</h1>
           </div>
