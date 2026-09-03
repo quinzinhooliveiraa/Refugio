@@ -477,7 +477,28 @@ function Home() {
         </div>
       </section>
 
-      {/* 09 FAQ — objeções reais */}
+      {/* 09 ÚLTIMA CHANCE + CTA final */}
+      <section id="entrar" className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div ref={origem.ref} style={origem.style} className="mx-auto max-w-3xl text-center">
+            <Eyebrow inverse>a última coisa</Eyebrow>
+            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93]">
+              Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
+            </h2>
+            <p className="mx-auto mt-7 max-w-2xl text-[1.05rem] leading-[1.7] text-white/78">
+              Quando a comunidade abrir, você vai poder falar sem revelar quem é — e é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-[.9rem] leading-[1.7] text-white/60">
+              Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir — e vai querer saber, sem pressão, o que você espera encontrar aqui.
+            </p>
+          </div>
+          <div className="mx-auto mt-12 max-w-4xl">
+            <SignupForm />
+          </div>
+        </div>
+      </section>
+
+      {/* 10 FAQ — objeções reais */}
       <section className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>as dúvidas que mais chegam</Eyebrow>
@@ -493,36 +514,17 @@ function Home() {
         </div>
       </section>
 
-      {/* 10 ÚLTIMA CHANCE + CTA final */}
-      <section id="entrar" className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-20">
-          <div ref={origem.ref} style={origem.style}>
-            <Eyebrow inverse>a última coisa</Eyebrow>
-            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93]">
-              Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
-            </h2>
-            <p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-white/78">
-              Quando a comunidade abrir, você vai poder falar sem revelar quem é — e é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
-            </p>
-            <p className="mt-4 max-w-md text-[.9rem] leading-[1.7] text-white/60">
-              Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir — e vai querer saber, sem pressão, o que você espera encontrar aqui.
-            </p>
-          </div>
-          <SignupForm />
-        </div>
-      </section>
-
       {/* AVISO DE CRISE + FOOTER */}
-      <section className="bg-white px-5 py-10 md:px-10">
-        <div className="mx-auto max-w-7xl rounded-2xl border border-[#a4a9a5]/60 bg-white p-6 text-sm leading-relaxed text-[#02110c]/80 md:p-7">
-          <strong className="text-[#06392f]">Este espaço não substitui atendimento profissional.</strong> Em um momento de crise, ligue para o CVV: <strong>188</strong> (24h, gratuito e sigiloso) · Emergência: <strong>192</strong>.
+      <section className="bg-[#02110c] px-5 py-10 md:px-10">
+        <div className="mx-auto max-w-7xl rounded-2xl border border-white/15 bg-[#06392f] p-6 text-sm leading-relaxed text-white/80 md:p-7">
+          <strong className="text-white">Este espaço não substitui atendimento profissional.</strong> Em um momento de crise, ligue para o CVV: <strong>188</strong> (24h, gratuito e sigiloso) · Emergência: <strong>192</strong>.
         </div>
       </section>
 
-      <footer className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 py-8 text-xs text-[#02110c]/60 md:flex-row md:items-center md:justify-between md:px-10">
-        <Mark />
+      <footer className="flex w-full flex-col gap-4 border-t border-white/10 bg-[#02110c] px-5 py-8 text-xs text-white/60 md:flex-row md:items-center md:justify-between md:px-10">
+        <Mark inverse />
         <span>Refúgio · comunidade anônima, sem fins lucrativos</span>
-        <a href="/admin" className="text-[#06392f] hover:underline">Painel de validação</a>
+        <a href="/admin" className="text-[#a4a9a5] hover:text-white hover:underline">Painel de validação</a>
       </footer>
     </main>
   );
