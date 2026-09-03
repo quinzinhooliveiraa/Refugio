@@ -280,18 +280,15 @@ function Home() {
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser — sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-5">
-          <a href="#entrar"><ButtonPrimary>Quero entrar na lista de espera <ArrowDownRight size={16} /></ButtonPrimary></a>
-          <span className="max-w-[13rem] text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</span>
-        </div>
         <CompactBar />
+        <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</p>
       </section>
 
       {/* 02 ESPELHO — narrativa em primeira pessoa, agita o problema */}
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div ref={espelho.ref} style={espelho.style} className="mx-auto max-w-7xl">
           <Eyebrow inverse>o que segura a sua voz</Eyebrow>
-          <h2 className="serif mt-4 max-w-4xl text-5xl leading-[.94] md:text-7xl">
+          <h2 className="serif mt-4 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
             Com quem você fala <span className="text-[#a4a9a5]">quando não dá pra falar com ninguém?</span>
           </h2>
           <div className="mt-10 grid gap-8 md:grid-cols-2">
@@ -313,7 +310,7 @@ function Home() {
         <div ref={virada.ref} style={virada.style} className="grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-start md:gap-20">
           <div>
             <Eyebrow>a virada</Eyebrow>
-            <h2 className="serif mt-4 text-5xl leading-[.94] text-[#02110c] md:text-6xl">
+            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
               E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
             </h2>
           </div>
@@ -335,7 +332,7 @@ function Home() {
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
-          <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-6xl">
+          <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
             Não é um chat de robô. É gente <span className="text-[#a4a9a5]">respondendo gente.</span>
           </h2>
           <p className="mt-6 max-w-2xl text-[1rem] leading-[1.7] text-white/75">
@@ -384,7 +381,7 @@ function Home() {
       <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
         <div ref={como.ref} style={como.style}>
           <Eyebrow>como funciona</Eyebrow>
-          <h2 className="serif mt-4 max-w-2xl text-5xl leading-[.94] text-[#02110c] md:text-6xl">É simples — de propósito.</h2>
+          <h2 className="serif mt-4 max-w-2xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">É simples — de propósito.</h2>
           <div className="mt-14 grid gap-0 border-t border-[#a4a9a5]/60 md:grid-cols-3">
             {[
               ['01', 'Você entra com um apelido.', 'Sem nome real, sem foto, sem perfil público. A comunidade vê só o apelido que você escolher.'],
@@ -405,7 +402,7 @@ function Home() {
       <section id="por-que" className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div ref={encontra.ref} style={encontra.style} className="mx-auto max-w-7xl">
           <Eyebrow inverse>o que você encontra aqui</Eyebrow>
-          <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">
+          <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
             Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
           </h2>
           <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78">
@@ -435,7 +432,7 @@ function Home() {
         <div className="grid gap-10 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-20">
           <div>
             <Eyebrow>sem pegadinha</Eyebrow>
-            <h2 className="serif mt-4 text-5xl leading-[.94] text-[#02110c] md:text-6xl">
+            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
               É de graça — e vai continuar sendo.
             </h2>
             <p className="mt-6 max-w-md text-[1.02rem] leading-[1.7] text-[#02110c]/75">
@@ -460,7 +457,7 @@ function Home() {
       <section className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>as dúvidas que mais chegam</Eyebrow>
-          <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] text-[#02110c] md:text-6xl">Antes de deixar o e-mail.</h2>
+          <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">Antes de deixar o e-mail.</h2>
           <div className="mt-12 border-t border-[#a4a9a5]/50">
             <FaqItem q="É mesmo anônimo?" a={<p>Sim. Você participa sem nome real, sem foto e sem perfil público — a comunidade vê só o apelido que você escolher. A gente também deixa sempre claro o mínimo que fica guardado no servidor.</p>} />
             <FaqItem q="Vocês são psicólogos ou terapeutas?" a={<p>Não. O Refúgio é uma comunidade de apoio entre pessoas. <strong>Não substitui atendimento psicológico, médico ou serviços de emergência.</strong> Se você estiver passando por um momento grave ou pensando em se machucar, ligue para o <strong className="text-[#06392f]">CVV no 188</strong> (24h, gratuito e sigiloso) ou procure a emergência no 192. Você não está sozinho.</p>} />
@@ -477,7 +474,7 @@ function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-20">
           <div ref={origem.ref} style={origem.style}>
             <Eyebrow inverse>a última coisa</Eyebrow>
-            <h2 className="serif mt-4 text-5xl leading-[.93] md:text-7xl">
+            <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93]">
               Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
             </h2>
             <p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-white/78">
