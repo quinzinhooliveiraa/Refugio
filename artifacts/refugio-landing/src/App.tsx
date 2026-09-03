@@ -364,7 +364,7 @@ function ConversationShowcase() {
               aria-controls="conversation-panel"
               onClick={() => setActiveConversation(index)}
               data-testid={`conversation-tab-${index + 1}`}
-              className={`min-h-10 shrink-0 rounded-full border px-4 py-2 text-left text-[.76rem] font-semibold leading-tight transition-colors md:text-center ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/60 bg-transparent text-white/70 hover:border-white/80 hover:text-white'}`}
+              className={`min-h-9 shrink-0 rounded-full border px-3 py-1.5 text-left text-[.7rem] font-semibold leading-tight transition-colors md:px-3.5 md:text-center md:text-[.68rem] ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/60 bg-transparent text-white/70 hover:border-white/80 hover:text-white'}`}
             >
               {example.label}
             </button>
@@ -377,7 +377,7 @@ function ConversationShowcase() {
         id="conversation-panel"
         role="tabpanel"
         aria-label={conversation.label}
-        className="conversation-content grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-start"
+        className="conversation-content mt-6 grid gap-4 md:mt-8 md:grid-cols-[1fr_auto_1fr] md:items-start"
       >
         <div className="rounded-3xl bg-white p-6 text-[#02110c] md:p-7">
           <div className="flex items-center gap-3 border-b border-[#a4a9a5]/50 pb-3">
@@ -454,7 +454,7 @@ function Home() {
         </p>
         <CompactBar className="mt-8 lg:mx-auto" />
       <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
-       <a href="#como-funciona" className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
+       <a href="#como-funciona" className="mt-3 block max-w-2xl text-center text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
          Antes disso, quero ver como funciona ↓
        </a>
       </section>
@@ -633,20 +633,17 @@ function Home() {
       <section id="entrar" className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
            <div ref={origem.ref} style={origem.style} className="mx-auto max-w-3xl text-left lg:text-center">
-            <Eyebrow inverse>a última coisa</Eyebrow>
+            <div className="hidden md:block"><Eyebrow inverse>a última coisa</Eyebrow></div>
              <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.93] lg:mx-auto">
               Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
             </h2>
             <p className="mx-auto mt-7 max-w-2xl text-[1.05rem] leading-[1.7] text-white/78">
               A comunidade ainda não abriu. Quando abrir, você vai poder falar sem revelar quem é. E é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-[.9rem] leading-[1.7] text-white/60">
-              Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir. E vai querer saber, sem pressão, o que você espera encontrar aqui.
-            </p>
-            <ul className="mt-7 space-y-4 text-left text-sm leading-[1.55] text-white">
-              <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Anônimo de verdade. Sem nome real, sem foto, sem perfil público.</span></li>
-              <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Grátis, sem anúncio no meio do desabafo, sem revenda de dados.</span></li>
-              <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Comunidade real. Gente que já passou por algo parecido responde.</span></li>
+             <ul className="mt-7 space-y-4 text-left text-sm leading-[1.55] text-white">
+               <li className="flex items-start gap-3 lg:justify-center lg:text-center"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Anônimo de verdade. Sem nome real, sem foto, sem perfil público.</span></li>
+               <li className="flex items-start gap-3 lg:justify-center lg:text-center"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Grátis, sem anúncio no meio do desabafo, sem revenda de dados.</span></li>
+               <li className="flex items-start gap-3 lg:justify-center lg:text-center"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Comunidade real. Gente que já passou por algo parecido responde.</span></li>
             </ul>
             <p className="mt-6 text-sm leading-relaxed text-white/70">
               A comunidade ainda não abriu. Quando abrir, você é dos primeiros a saber.
