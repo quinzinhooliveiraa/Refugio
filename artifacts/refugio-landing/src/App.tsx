@@ -50,14 +50,14 @@ function Eyebrow({ children, inverse = false }: { children: React.ReactNode; inv
   );
 }
 
-function ButtonPrimary({ children, onClick, type = 'button', disabled = false, testId }: { children: React.ReactNode; onClick?: () => void; type?: 'button' | 'submit'; disabled?: boolean; testId?: string }) {
+function ButtonPrimary({ children, onClick, type = 'button', disabled = false, testId, className = '' }: { children: React.ReactNode; onClick?: () => void; type?: 'button' | 'submit'; disabled?: boolean; testId?: string; className?: string }) {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
       data-testid={testId}
-      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#06392f] px-6 py-3.5 text-[.92rem] font-semibold text-white transition-colors hover:bg-[#02110c] disabled:cursor-wait disabled:opacity-70"
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#06392f] px-6 py-3.5 text-[.92rem] font-semibold text-white transition-colors hover:bg-[#02110c] disabled:cursor-wait disabled:opacity-70 ${className}`}
     >
       {children}
     </button>
@@ -211,17 +211,17 @@ function CompactBar({ className = 'mt-8' }: { className?: string } = {}) {
     setTimeout(() => document.getElementById('refugio-email')?.focus(), 200);
   };
   return (
-    <form onSubmit={submit} className={`${className} flex max-w-2xl flex-wrap gap-2 rounded-full border border-[#a4a9a5]/70 bg-white p-2`}>
+    <form onSubmit={submit} className={`${className} flex w-full max-w-2xl flex-col gap-2 rounded-3xl border border-[#a4a9a5]/70 bg-white p-2 sm:flex-row sm:items-center sm:rounded-full`}>
       <input
         type="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Seu melhor e-mail"
-        className="min-w-[13rem] flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-[#02110c] outline-none placeholder:text-[#a4a9a5]"
+        className="min-w-0 w-full flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-[#02110c] outline-none placeholder:text-[#a4a9a5]"
         aria-label="Seu melhor e-mail"
       />
-      <ButtonPrimary type="submit">Entrar na lista <ArrowRight size={16} /></ButtonPrimary>
+      <ButtonPrimary type="submit" className="w-full shrink-0 sm:w-auto">Entrar na lista <ArrowRight size={16} /></ButtonPrimary>
     </form>
   );
 }
@@ -448,6 +448,8 @@ function Home() {
             <p className="mt-6 max-w-md text-[1.02rem] leading-[1.7] text-[#02110c]/75">
               A gente não quer que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, vai ser opcional — e vai continuar sem anúncio no meio do desabafo.
             </p>
+            <CompactBar className="mt-8" />
+            <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#a4a9a5]">Grátis. Anônimo. A gente te avisa quando abrir.</p>
           </div>
           <div className="space-y-4">
             <div className="rounded-3xl border border-[#a4a9a5]/60 bg-white p-8 md:p-10">
@@ -465,11 +467,6 @@ function Home() {
               <p className="mt-4 text-[.98rem] leading-[1.7] text-white/85">
                 Se um dia isso mudar, você é o primeiro a saber — e decide se continua ou não. Enquanto o Refúgio existir, o anonimato vem antes de qualquer outra coisa.
               </p>
-              <div className="mt-8">
-                <a href="#entrar" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-[.92rem] font-semibold text-[#06392f] transition-colors hover:bg-[#a4a9a5]">
-                  Quero entrar na lista <ArrowDownRight size={16} />
-                </a>
-              </div>
             </div>
           </div>
         </div>
