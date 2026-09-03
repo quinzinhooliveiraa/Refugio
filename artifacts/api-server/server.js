@@ -38,6 +38,12 @@ const INTENT_FROM_LEGACY = {
   acolher: "ajudar",
   ambos: "os-dois",
 };
+const FIRST_INTENT_LABELS = {
+  "desabafar-especifico": "Desabafar algo específico",
+  "ouvir-primeiro": "Ouvir gente parecida comigo",
+  "entender-antes": "Entender como funciona",
+};
+const FIRST_INTENT_KEYS = Object.keys(FIRST_INTENT_LABELS);
 const isEmail = (s) => typeof s === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 const esc = (s) =>
   String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
@@ -87,9 +93,15 @@ function adminPage(list) {
   const d = c("desabafar"), a = c("acolher"), amb = c("ambos");
   const querAjudar = a + amb;
   const pct = (n) => (total ? Math.round((n / total) * 100) : 0);
+  const firstIntentCounts = Object.fromEntries(FIRST_INTENT_KEYS.map((key) => [key, 0]));
+  for (const entry of list) {
+    const firstIntent = String(entry.primeira_intencao || "");
+    if (Object.prototype.hasOwnProperty.call(firstIntentCounts, firstIntent)) firstIntentCounts[firstIntent]++;
+  }
   const rows = list.slice().reverse().map((x) => `<tr>
     <td>${esc(x.email)}</td>
     <td>${esc(MOTIVOS[x.motivo] || x.motivo || "—")}</td>
+    <td>${esc(FIRST_INTENT_LABELS[x.primeira_intencao] || "—")}</td>
     <td>${esc(x.ref || "—")}</td>
     <td>${esc(new Date(x.created_at).toLocaleString("pt-BR"))}</td>
   </tr>`).join("");
@@ -113,10 +125,11 @@ function adminPage(list) {
     <div class="card hi"><div class="n">${pct(querAjudar)}%</div><div class="l">Querem ajudar (acolher + os dois)</div></div>
     <div class="card"><div class="n">${d}</div><div class="l">Só desabafar · ${pct(d)}%</div></div>
     <div class="card"><div class="n">${querAjudar}</div><div class="l">Dispostos a acolher</div></div>
+     <div class="card"><div class="l">Primeira intenção (%)</div>${FIRST_INTENT_KEYS.map((key) => `<div class="barlabel"><span>${esc(FIRST_INTENT_LABELS[key])}</span><span>${pct(firstIntentCounts[key])}%</span></div>`).join("")}</div>
   </div>
   <div class="bar"><i style="width:${pct(querAjudar)}%"></i></div><div class="barlabel"><span>Quem topa acolher — o sinal que importa</span><span>${querAjudar} de ${total}</span></div>
   <div class="actions"><a class="btn" href="/admin/export.csv">Baixar CSV ↓</a></div>
-  ${total ? `<table><thead><tr><th>E-mail</th><th>Intenção</th><th>Origem</th><th>Quando</th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">Ainda não há cadastros. Compartilhe o link e volte aqui.</div>`}
+  ${total ? `<table><thead><tr><th>E-mail</th><th>Intenção</th><th>Primeira intenção</th><th>Origem</th><th>Quando</th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">Ainda não há cadastros. Compartilhe o link e volte aqui.</div>`}
 </div></body></html>`;
 }
 
@@ -141,15 +154,19 @@ const server = http.createServer(async (req, res) => {
     const rawIntent = body.intencao ?? body.intent ?? body.motivo ?? "";
     const canonicalIntent = String(rawIntent).trim().slice(0, 40);
     const motivo = ({ ajudar: "acolher", "os-dois": "ambos" }[canonicalIntent] || canonicalIntent);
+    const primeiraIntencao = String(body.primeira_intencao ?? "").trim().slice(0, 40);
     const queryRef = url.searchParams.get("ref") || "";
     const ref = String(body.ref ?? queryRef).trim().slice(0, 120);
     if (!isEmail(email)) return json(res, 400, { ok: false, error: "E-mail inválido." });
     if (!["desabafar", "acolher", "ambos"].includes(motivo)) {
       return json(res, 400, { ok: false, error: "Escolha uma intenção para continuar." });
     }
+    if (primeiraIntencao && !FIRST_INTENT_KEYS.includes(primeiraIntencao)) {
+      return json(res, 400, { ok: false, error: "Escolha uma primeira intenção válida." });
+    }
     const list = loadSignups();
     if (list.some((x) => x.email === email)) return json(res, 200, { ok: true, already: true });
-    list.push({ email, motivo, ref, created_at: new Date().toISOString() });
+    list.push({ email, motivo, primeira_intencao: primeiraIntencao, ref, created_at: new Date().toISOString() });
     saveSignups(list);
     return json(res, 200, { ok: true });
   }
@@ -158,11 +175,14 @@ const server = http.createServer(async (req, res) => {
     if (!checkAuth(req)) return requireAuth(res);
     const list = loadSignups();
     const counts = { desabafar: 0, ajudar: 0, "os-dois": 0 };
+    const firstIntentCounts = Object.fromEntries(FIRST_INTENT_KEYS.map((key) => [key, 0]));
     for (const entry of list) {
       const intent = INTENT_FROM_LEGACY[entry.motivo] || entry.motivo;
       if (intent in counts) counts[intent]++;
+      const firstIntent = String(entry.primeira_intencao || "");
+      if (Object.prototype.hasOwnProperty.call(firstIntentCounts, firstIntent)) firstIntentCounts[firstIntent]++;
     }
-    return json(res, 200, { total: list.length, counts });
+    return json(res, 200, { total: list.length, counts, firstIntentCounts });
   }
 
   if (req.method === "GET" && pathname === "/api/admin/waitlist") {
@@ -170,6 +190,7 @@ const server = http.createServer(async (req, res) => {
     const entries = loadSignups().map((entry) => ({
       email: entry.email,
       intent: INTENT_FROM_LEGACY[entry.motivo] || entry.motivo,
+      firstIntent: entry.primeira_intencao || "",
       source: entry.ref || null,
       createdAt: entry.created_at,
     }));
@@ -182,11 +203,12 @@ const server = http.createServer(async (req, res) => {
     const entries = loadSignups().map((entry) => [
       entry.email,
       INTENT_FROM_LEGACY[entry.motivo] || entry.motivo,
+       entry.primeira_intencao || "",
       entry.created_at,
       entry.ref || "",
     ]);
     const csv = [
-      ["email", "intencao", "data", "origem"].map(csvCell).join(","),
+       ["email", "intencao", "primeira_intencao", "data", "origem"].map(csvCell).join(","),
       ...entries.map((entry) => entry.map(csvCell).join(",")),
     ].join("\r\n");
     res.writeHead(200, {
@@ -200,7 +222,7 @@ const server = http.createServer(async (req, res) => {
     if (!checkAuth(req)) return requireAuth(res);
     const list = loadSignups();
     const escCsv = (v) => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
-    const csv = ["email,motivo,ref,created_at", ...list.map((x) => [x.email, x.motivo, x.ref, x.created_at].map(escCsv).join(","))].join("\n");
+    const csv = ["email,motivo,primeira_intencao,ref,created_at", ...list.map((x) => [x.email, x.motivo, x.primeira_intencao || "", x.ref, x.created_at].map(escCsv).join(","))].join("\n");
     res.writeHead(200, {"Content-Type":"text/csv; charset=utf-8","Content-Disposition":'attachment; filename="refugio-signups.csv"'});
     return res.end(csv);
   }

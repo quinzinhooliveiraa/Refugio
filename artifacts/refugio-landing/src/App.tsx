@@ -21,6 +21,19 @@ import howItWorksThree from '@assets/__(3)_1788459710226.jpeg';
  * ------------------------------------------------------------------------- */
 
 type Intent = 'desabafar' | 'ajudar' | 'os-dois';
+type FirstIntent = 'desabafar-especifico' | 'ouvir-primeiro' | 'entender-antes' | '';
+
+const firstIntentOptions: { value: Exclude<FirstIntent, ''>; title: string; copy: string }[] = [
+  { value: 'desabafar-especifico', title: 'Desabafar algo específico', copy: 'Tenho uma coisa em mente que preciso colocar pra fora.' },
+  { value: 'ouvir-primeiro', title: 'Ouvir gente parecida comigo', copy: 'Quero ler o que outros escrevem antes de escrever qualquer coisa.' },
+  { value: 'entender-antes', title: 'Entender como funciona', copy: 'Só quero ver como é, sem compromisso, antes de decidir.' },
+];
+
+const firstIntentLabels: Record<Exclude<FirstIntent, ''>, string> = {
+  'desabafar-especifico': 'Desabafar algo específico',
+  'ouvir-primeiro': 'Ouvir gente parecida comigo',
+  'entender-antes': 'Entender como funciona',
+};
 
 const API_ENDPOINT = import.meta.env.VITE_REFUGIO_FORM_ENDPOINT ?? '/api/waitlist';
 
@@ -85,6 +98,7 @@ function useReveal() {
 function SignupForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState(() => { try { return sessionStorage.getItem('refugio-pending-email') ?? ''; } catch { return ''; } });
   const [intent, setIntent] = useState<Intent | ''>('');
+  const [firstIntent, setFirstIntent] = useState<FirstIntent>('');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -110,7 +124,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       const res = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: clean, intencao: intent, ref: getRef(), website }),
+        body: JSON.stringify({ email: clean, intencao: intent, primeira_intencao: firstIntent, ref: getRef(), website }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.ok !== true) throw new Error(typeof data.error === 'string' ? data.error : 'Não foi possível salvar agora. Tente de novo.');
@@ -175,6 +189,34 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
                 onClick={() => { setIntent(v); setError(''); }}
                 aria-pressed={active}
                 data-testid={`button-intent-${v}`}
+                className={`flex h-full flex-col justify-between rounded-2xl border p-4 text-left transition-colors ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/70 bg-white text-[#02110c] hover:border-[#06392f]'}`}
+              >
+                <span className="flex items-start justify-between gap-2">
+                  <span className="text-[.98rem] font-bold tracking-[-.02em]">{title}</span>
+                  <span className={`flex h-5 w-5 items-center justify-center rounded-full border ${active ? 'border-white bg-white text-[#06392f]' : 'border-[#a4a9a5]'}`}>{active && <Check size={12} strokeWidth={3} />}</span>
+                </span>
+                <span className={`mt-6 block text-[.78rem] leading-[1.45] ${active ? 'text-white/85' : 'text-[#02110c]/70'}`}>{copy}</span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <fieldset className="mt-7">
+        <legend className="mb-3">
+          <Eyebrow>Opcional</Eyebrow>
+          <span className="mt-2 block text-xs font-bold text-[#02110c]">O que faria você usar o Refúgio primeiro?</span>
+        </legend>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {firstIntentOptions.map(({ value, title, copy }) => {
+            const active = firstIntent === value;
+            return (
+              <button
+                key={value}
+                type="button"
+                onClick={() => { setFirstIntent(active ? '' : value); setError(''); }}
+                aria-pressed={active}
+                data-testid={`button-first-intent-${value}`}
                 className={`flex h-full flex-col justify-between rounded-2xl border p-4 text-left transition-colors ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/70 bg-white text-[#02110c] hover:border-[#06392f]'}`}
               >
                 <span className="flex items-start justify-between gap-2">
@@ -565,8 +607,8 @@ function Home() {
 
 /* ------------------------- ADMIN ------------------------- */
 
-type AdminEntry = { email: string; intent: Intent; source: string | null; createdAt: string };
-type AdminSummary = { total: number; counts: Record<Intent, number> };
+type AdminEntry = { email: string; intent: Intent; firstIntent: FirstIntent; source: string | null; createdAt: string };
+type AdminSummary = { total: number; counts: Record<Intent, number>; firstIntentCounts: Record<Exclude<FirstIntent, ''>, number> };
 
 function Admin() {
   const [password, setPassword] = useState('');
@@ -634,6 +676,7 @@ function Admin() {
   }
 
   const labels: Record<Intent, string> = { desabafar: 'Desabafar', ajudar: 'Acolher', 'os-dois': 'Os dois' };
+  const firstIntentKeys = Object.keys(firstIntentLabels) as Exclude<FirstIntent, ''>[];
   const total = summary?.total ?? 0;
   const wantHelp = (summary?.counts.ajudar ?? 0) + (summary?.counts['os-dois'] ?? 0);
   const pct = (n: number) => (total ? Math.round((n / total) * 100) : 0);
@@ -670,17 +713,29 @@ function Admin() {
                   <p className="mt-1 text-xs text-[#a4a9a5]">{summary?.counts[k] ?? 0} cadastro(s)</p>
                 </div>
               ))}
+              <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
+                <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">primeira intenção</p>
+                <div className="mt-4 space-y-3">
+                  {firstIntentKeys.map((k) => (
+                    <div key={k} className="flex items-center justify-between gap-3 text-xs text-[#02110c]">
+                      <span>{firstIntentLabels[k]}</span>
+                      <span className="font-bold text-[#06392f]">{pct(summary?.firstIntentCounts?.[k] ?? 0)}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className="mt-10 overflow-x-auto rounded-2xl border border-[#a4a9a5]/60 bg-white">
-              <table className="w-full min-w-[650px] text-left text-sm">
+              <table className="w-full min-w-[820px] text-left text-sm">
                 <thead className="border-b border-[#a4a9a5]/50 text-xs uppercase tracking-wider text-[#a4a9a5]">
-                  <tr><th className="px-5 py-4">E-mail</th><th className="px-5 py-4">Intenção</th><th className="px-5 py-4">Data</th><th className="px-5 py-4">Origem</th></tr>
+                  <tr><th className="px-5 py-4">E-mail</th><th className="px-5 py-4">Intenção</th><th className="px-5 py-4">Primeira intenção</th><th className="px-5 py-4">Data</th><th className="px-5 py-4">Origem</th></tr>
                 </thead>
                 <tbody>
                   {entries.map((e) => (
                     <tr key={`${e.email}-${e.createdAt}`} className="border-b border-[#a4a9a5]/30 last:border-0">
                       <td className="px-5 py-4 text-[#02110c]">{e.email}</td>
                       <td className="px-5 py-4 text-[#02110c]">{labels[e.intent] || e.intent}</td>
+                      <td className="px-5 py-4 text-[#02110c]">{e.firstIntent ? firstIntentLabels[e.firstIntent as Exclude<FirstIntent, ''>] || e.firstIntent : '—'}</td>
                       <td className="px-5 py-4 text-[#02110c]/75">{new Date(e.createdAt).toLocaleString('pt-BR')}</td>
                       <td className="px-5 py-4 text-[#a4a9a5]">{e.source || 'direto'}</td>
                     </tr>
