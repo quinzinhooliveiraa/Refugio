@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "event": "scroll_como_funciona",
+    "ref": "",
+    "path": "/",
+    "timestamp": "2026-09-03T21:25:08.709Z",
+    "ipHash": "52b7a1878b551303310db328937ec2d5020988ce1abc3e3c24a61add3af66eae",
+    "system": "Mac"
+  }
+]
