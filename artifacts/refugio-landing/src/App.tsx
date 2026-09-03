@@ -462,7 +462,7 @@ function Home() {
       <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 md:px-10 md:pb-20 md:pt-10 lg:max-w-3xl">
         <Eyebrow>para quem precisa falar e não tem com quem</Eyebrow>
         <h1 className="serif mt-5 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] font-normal leading-[1] text-[#02110c]">
-          Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#06392f]">Aqui, você fala. E ninguém sabe quem é você.</span>
+          Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#1c3823]">Aqui, você fala. E ninguém sabe quem é você.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
@@ -497,7 +497,7 @@ function Home() {
         <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl">
           <Eyebrow>a virada</Eyebrow>
           <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
-            E se <span className="text-[#06392f]">você pudesse falar</span> sem que ninguém soubesse quem você é?
+            E se <span className="text-[#1c3823]">você pudesse falar</span> sem que ninguém soubesse quem você é?
           </h2>
           <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
             Aqui você decide como aparecer. Pode ser um apelido, um nome, uma foto qualquer, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando.
