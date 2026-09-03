@@ -197,7 +197,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
           {submitting ? 'Guardando seu lugar…' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}
         </ButtonPrimary>
       </div>
-      <p className="mt-4 flex items-center gap-1.5 text-[.7rem] text-[#02110c]/60"><LockKeyhole size={12} /> Grátis e anônimo. Você entra se quiser. E sai quando quiser.</p>
+      <p className="mt-4 flex items-center gap-1.5 text-[.7rem] text-[#02110c]/60 lg:justify-center"><LockKeyhole size={12} /> Grátis e anônimo. Você entra se quiser. E sai quando quiser.</p>
     </form>
   );
 }
