@@ -449,16 +449,28 @@ function Home() {
               A gente não quer que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, vai ser opcional — e vai continuar sem anúncio no meio do desabafo.
             </p>
           </div>
-          <div className="rounded-3xl border border-[#a4a9a5]/60 bg-white p-8 md:p-10">
-            <p className="serif text-6xl text-[#06392f]">R$ 0</p>
-            <ul className="mt-8 space-y-4 text-[.98rem] leading-[1.55] text-[#02110c]/85">
-              <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você entra sem nome real, sem cartão, sem cadastro pesado.</li>
-              <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Ninguém, dentro ou fora daqui, vê quem é você.</li>
-              <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você pode apagar sua conta a qualquer momento — e leva junto tudo que escreveu.</li>
-              <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Sem anúncios. Sem revenda de dados. Sem exceção.</li>
-            </ul>
-            <p className="mt-8 text-[.85rem] leading-relaxed text-[#02110c]/60">Essa é a garantia: <strong className="text-[#06392f]">o anonimato vem primeiro</strong>. Se um dia mudar, você é o primeiro a saber — e decide se continua ou não.</p>
-            <div className="mt-8"><a href="#entrar"><ButtonPrimary>Quero entrar na lista <ArrowDownRight size={16} /></ButtonPrimary></a></div>
+          <div className="space-y-4">
+            <div className="rounded-3xl border border-[#a4a9a5]/60 bg-white p-8 md:p-10">
+              <p className="serif text-6xl text-[#06392f]">R$ 0</p>
+              <p className="mt-2 text-[.98rem] text-[#02110c]/85">Grátis. E vai continuar sendo.</p>
+              <ul className="mt-8 space-y-4 text-[.98rem] leading-[1.55] text-[#02110c]/85">
+                <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você entra sem nome real, sem cartão, sem cadastro pesado.</li>
+                <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Ninguém, dentro ou fora daqui, vê quem é você.</li>
+                <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você pode apagar sua conta a qualquer momento — e leva junto tudo que escreveu.</li>
+                <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Sem anúncios. Sem revenda de dados. Sem exceção.</li>
+              </ul>
+            </div>
+            <div className="rounded-3xl bg-[#06392f] p-8 text-white md:p-10">
+              <h3 className="serif text-3xl leading-[1.05]">A garantia é o anonimato.</h3>
+              <p className="mt-4 text-[.98rem] leading-[1.7] text-white/85">
+                Se um dia isso mudar, você é o primeiro a saber — e decide se continua ou não. Enquanto o Refúgio existir, o anonimato vem antes de qualquer outra coisa.
+              </p>
+              <div className="mt-8">
+                <a href="#entrar" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-[.92rem] font-semibold text-[#06392f] transition-colors hover:bg-[#a4a9a5]">
+                  Quero entrar na lista <ArrowDownRight size={16} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
