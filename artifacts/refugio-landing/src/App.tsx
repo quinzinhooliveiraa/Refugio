@@ -378,7 +378,7 @@ function Home() {
           <h2 className="serif mt-4 max-w-2xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">É simples — de propósito.</h2>
           <div className="mt-14 grid gap-0 border-t border-[#a4a9a5]/60 md:grid-cols-3">
             {[
-              ['01', 'Você entra com um apelido.', 'Sem nome real, sem foto, sem perfil público. A comunidade vê só o apelido que você escolher.'],
+              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você — ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.'],
               ['02', 'Escreve o que está sentindo.', 'Do jeito que sair. Sem precisar organizar, sem precisar explicar de onde veio.'],
               ['03', 'Alguém lê e responde.', 'Uma pessoa comum que talvez já tenha passado por algo parecido. Você decide o que faz sentido levar.'],
             ].map(([n, title, copy]) => (
@@ -389,6 +389,9 @@ function Home() {
               </div>
             ))}
           </div>
+          <p className="mt-8 max-w-2xl text-sm leading-[1.7] text-[#02110c]/75">
+            Sem anúncio, sem algoritmo te empurrando pro próximo post. Um lugar calmo pra sair da correria por alguns minutos.
+          </p>
         </div>
       </section>
 
