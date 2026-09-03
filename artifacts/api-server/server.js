@@ -12,6 +12,19 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 const DATA_DIR = path.join(__dirname, "data");
 const DATA_FILE = path.join(DATA_DIR, "signups.json");
+const FRONTEND_DIST = path.join(__dirname, "..", "refugio-landing", "dist");
+const CONTENT_TYPES = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "application/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".ico": "image/x-icon",
+  ".woff2": "font/woff2",
+};
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]");
@@ -85,6 +98,47 @@ function requireAuth(res) {
     "Content-Type": "text/plain; charset=utf-8",
   });
   res.end("Acesso restrito.");
+}
+
+function serveFrontendFile(res, filePath) {
+  let stats;
+  try {
+    stats = fs.statSync(filePath);
+  } catch {
+    return false;
+  }
+  if (!stats.isFile()) return false;
+
+  const extension = path.extname(filePath).toLowerCase();
+  const isIndex = path.resolve(filePath) === path.join(FRONTEND_DIST, "index.html");
+  const headers = {
+    "Content-Type": CONTENT_TYPES[extension] || "application/octet-stream",
+    "Cache-Control": isIndex
+      ? "no-cache"
+      : "public, max-age=31536000, immutable",
+  };
+  res.writeHead(200, headers);
+  res.end(fs.readFileSync(filePath));
+  return true;
+}
+
+function serveFrontend(res, pathname) {
+  let decodedPathname;
+  try {
+    decodedPathname = decodeURIComponent(pathname);
+  } catch {
+    return false;
+  }
+
+  const relativePath = decodedPathname.replace(/^\/+/, "");
+  const candidate = path.resolve(FRONTEND_DIST, relativePath);
+  const frontendRoot = path.resolve(FRONTEND_DIST);
+  if (candidate !== frontendRoot && !candidate.startsWith(`${frontendRoot}${path.sep}`)) {
+    return false;
+  }
+
+  if (serveFrontendFile(res, candidate)) return true;
+  return serveFrontendFile(res, path.join(FRONTEND_DIST, "index.html"));
 }
 
 function adminPage(list) {
@@ -231,6 +285,10 @@ const server = http.createServer(async (req, res) => {
     if (!checkAuth(req)) return requireAuth(res);
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
     return res.end(adminPage(loadSignups()));
+  }
+
+  if (req.method === "GET" && pathname !== "/api" && !pathname.startsWith("/api/")) {
+    if (serveFrontend(res, pathname)) return;
   }
 
   res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
