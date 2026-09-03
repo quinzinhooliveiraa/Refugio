@@ -470,11 +470,10 @@ function Home() {
               <p className="mt-4 text-[.98rem] leading-[1.7] text-white/85">
                 Se um dia isso mudar, você é o primeiro a saber — e decide se continua ou não. Enquanto o Refúgio existir, o anonimato vem antes de qualquer outra coisa.
               </p>
-              <a href="#entrar" className="inline-flex w-fit items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-[.92rem] font-semibold text-[#06392f] transition-colors hover:bg-[#a4a9a5]">
-                Quero entrar na lista <ArrowDownRight size={16} />
-              </a>
             </div>
           </div>
+          <CompactBar className="mx-auto mt-8" />
+          <p className="mt-3 text-[.72rem] leading-relaxed text-[#a4a9a5]">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         </div>
       </section>
 
