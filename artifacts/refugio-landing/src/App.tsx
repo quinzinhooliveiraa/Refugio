@@ -367,6 +367,7 @@ function Home() {
           </div>
 
           <CompactBar className="mt-14" />
+          <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-white/70">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         </div>
       </section>
 
