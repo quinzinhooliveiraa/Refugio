@@ -511,13 +511,15 @@ function Home() {
             <FaqItem q="Vocês vão vender meus dados?" a={<p>Não. O projeto é sem fins lucrativos e não tem anúncio no meio do desabafo. A gente não vende, não compartilha e não usa o que você escreve pra treinar nada.</p>} />
             <FaqItem q="E se eu não souber o que escrever?" a={<p>Não precisa saber. Muita gente começa com uma frase só — "não sei por onde começar" já é começar. Você pode voltar depois, editar, ou apagar. É seu.</p>} />
           </div>
-        </div>
-      </section>
-
-      {/* AVISO DE CRISE + FOOTER */}
-      <section className="bg-[#02110c] px-5 py-10 md:px-10">
-        <div className="mx-auto max-w-7xl rounded-2xl border border-white/15 bg-[#06392f] p-6 text-sm leading-relaxed text-white/80 md:p-7">
-          <strong className="text-white">Este espaço não substitui atendimento profissional.</strong> Em um momento de crise, ligue para o CVV: <strong>188</strong> (24h, gratuito e sigiloso) · Emergência: <strong>192</strong>.
+          <div
+            style={{ backgroundImage: `url("${backgroundSix}")` }}
+            className="relative mt-8 overflow-hidden rounded-2xl border border-white/20 bg-[#02110c] bg-cover bg-center p-6 text-sm leading-relaxed text-white/80 md:mt-10 md:p-7"
+          >
+            <div className="absolute inset-0 bg-[#02110c]/70" aria-hidden="true" />
+            <p className="relative z-10">
+              <strong className="text-white">Este espaço não substitui atendimento profissional.</strong> Em um momento de crise, ligue para o CVV: <strong>188</strong> (24h, gratuito e sigiloso) · Emergência: <strong>192</strong>.
+            </p>
+          </div>
         </div>
       </section>
 
