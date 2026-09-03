@@ -67,6 +67,26 @@
     .waitlist, .choice { border-color: #a4a9a5; background: #ffffff; }
     .button { background: #06392f; color: #ffffff; }
     .button:hover { background: #02110c; color: #ffffff; }
+    header {
+      background: linear-gradient(135deg, rgba(6, 57, 47, .92), rgba(6, 57, 47, .68));
+      border-bottom: 1px solid rgba(164, 169, 165, .5);
+      box-shadow: 0 10px 30px rgba(2, 17, 12, .12);
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(115deg, rgba(255, 255, 255, .16), transparent 42%, rgba(164, 169, 165, .1));
+      opacity: .8;
+    }
+    header .container { position: relative; z-index: 1; }
+    header .brand, header .nav-links { color: #ffffff; }
+    header .nav-cta { border-color: #ffffff; color: #ffffff; }
+    header .nav-cta:hover { background: #ffffff; color: #02110c; }
+    header.scrolled { background: linear-gradient(135deg, rgba(6, 57, 47, .96), rgba(6, 57, 47, .78)); }
     footer { background: #02110c; color: #ffffff; }
   </style>
 </head>
