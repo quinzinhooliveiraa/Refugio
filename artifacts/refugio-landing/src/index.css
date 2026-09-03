@@ -79,65 +79,65 @@
   --elevate-1: rgba(2, 17, 12, 0.03);
   --elevate-2: rgba(2, 17, 12, 0.08);
 
-  --background: 43.448 54.717% 89.608%;
+  --background: 0 0% 100%;
 
-  --foreground: 168.235 80.952% 12.353%;
+  --foreground: 160 78.947% 3.725%;
 
-  --border: 168.235 80.952% 12.353%;
+  --border: 140 3.704% 65.294%;
 
-  --card: 43.448 54.717% 89.608%;
+  --card: 0 0% 100%;
 
-  --card-foreground: 168.235 80.952% 12.353%;
+  --card-foreground: 160 78.947% 3.725%;
 
-  --card-border: 168.235 80.952% 12.353%;
+  --card-border: 140 3.704% 65.294%;
 
   --sidebar: 160 78.947% 3.725%;
 
-  --sidebar-foreground: 43.448 54.717% 89.608%;
+  --sidebar-foreground: 0 0% 100%;
 
-  --sidebar-border: 168.235 80.952% 12.353%;
+  --sidebar-border: 140 3.704% 65.294%;
 
   --sidebar-primary: 168.235 80.952% 12.353%;
 
-  --sidebar-primary-foreground: 43.448 54.717% 89.608%;
+  --sidebar-primary-foreground: 0 0% 100%;
 
   --sidebar-accent: 168.235 80.952% 12.353%;
 
-  --sidebar-accent-foreground: 43.448 54.717% 89.608%;
+  --sidebar-accent-foreground: 0 0% 100%;
 
   --sidebar-ring: 168.235 80.952% 12.353%;
 
-  --popover: 43.448 54.717% 89.608%;
+  --popover: 0 0% 100%;
 
-  --popover-foreground: 168.235 80.952% 12.353%;
+  --popover-foreground: 160 78.947% 3.725%;
 
-  --popover-border: 168.235 80.952% 12.353%;
+  --popover-border: 140 3.704% 65.294%;
 
   --primary: 168.235 80.952% 12.353%;
 
-  --primary-foreground: 43.448 54.717% 89.608%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 168.235 80.952% 12.353%;
+  --secondary: 140 3.704% 65.294%;
 
-  --secondary-foreground: 43.448 54.717% 89.608%;
+  --secondary-foreground: 160 78.947% 3.725%;
 
-  --muted: 43.448 54.717% 89.608%;
+  --muted: 0 0% 100%;
 
-  --muted-foreground: 168.235 80.952% 12.353%;
+  --muted-foreground: 140 3.704% 65.294%;
 
   --accent: 168.235 80.952% 12.353%;
 
-  --accent-foreground: 43.448 54.717% 89.608%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 168.235 80.952% 12.353%;
 
-  --destructive-foreground: 43.448 54.717% 89.608%;
+  --destructive-foreground: 0 0% 100%;
 
-  --input: 168.235 80.952% 12.353%;
+  --input: 140 3.704% 65.294%;
   --ring: 168.235 80.952% 12.353%;
   --chart-1: 168.235 80.952% 12.353%;
   --chart-2: 160 78.947% 3.725%;
-  --chart-3: 43.448 54.717% 89.608%;
+  --chart-3: 0 0% 100%;
   --chart-4: 168.235 80.952% 12.353%;
   --chart-5: 160 78.947% 3.725%;
 
@@ -145,24 +145,24 @@
   --app-font-serif: 'Fraunces', Georgia, serif;
   --app-font-mono: 'DM Sans', sans-serif;
   --radius: 0.5rem; /* 8px */
-  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0); /*replace with H S L */
-  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0); /*replace with H S L */
+  --shadow-2xs: 0px 2px 0px 0px hsl(160 78.947% 3.725% / 0); /*replace with H S L */
+  --shadow-xs: 0px 2px 0px 0px hsl(160 78.947% 3.725% / 0); /*replace with H S L */
   --shadow-sm:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 1px 2px -1px hsl(160 78.947% 3.725% / 0);
   --shadow:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 1px 2px -1px hsl(160 78.947% 3.725% / 0);
   --shadow-md:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 2px 4px -1px hsl(160 78.947% 3.725% / 0);
   --shadow-lg:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 4px 6px -1px hsl(160 78.947% 3.725% / 0);
   --shadow-xl:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0);
-  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 8px 10px -1px hsl(160 78.947% 3.725% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(160 78.947% 3.725% / 0);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
@@ -219,96 +219,96 @@
 }
 
 .dark {
-  --button-outline: rgba(243, 235, 214, 0.1);
-  --badge-outline: rgba(243, 235, 214, 0.05);
+  --button-outline: rgba(255, 255, 255, 0.1);
+  --badge-outline: rgba(255, 255, 255, 0.05);
 
   --opaque-button-border-intensity: 9; /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(243, 235, 214, 0.04);
-  --elevate-2: rgba(243, 235, 214, 0.09);
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.09);
 
   --background: 160 78.947% 3.725%;
 
-  --foreground: 43.448 54.717% 89.608%;
+  --foreground: 0 0% 100%;
 
   --border: 168.235 80.952% 12.353%;
 
   --card: 168.235 80.952% 12.353%;
 
-  --card-foreground: 43.448 54.717% 89.608%;
+  --card-foreground: 0 0% 100%;
 
   --card-border: 168.235 80.952% 12.353%;
 
   --sidebar: 160 78.947% 3.725%;
 
-  --sidebar-foreground: 43.448 54.717% 89.608%;
+  --sidebar-foreground: 0 0% 100%;
 
   --sidebar-border: 168.235 80.952% 12.353%;
 
   --sidebar-primary: 168.235 80.952% 12.353%;
 
-  --sidebar-primary-foreground: 43.448 54.717% 89.608%;
+  --sidebar-primary-foreground: 0 0% 100%;
 
   --sidebar-accent: 168.235 80.952% 12.353%;
 
-  --sidebar-accent-foreground: 43.448 54.717% 89.608%;
+  --sidebar-accent-foreground: 0 0% 100%;
 
   --sidebar-ring: 168.235 80.952% 12.353%;
 
   --popover: 168.235 80.952% 12.353%;
 
-  --popover-foreground: 43.448 54.717% 89.608%;
+  --popover-foreground: 0 0% 100%;
 
   --popover-border: 168.235 80.952% 12.353%;
 
   --primary: 168.235 80.952% 12.353%;
 
-  --primary-foreground: 43.448 54.717% 89.608%;
+  --primary-foreground: 0 0% 100%;
 
   --secondary: 168.235 80.952% 12.353%;
 
-  --secondary-foreground: 43.448 54.717% 89.608%;
+  --secondary-foreground: 0 0% 100%;
 
   --muted: 168.235 80.952% 12.353%;
 
-  --muted-foreground: 43.448 54.717% 89.608%;
+  --muted-foreground: 0 0% 100%;
 
   --accent: 168.235 80.952% 12.353%;
 
-  --accent-foreground: 43.448 54.717% 89.608%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 168.235 80.952% 12.353%;
 
-  --destructive-foreground: 43.448 54.717% 89.608%;
+  --destructive-foreground: 0 0% 100%;
 
   /* Used as the border around inputs. Dark mode: Should be a border that is light enough to have high contrast when rendered on a --card background. More contrast than standard --border */
   --input: 168.235 80.952% 12.353%;
   --ring: 168.235 80.952% 12.353%;
-  --chart-1: 43.448 54.717% 89.608%;
+  --chart-1: 0 0% 100%;
   --chart-2: 168.235 80.952% 12.353%;
   --chart-3: 160 78.947% 3.725%;
-  --chart-4: 43.448 54.717% 89.608%;
+  --chart-4: 0 0% 100%;
   --chart-5: 168.235 80.952% 12.353%;
 
-  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
-  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-2xs: 0px 2px 0px 0px hsl(160 78.947% 3.725% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(160 78.947% 3.725% / 0);
   --shadow-sm:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 1px 2px -1px hsl(160 78.947% 3.725% / 0);
   --shadow:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 1px 2px -1px hsl(160 78.947% 3.725% / 0);
   --shadow-md:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 2px 4px -1px hsl(160 78.947% 3.725% / 0);
   --shadow-lg:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 4px 6px -1px hsl(160 78.947% 3.725% / 0);
   --shadow-xl:
-    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
-    0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0);
-  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+    0px 2px 0px 0px hsl(160 78.947% 3.725% / 0),
+    0px 8px 10px -1px hsl(160 78.947% 3.725% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(160 78.947% 3.725% / 0);
 }
 
 @layer base {
@@ -438,13 +438,14 @@
   color-scheme: light;
   --refugio-ink: #02110c;
   --refugio-deep: #02110c;
-  --refugio-paper: #f3ebd6;
-  --refugio-paper-2: #f3ebd6;
+  --refugio-paper: #ffffff;
+  --refugio-paper-2: #ffffff;
   --refugio-coral: #06392f;
   --refugio-coral-dark: #06392f;
   --refugio-sage: #06392f;
   --refugio-lilac: #06392f;
-  --refugio-line: rgba(6, 57, 47, 0.2);
+  --refugio-gray: #a4a9a5;
+  --refugio-line: rgba(164, 169, 165, 0.3);
 }
 
 html {
@@ -460,6 +461,11 @@ body {
 
 button, input {
   font: inherit;
+}
+
+input::placeholder {
+  color: var(--refugio-gray);
+  opacity: 1;
 }
 
 ::selection {
@@ -518,7 +524,7 @@ button, input {
 }
 
 .nav-link {
-  color: rgba(6, 57, 47, .76);
+  color: rgba(164, 169, 165, .9);
   font-size: .78rem;
   font-weight: 600;
   letter-spacing: .02em;
@@ -535,7 +541,7 @@ button, input {
 .button-quiet:focus-visible,
 .intent-card:focus-visible,
 .email-field:focus-visible {
-  outline: 3px solid rgba(6, 57, 47, .44);
+  outline: 3px solid rgba(164, 169, 165, .6);
   outline-offset: 4px;
 }
 
@@ -544,27 +550,27 @@ button, input {
   align-items: center;
   justify-content: center;
   gap: .65rem;
-  border: 1px solid var(--refugio-ink);
+  border: 1px solid var(--refugio-coral);
   border-radius: 999px;
   color: var(--refugio-paper);
-  background: var(--refugio-ink);
+  background: var(--refugio-coral);
   padding: .82rem 1.25rem;
   font-size: .8rem;
   font-weight: 700;
   letter-spacing: .01em;
-  box-shadow: 4px 4px 0 var(--refugio-coral);
+  box-shadow: 4px 4px 0 var(--refugio-ink);
   transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .button-primary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--refugio-coral);
-  background: var(--refugio-deep);
+  box-shadow: 6px 6px 0 var(--refugio-ink);
+  background: var(--refugio-ink);
 }
 
 .button-primary:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--refugio-coral);
+  box-shadow: 2px 2px 0 var(--refugio-ink);
 }
 
 .button-quiet {
@@ -626,22 +632,26 @@ button, input {
   border-radius: 1.2rem;
   padding: 1.1rem;
   text-align: left;
-  background: rgba(243, 235, 214, .64);
+  background: var(--refugio-paper);
   transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .intent-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(6, 57, 47, .55);
-  background: rgba(243, 235, 214, .94);
-  box-shadow: 0 12px 0 rgba(6, 57, 47, .06);
+  border-color: rgba(164, 169, 165, .7);
+  background: var(--refugio-paper);
+  box-shadow: 0 12px 0 rgba(164, 169, 165, .16);
 }
 
 .intent-card.is-selected {
-  border-color: var(--refugio-paper);
-  background: var(--refugio-ink);
+  border-color: var(--refugio-coral);
+  background: var(--refugio-coral);
   color: var(--refugio-paper);
-  box-shadow: 5px 5px 0 var(--refugio-coral);
+  box-shadow: 5px 5px 0 var(--refugio-ink);
+}
+
+.intent-card.is-selected .intent-check {
+  border-color: var(--refugio-paper);
 }
 
 .intent-card.is-selected .intent-check {
@@ -654,7 +664,7 @@ button, input {
   place-items: center;
   width: 1.45rem;
   height: 1.45rem;
-  border: 1px solid rgba(6, 57, 47, .5);
+  border: 1px solid rgba(164, 169, 165, .8);
   border-radius: 50%;
   opacity: .55;
   transform: scale(.9);
@@ -663,10 +673,10 @@ button, input {
 
 .email-field {
   width: 100%;
-  border: 1px solid rgba(6, 57, 47, .35);
+  border: 1px solid var(--refugio-gray);
   border-radius: 999px;
   color: var(--refugio-ink);
-  background: rgba(243,235,214,.3);
+  background: var(--refugio-paper);
   padding: .9rem 1rem;
   font-size: .9rem;
   transition: border-color 180ms ease, background-color 180ms ease;
@@ -674,11 +684,11 @@ button, input {
 
 .email-field:hover, .email-field:focus {
   border-color: var(--refugio-ink);
-  background: rgba(243,235,214,.66);
+  background: var(--refugio-paper);
 }
 
 .email-field[aria-invalid="true"] {
-  border-color: #06392f;
+  border-color: var(--refugio-gray);
 }
 
 .honeypot {
@@ -692,7 +702,7 @@ button, input {
 
 .paper-crease {
   background:
-    linear-gradient(118deg, transparent 0 46%, rgba(6,57,47,.08) 46.2%, transparent 46.5%),
+    linear-gradient(118deg, transparent 0 46%, rgba(164,169,165,.16) 46.2%, transparent 46.5%),
     var(--refugio-paper-2);
 }
 

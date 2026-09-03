@@ -37,7 +37,7 @@ function toError(value: unknown): Error {
 
 function DefaultFallback({ error, resetError }: ErrorFallbackProps) {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#f3ebd6] p-6">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#ffffff] p-6">
       <div className="max-w-lg w-full text-center">
         <h1 className="text-xl font-semibold text-[#06392f]">
           Something went wrong
@@ -48,14 +48,14 @@ function DefaultFallback({ error, resetError }: ErrorFallbackProps) {
         </p>
         {/* Dev only: messages can carry API responses and other internals. */}
         {import.meta.env.DEV ? (
-          <pre className="mt-4 overflow-x-auto rounded bg-[#f3ebd6] p-3 text-left text-xs text-[#06392f]">
+          <pre className="mt-4 overflow-x-auto rounded border border-[#a4a9a5] bg-[#ffffff] p-3 text-left text-xs text-[#02110c]">
             {error.message || String(error)}
           </pre>
         ) : null}
         <button
           type="button"
           onClick={resetError}
-          className="mt-4 rounded bg-[#06392f] px-4 py-2 text-sm text-[#f3ebd6] hover:bg-[#02110c]"
+          className="mt-4 rounded bg-[#06392f] px-4 py-2 text-sm text-[#ffffff] hover:bg-[#02110c]"
         >
           Try again
         </button>

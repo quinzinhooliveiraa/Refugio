@@ -1,0 +1,46 @@
+Refaz a paleta do site inteiro (landing + admin). Sem mexer em copy, layout,
+estrutura, fontes ou imagens. Só cor.
+
+Paleta única (usar SÓ estas 4 cores, nada além):
+- Branco:            #ffffff   → fundo principal do site
+- Preto:             #02110c   → fundo das seções de quebra, texto principal
+- Tiber (verde):     #06392f   → acento, botão, títulos de destaque
+- Cinza:             #a4a9a5   → texto secundário, bordas, divisores
+
+REMOVE o bege #f3ebd6 completamente — em todo lugar que era bege agora é branco
+#ffffff (se era fundo) ou preto #02110c (se era texto sobre fundo escuro).
+
+Distribuição — segue esse mapa para dar contraste forte entre seções:
+1. Fundo geral: branco #ffffff.
+2. Texto principal sobre branco: preto #02110c.
+3. Texto secundário / apoio / legendas: cinza #a4a9a5.
+4. Títulos <h1> <h2> e palavras de destaque dentro deles: tiber #06392f
+   (a palavra em destaque continua em tiber como já é hoje).
+5. Seções de "quebra" (as que hoje são pretas): fundo preto #02110c,
+   texto branco #ffffff, acentos em tiber #06392f. Eyebrows dessas seções
+   ficam em tiber. Frase-manifesto grande fica em branco #ffffff.
+6. Cards sobre fundo branco: fundo tiber #06392f com texto branco,
+   OU fundo branco com borda cinza #a4a9a5 de 1px. Alterna para dar ritmo.
+   NÃO deixa card branco sem borda sobre fundo branco — some.
+7. Botão primário: fundo tiber #06392f, texto branco #ffffff.
+   Hover: fundo preto #02110c, texto branco.
+8. Bordas/divisores/linhas finas: cinza #a4a9a5 (pode com alpha /30 ou /40
+   se ficar pesado).
+9. Input de e-mail: fundo branco, borda cinza #a4a9a5, texto preto,
+   placeholder cinza.
+10. Radios de "Quero desabafar / acolher / os dois":
+    - não-selecionado: fundo branco, borda cinza #a4a9a5.
+    - selecionado: fundo tiber #06392f, texto branco, borda tiber.
+
+CONTRASTE entre seções é a prioridade — o site hoje está chapado. Alterna
+branco → preto → branco → preto ao descer, e usa o tiber só como acento
+dentro de cada uma. Nunca duas seções brancas seguidas sem uma preta ou
+uma faixa tiber no meio.
+
+Hex proibidos (varre e remove todos): #f3eee4, #f3ebd6, #183d3b, #151515,
+#d8785c, #b85d47, #a7493c, #d7775d, #b7cfc0, #c8c1d4, #1a422f, e qualquer
+outra cor que não seja #ffffff, #02110c, #06392f, #a4a9a5.
+
+No final, roda uma varredura por "#" no código e me lista qualquer hex que
+sobre fora da paleta (ignora SVGs internos decorativos de ilustração se
+existirem). Roda o preview e confirma que não quebrou.

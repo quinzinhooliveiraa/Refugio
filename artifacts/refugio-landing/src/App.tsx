@@ -38,7 +38,7 @@ function useReveal() {
 function Mark({ inverse = false }: { inverse?: boolean }) {
   return (
     <div className="flex items-center gap-2" data-testid="brand-refugio">
-      <svg width="29" height="29" viewBox="0 0 29 29" aria-hidden="true" className={inverse ? 'text-[#f3ebd6]' : 'text-[#06392f]'}>
+      <svg width="29" height="29" viewBox="0 0 29 29" aria-hidden="true" className={inverse ? 'text-[#ffffff]' : 'text-[#06392f]'}>
         <path d="M4 24.5V10.9C4 7.1 7.1 4 10.9 4h3.5c5.9 0 10.6 4.7 10.6 10.6v9.9h-5.5v-8.8c0-3.4-2.2-5.9-5.7-5.9h-1.6v14.7H4Z" fill="currentColor" />
         <path d="M9.4 8.1c1.9 0 3.5-1.1 4.2-2.7" stroke="#06392f" strokeWidth="2.2" strokeLinecap="round" />
       </svg>
@@ -55,7 +55,7 @@ function HeroArtwork() {
       <svg viewBox="0 0 560 620" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <path d="M100 620V288C100 149 180 63 280 63s180 86 180 225v332" fill="none" stroke="#06392f" strokeWidth="2" opacity=".25" />
         <path d="M152 620V302c0-101 50-164 128-164s128 63 128 164v318" fill="#06392f" opacity=".95" />
-        <path d="M199 620V312c0-69 29-111 81-111s81 42 81 111v308" fill="#f3ebd6" />
+        <path d="M199 620V312c0-69 29-111 81-111s81 42 81 111v308" fill="#ffffff" />
         <path d="M280 202v418" stroke="#06392f" strokeWidth="2" strokeDasharray="4 9" opacity=".8" />
         <circle cx="280" cy="272" r="9" fill="#06392f" />
         <path d="M280 275c-45 50-62 104-49 163 12 54 31 89 49 116 18-27 37-62 49-116 13-59-4-113-49-163Z" fill="#06392f" opacity=".85" />
@@ -68,8 +68,8 @@ function HeroArtwork() {
         </g>
       </svg>
       <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between md:bottom-7 md:left-7 md:right-7">
-        <p className="max-w-[15rem] text-[.74rem] leading-relaxed text-[#f3ebd6]/80">um lugar para baixar a guarda, sem precisar explicar tudo</p>
-        <span className="rounded-full border border-[#f3ebd6]/40 px-3 py-1.5 text-[.65rem] font-semibold uppercase tracking-[.16em] text-[#f3ebd6]/80">em construção</span>
+        <p className="max-w-[15rem] text-[.74rem] leading-relaxed text-[#ffffff]/80">um lugar para baixar a guarda, sem precisar explicar tudo</p>
+        <span className="rounded-full border border-[#a4a9a5]/60 px-3 py-1.5 text-[.65rem] font-semibold uppercase tracking-[.16em] text-[#ffffff]/80">em construção</span>
       </div>
     </div>
   );
@@ -145,20 +145,20 @@ function SignupForm() {
 
   if (submitted) {
     return (
-      <div className="flex min-h-[390px] flex-col justify-between rounded-[1.5rem] bg-[#06392f] p-6 text-[#f3ebd6] md:p-8" data-testid="status-signup-success">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f3ebd6] text-[#06392f]"><Check size={22} /></div>
+      <div className="flex min-h-[390px] flex-col justify-between rounded-[1.5rem] bg-[#06392f] p-6 text-[#ffffff] md:p-8" data-testid="status-signup-success">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ffffff] text-[#06392f]"><Check size={22} /></div>
         <div>
-          <p className="eyebrow !text-[#f3ebd6]">você está no começo</p>
+          <p className="eyebrow !text-[#a4a9a5]">você está no começo</p>
           <h3 className="serif mt-3 text-4xl leading-[.98]">Seu convite está reservado.</h3>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#f3ebd6]/70">Quando abrirmos as primeiras vagas, você vai saber antes. Obrigado por ajudar a dar forma a um lugar mais honesto para conversar.</p>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#a4a9a5]">Quando abrirmos as primeiras vagas, você vai saber antes. Obrigado por ajudar a dar forma a um lugar mais honesto para conversar.</p>
         </div>
-        <p className="text-xs text-[#f3ebd6]/50">Nenhuma mensagem automática será enviada nesta fase.</p>
+        <p className="text-xs text-[#a4a9a5]">Nenhuma mensagem automática será enviada nesta fase.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={submit} noValidate className="rounded-[1.5rem] border border-[#06392f]/20 bg-[#f3ebd6]/80 p-5 md:p-7" data-testid="form-waitlist">
+    <form onSubmit={submit} noValidate className="rounded-[1.5rem] border border-[#a4a9a5] bg-[#ffffff] p-5 md:p-7" data-testid="form-waitlist">
       <div className="mb-7">
         <p className="eyebrow">entre na lista de interesse</p>
          <h3 className="serif mt-2 text-3xl leading-[1.02]">Se fizer sentido para você, deixe seu e-mail.</h3>
@@ -205,7 +205,7 @@ function CompactWaitlistForm() {
 
    return (
      <div className="compact-waitlist mt-8 max-w-2xl">
-      <form onSubmit={submit} className="flex flex-wrap gap-2 rounded-[1.2rem] border border-[#06392f]/15 bg-[#f3ebd6] p-2 shadow-[0_12px_34px_-22px_rgba(6,57,47,.6)]">
+      <form onSubmit={submit} className="flex flex-wrap gap-2 rounded-[1.2rem] border border-[#a4a9a5] bg-[#ffffff] p-2 shadow-[0_12px_34px_-22px_rgba(164,169,165,.35)]">
         <input type="email" name="email" required value={email} onChange={(event) => { setEmail(event.target.value); setSent(false); }} placeholder="Seu melhor e-mail" autoComplete="email" className="min-w-[13rem] flex-1 rounded-full bg-transparent px-4 py-3 text-sm outline-none" aria-label="Seu melhor e-mail" />
         <button type="submit" className="button-primary w-full sm:w-auto">{sent ? 'Agora escolha como participar' : 'Quero entrar na lista de espera'} <ArrowRight size={16} /></button>
       </form>
@@ -293,7 +293,7 @@ function Admin() {
   if (!auth || error) {
     return (
       <main className="refugio-page grain flex min-h-screen items-center justify-center px-5 py-12">
-        <form onSubmit={signIn} className="w-full max-w-md rounded-[1.5rem] border border-[#06392f]/20 bg-[#f3ebd6] p-7 md:p-9">
+        <form onSubmit={signIn} className="w-full max-w-md rounded-[1.5rem] border border-[#a4a9a5] bg-[#ffffff] p-7 md:p-9">
           <Mark />
           <p className="eyebrow mt-12">área reservada</p>
           <h1 className="serif mt-3 text-5xl leading-none">Cadastros da lista.</h1>
@@ -318,10 +318,10 @@ function Admin() {
         {loading ? <p className="mt-16 text-sm">Carregando cadastros...</p> : (
           <>
             <div className="mt-12 grid gap-4 sm:grid-cols-4">
-              <div className="rounded-2xl bg-[#02110c] p-5 text-[#f3ebd6]"><p className="eyebrow !text-[#f3ebd6]">total</p><p className="serif mt-4 text-5xl">{summary?.total ?? 0}</p></div>
-              {(['desabafar', 'ajudar', 'os-dois'] as Intent[]).map((item) => <div key={item} className="rounded-2xl bg-[#06392f] p-5 text-[#f3ebd6]"><p className="text-xs font-bold">{labels[item]}</p><p className="serif mt-4 text-5xl">{summary?.total ? Math.round(((summary.counts[item] ?? 0) / summary.total) * 100) : 0}%</p><p className="mt-1 text-xs text-[#f3ebd6]/70">{summary?.counts[item] ?? 0} cadastro(s)</p></div>)}
+              <div className="rounded-2xl bg-[#02110c] p-5 text-[#ffffff]"><p className="eyebrow !text-[#06392f]">total</p><p className="serif mt-4 text-5xl">{summary?.total ?? 0}</p></div>
+              {(['desabafar', 'ajudar', 'os-dois'] as Intent[]).map((item) => <div key={item} className="rounded-2xl bg-[#06392f] p-5 text-[#ffffff]"><p className="text-xs font-bold">{labels[item]}</p><p className="serif mt-4 text-5xl">{summary?.total ? Math.round(((summary.counts[item] ?? 0) / summary.total) * 100) : 0}%</p><p className="mt-1 text-xs text-[#a4a9a5]">{summary?.counts[item] ?? 0} cadastro(s)</p></div>)}
             </div>
-            <div className="mt-10 overflow-x-auto rounded-2xl border border-[#06392f]/15 bg-[#f3ebd6]/80">
+            <div className="mt-10 overflow-x-auto rounded-2xl border border-[#a4a9a5] bg-[#ffffff]">
               <table className="w-full min-w-[650px] text-left text-sm"><thead className="border-b border-[#06392f]/15 text-xs uppercase tracking-wider text-[#06392f]/70"><tr><th className="px-5 py-4">E-mail</th><th className="px-5 py-4">Intenção</th><th className="px-5 py-4">Data</th><th className="px-5 py-4">Origem</th></tr></thead><tbody>{entries.map((entry) => <tr key={`${entry.email}-${entry.createdAt}`} className="border-b border-[#06392f]/10 last:border-0"><td className="px-5 py-4">{entry.email}</td><td className="px-5 py-4">{labels[entry.intent]}</td><td className="px-5 py-4">{new Date(entry.createdAt).toLocaleString('pt-BR')}</td><td className="px-5 py-4 text-[#06392f]/70">{entry.source || 'direto'}</td></tr>)}</tbody></table>
               {entries.length === 0 && <p className="p-8 text-sm text-[#06392f]/70">Ainda não há cadastros.</p>}
             </div>
@@ -358,7 +358,7 @@ function Home() {
         </button>
       </header>
       {menuOpen && (
-        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#06392f]/20 bg-[#f3ebd6] p-4 shadow-xl lg:hidden" aria-label="Navegação móvel">
+        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#a4a9a5] bg-[#ffffff] p-4 shadow-xl lg:hidden" aria-label="Navegação móvel">
           <a href="#como-funciona" onClick={closeMenu} className="block border-b border-[#06392f]/10 py-3 text-sm font-semibold" data-testid="mobile-link-how-it-works">Como funciona</a>
           <a href="#por-que" onClick={closeMenu} className="block border-b border-[#06392f]/10 py-3 text-sm font-semibold" data-testid="mobile-link-why">Por que existe</a>
           <a href="#entrar" onClick={closeMenu} className="block py-3 text-sm font-semibold text-[#06392f]" data-testid="mobile-link-join">Quero entrar</a>
@@ -379,11 +379,11 @@ function Home() {
       </section>
       <div className="mx-auto max-w-7xl px-5 pb-20 md:px-10 md:pb-28"><CompactWaitlistForm /></div>
 
-      <section className="border-y border-[#06392f]/15 bg-[#02110c] px-5 py-16 text-[#f3ebd6] md:px-10 md:py-28">
+      <section className="border-y border-[#a4a9a5]/40 bg-[#02110c] px-5 py-16 text-[#ffffff] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
-           <p className="eyebrow !text-[#f3ebd6]">talvez você conheça essa sensação</p>
+           <p className="eyebrow !text-[#06392f]">talvez você conheça essa sensação</p>
            <h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Você já teve algo preso na garganta que não conseguiu falar com ninguém.</h2>
-            <p className="mt-7 max-w-3xl text-[1.02rem] leading-[1.6] text-[#f3ebd6]/70">Contar pra família ia virar preocupação, ou sermão. Pros amigos também não dava: e se vazasse, e se te olhassem diferente depois? Então você segurou. De novo. Abriu a conversa de alguém, digitou, apagou, e guardou pra você mais uma vez.</p>
+            <p className="mt-7 max-w-3xl text-[1.02rem] leading-[1.6] text-[#a4a9a5]">Contar pra família ia virar preocupação, ou sermão. Pros amigos também não dava: e se vazasse, e se te olhassem diferente depois? Então você segurou. De novo. Abriu a conversa de alguém, digitou, apagou, e guardou pra você mais uma vez.</p>
           <div className="mt-12 grid gap-x-10 gap-y-5 md:grid-cols-2">
             {[
                'Não é que você não tenha ninguém.',
@@ -393,12 +393,12 @@ function Home() {
                'Não queria que conhecidos soubessem da sua vida.',
                'E acabou guardando tudo para você.',
             ].map((item) => (
-               <div key={item} className="flex items-start gap-3 border-b border-[#f3ebd6]/12 pb-4 text-[1.02rem] text-[#f3ebd6]/78">
+               <div key={item} className="flex items-start gap-3 border-b border-[#a4a9a5]/40 pb-4 text-[1.02rem] text-[#ffffff]">
                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#06392f]" />{item}
               </div>
             ))}
           </div>
-            <p className="serif mt-14 max-w-3xl text-3xl leading-[1.02] text-[#f3ebd6] md:text-5xl">O problema quase nunca é falta de gente por perto. É que fica difícil falar de verdade com quem sabe o seu nome, o seu rosto, a sua vida.</p>
+            <p className="serif mt-14 max-w-3xl text-3xl leading-[1.02] text-[#ffffff] md:text-5xl">O problema quase nunca é falta de gente por perto. É que fica difícil falar de verdade com quem sabe o seu nome, o seu rosto, a sua vida.</p>
         </div>
       </section>
 
@@ -434,31 +434,31 @@ function Home() {
                <p className="max-w-xs text-sm leading-[1.65] text-[#06392f]/65">Você pode simplesmente ser uma pessoa passando por alguma coisa. Sem fingir que está tudo bem, sem transformar sua vulnerabilidade em uma apresentação.</p>
             </div>
             <div className="mt-16 grid gap-4 md:mt-24 md:grid-cols-3">
-                <article className="rounded-[1.4rem] bg-[#06392f] p-6 text-[#f3ebd6] md:p-7"><EyeOff size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">100% anônimo.</h3><p className="mt-3 text-sm leading-relaxed text-[#f3ebd6]/75">Nome, foto e perfil ficam de fora. Você escolhe um apelido e é só isso que aparece.</p></article>
-                <article className="rounded-[1.4rem] bg-[#06392f] p-6 text-[#f3ebd6] md:mt-12 md:p-7"><Quote size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Pessoas que já passaram pelo mesmo.</h3><p className="mt-3 text-sm leading-relaxed text-[#f3ebd6]/75">Não são robôs, nem profissionais. É gente de verdade, respondendo a partir da própria experiência.</p></article>
-                <article className="rounded-[1.4rem] bg-[#f3ebd6] p-6 text-[#06392f] md:p-7"><LockKeyhole size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Sem seguidores e sem competição.</h3><p className="mt-3 text-sm leading-relaxed text-[#06392f]/70">Ninguém está construindo uma audiência. Todo mundo começa igual.</p></article>
+                <article className="rounded-[1.4rem] bg-[#06392f] p-6 text-[#ffffff] md:p-7"><EyeOff size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">100% anônimo.</h3><p className="mt-3 text-sm leading-relaxed text-[#a4a9a5]">Nome, foto e perfil ficam de fora. Você escolhe um apelido e é só isso que aparece.</p></article>
+                <article className="rounded-[1.4rem] bg-[#06392f] p-6 text-[#ffffff] md:mt-12 md:p-7"><Quote size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Pessoas que já passaram pelo mesmo.</h3><p className="mt-3 text-sm leading-relaxed text-[#a4a9a5]">Não são robôs, nem profissionais. É gente de verdade, respondendo a partir da própria experiência.</p></article>
+                <article className="rounded-[1.4rem] border border-[#a4a9a5] bg-[#ffffff] p-6 text-[#02110c] md:p-7"><LockKeyhole size={22} strokeWidth={1.6} /><h3 className="mt-16 text-2xl font-bold tracking-[-.04em]">Sem seguidores e sem competição.</h3><p className="mt-3 text-sm leading-relaxed text-[#a4a9a5]">Ninguém está construindo uma audiência. Todo mundo começa igual.</p></article>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[#06392f]/15 bg-[#02110c] px-5 py-24 text-[#f3ebd6] md:px-10 md:py-32">
+      <section className="border-y border-[#a4a9a5]/40 bg-[#02110c] px-5 py-24 text-[#ffffff] md:px-10 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.8fr_1.2fr] md:items-start md:gap-24">
           <div>
-             <p className="eyebrow !text-[#f3ebd6]">uma comunidade, não um balcão</p>
+             <p className="eyebrow !text-[#06392f]">uma comunidade, não um balcão</p>
              <h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Você ajuda.<br /><span className="text-[#06392f]">Você também pode ser ajudado.</span></h2>
           </div>
           <div className="grid gap-10 md:grid-cols-2">
             <div>
-               <p className="text-lg leading-[1.45] text-[#f3ebd6]/82">Hoje você pode estar entrando para pedir ajuda. Amanhã pode ser você dizendo para outra pessoa:</p>
-               <p className="serif mt-5 text-3xl text-[#f3ebd6]">“Eu já passei por isso.”</p>
+               <p className="text-lg leading-[1.45] text-[#a4a9a5]">Hoje você pode estar entrando para pedir ajuda. Amanhã pode ser você dizendo para outra pessoa:</p>
+               <p className="serif mt-5 text-3xl text-[#ffffff]">“Eu já passei por isso.”</p>
             </div>
             <div>
-                <p className="text-sm leading-[1.7] text-[#f3ebd6]/65">Quanto mais você contribui com respostas que a comunidade considera úteis, mais reconhecimento recebe. Aqui, reputação não vem de seguidores. Vem do que você oferece quando alguém precisa.</p>
+                <p className="text-sm leading-[1.7] text-[#a4a9a5]">Quanto mais você contribui com respostas que a comunidade considera úteis, mais reconhecimento recebe. Aqui, reputação não vem de seguidores. Vem do que você oferece quando alguém precisa.</p>
                <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold text-[#02110c]">
-                 <span className="rounded-full bg-[#f3ebd6] px-3 py-2">Pessoa que ajuda</span>
-                 <span className="rounded-full bg-[#06392f] px-3 py-2 text-[#f3ebd6]">Boa ouvinte</span>
-                 <span className="rounded-full bg-[#06392f] px-3 py-2 text-[#f3ebd6]">Acolhedor</span>
+                 <span className="rounded-full bg-[#ffffff] px-3 py-2 text-[#02110c]">Pessoa que ajuda</span>
+                 <span className="rounded-full bg-[#06392f] px-3 py-2 text-[#ffffff]">Boa ouvinte</span>
+                 <span className="rounded-full bg-[#06392f] px-3 py-2 text-[#ffffff]">Acolhedor</span>
               </div>
             </div>
           </div>
@@ -475,10 +475,10 @@ function Home() {
         <SignupForm />
       </section>
 
-       <section className="border-t border-[#06392f]/15 bg-[#06392f] px-5 py-16 text-[#f3ebd6] md:px-10 md:py-24">
+       <section className="border-t border-[#a4a9a5]/40 bg-[#06392f] px-5 py-16 text-[#ffffff] md:px-10 md:py-24">
          <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_auto] md:items-end">
-           <div><p className="eyebrow !text-[#f3ebd6]">uma nota importante</p><h2 className="serif mt-4 max-w-2xl text-4xl leading-[.98] md:text-6xl">Refúgio é apoio entre pessoas.<br /><span className="text-[#f3ebd6]">Não é terapia.</span></h2></div>
-           <p className="max-w-xs text-sm leading-[1.65] text-[#f3ebd6]/70">Em uma situação de risco imediato, procure o SAMU (192) ou o CVV pelo 188. Você merece ajuda profissional e urgente quando precisar.</p>
+           <div><p className="eyebrow !text-[#a4a9a5]">uma nota importante</p><h2 className="serif mt-4 max-w-2xl text-4xl leading-[.98] md:text-6xl">Refúgio é apoio entre pessoas.<br /><span className="text-[#ffffff]">Não é terapia.</span></h2></div>
+           <p className="max-w-xs text-sm leading-[1.65] text-[#a4a9a5]">Em uma situação de risco imediato, procure o SAMU (192) ou o CVV pelo 188. Você merece ajuda profissional e urgente quando precisar.</p>
         </div>
       </section>
 
@@ -516,7 +516,7 @@ function CopyStructureHome() {
         </button>
       </header>
       {menuOpen && (
-        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#06392f]/20 bg-[#f3ebd6] p-4 shadow-xl lg:hidden" aria-label="Navegação móvel">
+        <nav className="absolute left-5 right-5 top-[4.7rem] z-30 rounded-2xl border border-[#a4a9a5] bg-[#ffffff] p-4 shadow-xl lg:hidden" aria-label="Navegação móvel">
           <a href="#como-funciona" onClick={closeMenu} className="block border-b border-[#06392f]/10 py-3 text-sm font-semibold">Como funciona</a>
           <a href="#o-que-encontra" onClick={closeMenu} className="block border-b border-[#06392f]/10 py-3 text-sm font-semibold">O que você encontra</a>
           <a href="#entrar" onClick={closeMenu} className="block py-3 text-sm font-semibold text-[#06392f]">Entrar na lista</a>
@@ -533,12 +533,12 @@ function CopyStructureHome() {
         <HeroArtwork />
       </section>
 
-       <section className="border-y border-[#06392f]/15 bg-[#02110c] px-5 py-16 text-[#f3ebd6] md:px-10 md:py-28">
+       <section className="border-y border-[#a4a9a5]/40 bg-[#02110c] px-5 py-16 text-[#ffffff] md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
-           <p className="eyebrow !text-[#f3ebd6]">o que segura a sua voz</p>
+           <p className="eyebrow !text-[#06392f]">o que segura a sua voz</p>
           <h2 className="serif mt-4 max-w-4xl text-5xl leading-[.94] md:text-7xl">Com quem você fala quando não dá pra falar com ninguém?</h2>
-           <p className="mt-8 max-w-3xl text-[1.05rem] leading-[1.7] text-[#f3ebd6]/72">Com a família, vira preocupação. Com os amigos, vem o medo de ser julgado. Então você engole tudo, escreve uma mensagem que nunca envia, e carrega o peso mais uma vez.</p>
-           <div className="mt-10 max-w-2xl border-l-2 border-[#06392f] bg-[#f3ebd6]/[.06] px-6 py-5"><p className="serif text-2xl italic leading-[1.25] text-[#f3ebd6] md:text-3xl">“Não é que eu não tenha ninguém. É que não consigo ser honesto com quem me conhece.”</p></div>
+           <p className="mt-8 max-w-3xl text-[1.05rem] leading-[1.7] text-[#a4a9a5]">Com a família, vira preocupação. Com os amigos, vem o medo de ser julgado. Então você engole tudo, escreve uma mensagem que nunca envia, e carrega o peso mais uma vez.</p>
+           <div className="mt-10 max-w-2xl border-l-2 border-[#06392f] bg-[#ffffff]/[.06] px-6 py-5"><p className="serif text-2xl italic leading-[1.25] text-[#ffffff] md:text-3xl">“Não é que eu não tenha ninguém. É que não consigo ser honesto com quem me conhece.”</p></div>
            <p className="serif mt-12 max-w-3xl text-3xl leading-[1.02] text-[#06392f] md:text-5xl">Às vezes, o que falta não é gente por perto. É liberdade para falar sem pensar no que vão achar.</p>
         </div>
       </section>
@@ -550,14 +550,14 @@ function CopyStructureHome() {
         </div>
       </section>
 
-       <section className="border-y border-[#06392f]/15 bg-[#02110c] px-5 py-16 text-[#f3ebd6] md:px-10 md:py-32">
+      <section className="border-y border-[#a4a9a5]/40 bg-[#02110c] px-5 py-16 text-[#ffffff] md:px-10 md:py-32">
         <div ref={conversation.ref} className={`${conversation.className} mx-auto max-w-7xl`}>
            <div className="tablet-stack grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24">
-             <div><p className="eyebrow">veja como é por dentro</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Um lugar para contar o que está acontecendo.</h2><p className="mt-6 max-w-md text-sm leading-[1.7] text-[#f3ebd6]/70">Você escreve o que está sentindo, e alguém que entende lê, responde e compartilha o que aprendeu. E quando você inverte os lados, do outro ponto tem alguém que precisa exatamente do que você já viveu.</p></div>
-             <div className="relative rounded-[2rem] bg-[#f3ebd6] p-6 text-[#06392f] shadow-[10px_10px_0_#06392f] md:p-9">
+             <div><p className="eyebrow">veja como é por dentro</p><h2 className="serif mt-4 text-5xl leading-[.94] md:text-7xl">Um lugar para contar o que está acontecendo.</h2><p className="mt-6 max-w-md text-sm leading-[1.7] text-[#a4a9a5]">Você escreve o que está sentindo, e alguém que entende lê, responde e compartilha o que aprendeu. E quando você inverte os lados, do outro ponto tem alguém que precisa exatamente do que você já viveu.</p></div>
+             <div className="relative rounded-[2rem] border border-[#a4a9a5] bg-[#ffffff] p-6 text-[#02110c] shadow-[10px_10px_0_#06392f] md:p-9">
                <div className="flex items-center gap-3 border-b border-[#06392f]/15 pb-5"><span className="h-10 w-10 rounded-full bg-[#06392f]" /><div><p className="text-xs font-bold">um nome anônimo</p><p className="text-[.68rem] text-[#06392f]/60">sem foto · sem perfil · sem plateia</p></div><HeartHandshake className="ml-auto text-[#06392f]" size={22} /></div>
               <p className="serif mt-7 text-2xl leading-tight md:text-3xl">“Eu precisava falar isso em algum lugar, mas não queria que ninguém conhecido soubesse.”</p>
-                <div className="mt-7 ml-8 rounded-2xl bg-[#06392f] p-5 text-[#f3ebd6]"><p className="text-sm leading-relaxed">Você não precisa achar as palavras perfeitas. Começar já ajuda a não carregar tudo sozinho.</p><div className="mt-4 flex items-center gap-2 text-[.68rem] font-bold text-[#f3ebd6]/70"><Check size={14} /> resposta considerada útil</div></div>
+                <div className="mt-7 ml-8 rounded-2xl bg-[#06392f] p-5 text-[#ffffff]"><p className="text-sm leading-relaxed">Você não precisa achar as palavras perfeitas. Começar já ajuda a não carregar tudo sozinho.</p><div className="mt-4 flex items-center gap-2 text-[.68rem] font-bold text-[#a4a9a5]"><Check size={14} /> resposta considerada útil</div></div>
             </div>
            </div>
            <CompactWaitlistForm />
@@ -575,9 +575,9 @@ function CopyStructureHome() {
         </div>
       </section>
 
-       <section id="o-que-encontra" className="border-y border-[#06392f]/15 bg-[#02110c] px-5 py-16 text-[#f3ebd6] md:px-10 md:py-32">
+       <section id="o-que-encontra" className="border-y border-[#a4a9a5]/40 bg-[#02110c] px-5 py-16 text-[#ffffff] md:px-10 md:py-32">
         <div ref={benefits.ref} className={`${benefits.className} mx-auto max-w-7xl`}>
-            <p className="eyebrow !text-[#f3ebd6]">o que você encontra aqui</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Um espaço para falar do que pesa.</h2><p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.7] text-[#f3ebd6]/72">Não é mais uma rede social — é quase o oposto dela. A gente cuidou de cada detalhe para proteger quem fala e dar liberdade para ouvir e acolher.</p>
+            <p className="eyebrow !text-[#06392f]">o que você encontra aqui</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">Um espaço para falar do que pesa.</h2><p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.7] text-[#a4a9a5]">Não é mais uma rede social — é quase o oposto dela. A gente cuidou de cada detalhe para proteger quem fala e dar liberdade para ouvir e acolher.</p>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
               ['100% anônimo.', 'Nome, foto e perfil ficam de fora.'],
@@ -585,7 +585,7 @@ function CopyStructureHome() {
               ['Pessoas que já passaram pelo mesmo.', 'Gente de verdade, não robôs nem profissionais.'],
               ['Reconhecimento para quem acolhe.', 'Você vale pelo que contribui, não por quem é.'],
               ['Um espaço moderado.', 'Regras claras para manter tudo seguro e respeitoso.'],
-             ].map(([title, copy], index) => <article key={title} className={`rounded-[1.4rem] p-6 md:p-7 ${index % 3 === 0 ? 'bg-[#06392f] text-[#f3ebd6]' : index % 3 === 1 ? 'bg-[#06392f] text-[#f3ebd6]' : 'bg-[#f3ebd6] text-[#06392f]'}`}><Check size={21} /><h3 className="mt-12 text-xl font-bold">{title}</h3><p className="mt-3 text-sm leading-relaxed opacity-75">{copy}</p></article>)}
+             ].map(([title, copy], index) => <article key={title} className={`rounded-[1.4rem] p-6 md:p-7 ${index % 3 === 0 ? 'bg-[#06392f] text-[#ffffff]' : index % 3 === 1 ? 'bg-[#06392f] text-[#ffffff]' : 'border border-[#a4a9a5] bg-[#ffffff] text-[#02110c]'}`}><Check size={21} /><h3 className="mt-12 text-xl font-bold">{title}</h3><p className="mt-3 text-sm leading-relaxed opacity-75">{copy}</p></article>)}
           </div>
         </div>
       </section>
@@ -595,13 +595,13 @@ function CopyStructureHome() {
       </section>
 
        <section className="border-y border-[#06392f]/15 bg-[#06392f] px-5 py-16 md:px-10 md:py-32">
-          <div className="tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#f3ebd6]">sem pegadinha</p><h2 className="serif mt-4 text-5xl leading-[.94] text-[#f3ebd6] md:text-7xl">É de graça.<br />E queremos manter assim.</h2></div><div className="rounded-[1.5rem] bg-[#f3ebd6] p-7 text-[#06392f] md:p-9"><p className="serif text-4xl">R$ 0</p><p className="mt-5 text-sm leading-[1.7] text-[#06392f]/70">Você não paga para entrar, desabafar ou ajudar. É um projeto <strong>sem fins lucrativos</strong> e não tem anúncio no meio do seu desabafo.</p><p className="mt-5 text-sm leading-[1.7] text-[#06392f]/70"><strong>O anonimato vem primeiro:</strong> você entra sem nome real, sem cartão e sem cadastro pesado. Pode sair quando quiser.</p></div></div>
+          <div className="tablet-stack mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#a4a9a5]">sem pegadinha</p><h2 className="serif mt-4 text-5xl leading-[.94] text-[#ffffff] md:text-7xl">É de graça.<br />E queremos manter assim.</h2></div><div className="rounded-[1.5rem] border border-[#a4a9a5] bg-[#ffffff] p-7 text-[#02110c] md:p-9"><p className="serif text-4xl">R$ 0</p><p className="mt-5 text-sm leading-[1.7] text-[#a4a9a5]">Você não paga para entrar, desabafar ou ajudar. É um projeto <strong>sem fins lucrativos</strong> e não tem anúncio no meio do seu desabafo.</p><p className="mt-5 text-sm leading-[1.7] text-[#a4a9a5]"><strong>O anonimato vem primeiro:</strong> você entra sem nome real, sem cartão e sem cadastro pesado. Pode sair quando quiser.</p></div></div>
         <div className="mx-auto mt-12 max-w-7xl"><CompactWaitlistForm /></div>
       </section>
 
        <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32"><p className="eyebrow">dúvidas comuns</p><h2 className="serif mt-4 max-w-3xl text-5xl leading-[.94] md:text-7xl">As perguntas que mais chegam pra gente.</h2><div className="mt-12 border-t border-[#06392f]/20">{[['É mesmo anônimo?', 'Sim. Você participa sem nome real, sem foto e sem perfil público — a comunidade vê só o apelido que você escolher. E a gente deixa sempre claro o mínimo que fica guardado.'], ['Vocês são psicólogos ou terapeutas?', 'Não. O Refúgio é uma comunidade de apoio entre pessoas. Não substitui atendimento psicológico, médico ou serviços de emergência. Se você estiver passando por um momento grave ou pensando em se machucar, ligue para o CVV no 188 (24h, gratuito e sigiloso) ou procure a emergência 192. Você não está sozinho.'], ['E se alguém me tratar mal?', 'A gente tem regras de convivência e moderação. Você pode denunciar qualquer conteúdo que passe do limite, e a equipe responsável cuida disso. Respeito aqui não é opcional.'], ['É pago?', 'Não. É gratuito e sem compromisso, porque a ideia é que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, é escolha sua.']].map(([question, answer]) => <FaqItem key={question} question={question} answer={answer} />)}</div></section>
 
-        <section id="entrar" className="border-t border-[#06392f]/15 bg-[#06392f] px-5 py-24 text-[#f3ebd6] md:px-10 md:py-32"><div className="tablet-stack mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#f3ebd6]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Você não precisa segurar tudo <span className="text-[#f3ebd6]">sozinho.</span></h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#f3ebd6]/70">Quando a comunidade abrir, você vai poder falar sem revelar quem é — e é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto para ouvir.</p></div><SignupForm /></div></section>
+        <section id="entrar" className="border-t border-[#a4a9a5]/40 bg-[#06392f] px-5 py-24 text-[#ffffff] md:px-10 md:py-32"><div className="tablet-stack mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:items-center md:gap-24"><div><p className="eyebrow !text-[#a4a9a5]">a última coisa</p><h2 className="serif text-5xl leading-[.94] md:text-7xl">Você não precisa segurar tudo <span className="text-[#ffffff]">sozinho.</span></h2><p className="mt-7 max-w-md text-[1.05rem] leading-[1.7] text-[#a4a9a5]">Quando a comunidade abrir, você vai poder falar sem revelar quem é — e é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto para ouvir.</p></div><SignupForm /></div></section>
 
         <footer className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 text-xs text-[#06392f]/55 md:flex-row md:items-center md:justify-between md:px-10"><Mark /><span>Refúgio · comunidade anônima, sem fins lucrativos</span><span>Este espaço não substitui atendimento profissional. Em um momento de crise, ligue para o CVV: 188 · Emergência: 192.</span></footer>
     </main>
