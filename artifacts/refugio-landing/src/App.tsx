@@ -467,9 +467,9 @@ function Home() {
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
-        <CompactBar className="mt-8 lg:mx-auto" />
-      <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
-       <a href="#como-funciona" className="mt-3 block max-w-2xl text-center text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
+        <CompactBar className="mx-auto mt-8" />
+      <p className="mx-auto mt-3 w-full max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+       <a href="#como-funciona" className="mx-auto mt-3 block w-full max-w-2xl text-center text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline">
         Prefiro entender antes de me inscrever ↓
        </a>
       </section>
@@ -526,8 +526,8 @@ function Home() {
 
           <ConversationShowcase />
 
-          <CompactBar className="mt-14 lg:mx-auto" />
-           <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-white/70 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
+           <CompactBar className="mx-auto mt-14" />
+            <p className="mx-auto mt-3 w-full max-w-2xl text-center text-[.72rem] leading-relaxed text-white/70">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         </div>
       </section>
 
