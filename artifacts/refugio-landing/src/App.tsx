@@ -557,7 +557,7 @@ function Home() {
       <footer className="flex w-full flex-col gap-4 border-t border-white/10 bg-[#02110c] px-5 py-8 text-xs text-white/60 md:flex-row md:items-center md:justify-between md:px-10">
         <Mark inverse />
         <span>Refúgio · comunidade anônima, sem fins lucrativos</span>
-        <a href="/admin" className="text-[#a4a9a5] hover:text-white hover:underline">Painel de validação</a>
+        <a href="/admin" className="text-xs text-white/50 hover:text-white">painel de validação</a>
       </footer>
     </main>
   );
