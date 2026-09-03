@@ -1,0 +1,52 @@
+Redesenha completamente a seção "É de graça — e vai continuar sendo."
+(a seção do preço R$0).
+
+Estrutura nova:
+
+1. No topo da seção, centralizado:
+   - Eyebrow "SEM PEGADINHA"
+   - Título "É de graça — e vai continuar sendo." em serifada, tamanho
+     grande, uma linha (ou duas no máximo)
+   - Parágrafo curto centralizado abaixo, largura máxima 640px:
+     "A gente não quer que ninguém deixe de pedir ajuda por causa de
+     dinheiro. Se um dia você quiser apoiar o projeto, vai ser opcional
+     — e vai continuar sem anúncio no meio do desabafo."
+
+2. Abaixo desse cabeçalho, um card GRANDE HORIZONTAL que ocupa
+   praticamente a largura toda da seção (respeita o max-width do site).
+   Esse card é DIVIDIDO INTERNAMENTE em 3 colunas de largura parecida:
+
+   COLUNA ESQUERDA (fundo branco):
+   - "R$ 0" gigante em serifada, cor tiber verde (#06392f).
+   - Logo abaixo, em texto normal: "Grátis. E vai continuar sendo."
+   - Nada mais.
+
+   COLUNA DO MEIO (fundo branco, separada da esquerda por uma linha
+   vertical fina cinza clara):
+   - Os 4 checkmarks empilhados, um embaixo do outro, ícone verde
+     tiber e texto preto:
+     · Você entra sem nome real, sem cartão, sem cadastro pesado.
+     · Ninguém, dentro ou fora daqui, vê quem é você.
+     · Você pode apagar sua conta a qualquer momento — e leva junto
+       tudo que escreveu.
+     · Sem anúncios. Sem revenda de dados. Sem exceção.
+
+   COLUNA DIREITA (fundo verde tiber #06392f, texto branco):
+   - Título curto em serifada branca: "A garantia é o anonimato."
+   - Parágrafo em branco:
+     "Se um dia isso mudar, você é o primeiro a saber — e decide se
+     continua ou não. Enquanto o Refúgio existir, o anonimato vem
+     antes de qualquer outra coisa."
+   - Botão CTA "Quero entrar na lista" — fundo branco com texto tiber,
+     para contrastar com o fundo verde da coluna.
+
+3. O card tem cantos arredondados (rounded-3xl), borda cinza clara
+   por fora, e as 3 colunas ficam grudadas por dentro sem espaço entre
+   elas. A coluna verde tiber cobre até a borda direita do card, sem
+   sobrar branco em volta.
+
+4. No mobile (tela estreita), as 3 colunas empilham verticalmente:
+   R$ 0 em cima, checkmarks no meio, garantia + botão embaixo. Mesma
+   cor de fundo para cada bloco (branco, branco, verde).
+
+Só isso. Não mexe em nenhuma outra seção da página.
