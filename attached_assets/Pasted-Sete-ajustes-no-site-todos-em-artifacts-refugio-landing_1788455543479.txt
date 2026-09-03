@@ -1,0 +1,42 @@
+Sete ajustes no site, todos em artifacts/refugio-landing/src/App.tsx.
+Não mexer em mais nada.
+
+1. HERO TÍTULO menor. Encontra o h1 que começa com "Tem um peso que você
+   carrega" e troca o clamp de font-size. Onde estiver algo tipo
+   text-[clamp(2.75rem,11vw,7rem)] ou clamp(3.1rem,7.5vw,7rem), muda para:
+     text-[clamp(2rem,4.4vw,4.2rem)]  leading-[1]
+   Também reduz o mt-8 do parágrafo logo abaixo para mt-6.
+
+2. REMOVE completamente o componente HeroArtwork (a ilustração
+   verde/lavanda ao lado do hero — círculos, arco, formas SVG). Apaga
+   a função HeroArtwork inteira e remove qualquer <HeroArtwork /> do
+   JSX. O grid do hero vira 1 coluna só (remove o lg:grid-cols-[...]).
+
+3. REMOVE a foto de mãos com teclado/tablet que aparece na seção
+   "O que segura a sua voz" (é uma tag <img> ou background-image
+   apontando pra alguma URL de foto). Deleta a imagem e o wrapper dela.
+
+4. REMOVE a foto de calça jeans / pernas com celular que aparece em
+   outra seção. Mesma coisa: deleta a <img> e o container.
+
+5. REMOVE qualquer <img> ou SVG decorativo tipo "florzinha" / "coração
+   com linhas" pequeno que apareça sozinho no meio das seções. Se for
+   ícone da lucide-react (HeartHandshake, Sparkles, etc) posicionado
+   solto no meio da página sem card em volta, também remove.
+
+6. Na SEÇÃO PRETA "O que segura a sua voz": procura qualquer <span> ou
+   className com text-[#06392f] (verde tiber) DENTRO dessa seção e
+   troca por text-[#a4a9a5] (cinza). Verde sobre preto não tem
+   contraste — cinza tem. Fazer o mesmo em QUALQUER seção com fundo
+   #02110c ou bg-[#151515] ou bg-black: dentro delas, nenhum texto
+   pode ser #06392f. Só cinza #a4a9a5 ou branco #ffffff.
+
+7. No FOOTER, adiciona um terceiro item ao lado do "Refúgio · comunidade
+   anônima":
+     <a href="/admin" className="text-[#06392f] hover:underline">
+       Painel de validação
+     </a>
+
+Depois disso, roda o preview e me manda o link. Não adicionar nenhuma
+foto nova, não gerar imagem, não baixar asset. Não editar index.css,
+main.tsx, backend, package.json.

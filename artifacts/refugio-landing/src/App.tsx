@@ -357,7 +357,7 @@ function Home() {
               </p>
             </div>
 
-            <div className="hidden md:mt-24 md:block"><ArrowRight size={28} className="text-[#06392f]" /></div>
+            <div className="hidden md:mt-24 md:block"><ArrowRight size={28} className="text-[#a4a9a5]" /></div>
 
             <div className="rounded-3xl bg-[#06392f] p-6 text-white md:mt-14 md:p-7">
               <div className="flex items-center gap-3 border-b border-white/25 pb-3">
@@ -419,7 +419,7 @@ function Home() {
               ['Sem anúncio no meio do desabafo.', 'Projeto sem fins lucrativos. Ninguém está tentando te vender nada aqui.'],
             ].map(([title, copy]) => (
               <article key={title} className="rounded-2xl border border-white/15 bg-[#02110c] p-6 md:p-7">
-                <Check size={20} className="text-[#06392f]" />
+                <Check size={20} className="text-[#a4a9a5]" />
                 <h3 className="mt-8 text-lg font-bold">{title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/72">{copy}</p>
               </article>
