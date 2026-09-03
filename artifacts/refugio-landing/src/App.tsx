@@ -100,6 +100,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState(() => { try { return sessionStorage.getItem('refugio-pending-email') ?? ''; } catch { return ''; } });
   const [intent, setIntent] = useState<Intent | ''>('');
   const [firstIntent, setFirstIntent] = useState<FirstIntent>('');
+  const [showFirstIntent, setShowFirstIntent] = useState(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -204,11 +205,21 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       </fieldset>
 
       <fieldset className="mt-7">
-        <legend className="mb-3">
-          <Eyebrow>Opcional</Eyebrow>
-          <span className="mt-2 block text-xs font-bold text-[#02110c]">O que faria você usar o Refúgio primeiro?</span>
+        <legend className="w-full">
+          <button
+            type="button"
+            onClick={() => setShowFirstIntent((value) => !value)}
+            aria-expanded={showFirstIntent}
+            aria-controls="first-intent-options"
+            className="flex w-full items-center justify-between gap-4 text-left"
+          >
+            <span className="text-xs font-bold text-[#02110c]">
+              O que faria você usar o Refúgio primeiro? <span className="font-normal text-[#a4a9a5]">(opcional)</span>
+            </span>
+            <ChevronDown size={16} className={`shrink-0 text-[#06392f] transition-transform ${showFirstIntent ? 'rotate-180' : ''}`} />
+          </button>
         </legend>
-        <div className="grid gap-3 sm:grid-cols-3">
+        {showFirstIntent && <div id="first-intent-options" className="mt-3 grid gap-3 sm:grid-cols-3">
           {firstIntentOptions.map(({ value, title, copy }) => {
             const active = firstIntent === value;
             return (
@@ -228,7 +239,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
               </button>
             );
           })}
-        </div>
+        </div>}
       </fieldset>
 
       <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0" />
