@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowRight, ArrowDownRight, Check, ChevronDown, LockKeyhole, Mail, Menu, X } from 'lucide-react';
+import backgroundOne from '@assets/__(1)_1788457940406.jpeg';
+import backgroundTwo from '@assets/__(2)_1788457940406.jpeg';
+import backgroundThree from '@assets/__(3)_1788457940407.jpeg';
+import backgroundFour from '@assets/__(4)_1788457940407.jpeg';
+import backgroundFive from '@assets/__(5)_1788457940407.jpeg';
+import backgroundSix from '@assets/50_shades_of_green_1788457954054.jpeg';
 
 /* -------------------------------------------------------------------------
  * Refúgio — landing (uma única página) + rota /admin.
@@ -407,17 +413,24 @@ function Home() {
           </p>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
-              ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido — só isso aparece.'],
-              ['Sem seguidores.', 'Ninguém está construindo audiência aqui. Todo mundo começa do zero, todo dia.'],
-              ['Pessoas que já passaram pelo mesmo.', 'Quem responde não é robô nem plantonista. É gente que sabe, pela própria vida, o que é precisar de apoio.'],
-              ['Moderação de verdade.', 'Regra clara e denúncia com um clique. Respeito aqui não é opcional.'],
-              ['Reputação por acolher, não por aparecer.', 'Quem contribui com respostas úteis ganha reconhecimento. O que vale é o que você oferece quando alguém precisa.'],
-              ['Sem anúncio no meio do desabafo.', 'Projeto sem fins lucrativos. Ninguém está tentando te vender nada aqui.'],
-            ].map(([title, copy]) => (
-              <article key={title} className="rounded-2xl border border-white/15 bg-[#02110c] p-6 md:p-7">
-                <Check size={20} className="text-[#a4a9a5]" />
-                <h3 className="mt-8 text-lg font-bold">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/72">{copy}</p>
+              ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido — só isso aparece.', backgroundOne],
+              ['Sem seguidores.', 'Ninguém está construindo audiência aqui. Todo mundo começa do zero, todo dia.', backgroundTwo],
+              ['Pessoas que já passaram pelo mesmo.', 'Quem responde não é robô nem plantonista. É gente que sabe, pela própria vida, o que é precisar de apoio.', backgroundThree],
+              ['Moderação de verdade.', 'Regra clara e denúncia com um clique. Respeito aqui não é opcional.', backgroundFour],
+              ['Reputação por acolher, não por aparecer.', 'Quem contribui com respostas úteis ganha reconhecimento. O que vale é o que você oferece quando alguém precisa.', backgroundFive],
+              ['Sem anúncio no meio do desabafo.', 'Projeto sem fins lucrativos. Ninguém está tentando te vender nada aqui.', backgroundSix],
+            ].map(([title, copy, background]) => (
+              <article
+                key={title}
+                style={{ backgroundImage: `url("${background}")` }}
+                className="relative overflow-hidden rounded-2xl border border-white/20 bg-[#02110c] bg-cover bg-center p-6 md:p-7"
+              >
+                <div className="absolute inset-0 bg-[#02110c]/65" aria-hidden="true" />
+                <div className="relative z-10">
+                  <Check size={20} className="text-[#a4a9a5]" />
+                  <h3 className="mt-8 text-lg font-bold">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/72">{copy}</p>
+                </div>
               </article>
             ))}
           </div>
