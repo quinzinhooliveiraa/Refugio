@@ -250,16 +250,18 @@ function Home() {
   return (
     <main className="min-h-screen bg-white text-[#02110c] antialiased">
       {/* NAV */}
-      <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10 md:py-8">
-        <a href="#top" aria-label="Início"><Mark /></a>
+      <header className="w-full border-b border-white/20 bg-[#032a24]/95 text-white shadow-[0_10px_30px_rgba(2,17,12,.18)] backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10 md:py-8">
+        <a href="#top" aria-label="Início"><Mark inverse /></a>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
-          <a href="#como-funciona" className="text-sm font-semibold text-[#02110c]/80 hover:text-[#06392f]">Como funciona</a>
-          <a href="#por-que" className="text-sm font-semibold text-[#02110c]/80 hover:text-[#06392f]">Por que existe</a>
-          <a href="#entrar" className="inline-flex items-center gap-1.5 rounded-full border border-[#06392f] px-4 py-2 text-sm font-semibold text-[#06392f]">Quero entrar <ArrowDownRight size={14} /></a>
+          <a href="#como-funciona" className="text-sm font-semibold text-white/85 hover:text-white">Como funciona</a>
+          <a href="#por-que" className="text-sm font-semibold text-white/85 hover:text-white">Por que existe</a>
+          <a href="#entrar" className="inline-flex items-center gap-1.5 rounded-full border border-white/70 px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#02110c]">Quero entrar <ArrowDownRight size={14} /></a>
         </nav>
-        <button type="button" onClick={() => setMenuOpen((v) => !v)} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} className="rounded-full p-2 lg:hidden">
+        <button type="button" onClick={() => setMenuOpen((v) => !v)} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} className="rounded-full p-2 text-white lg:hidden">
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
+        </div>
       </header>
       {menuOpen && (
         <nav className="mx-5 rounded-2xl border border-[#a4a9a5]/60 bg-white p-4 lg:hidden">
