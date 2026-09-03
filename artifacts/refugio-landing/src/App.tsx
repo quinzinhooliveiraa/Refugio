@@ -6,6 +6,7 @@ import backgroundThree from '@assets/__(3)_1788457940407.jpeg';
 import backgroundFour from '@assets/__(4)_1788457940407.jpeg';
 import backgroundFive from '@assets/__(5)_1788457940407.jpeg';
 import backgroundSix from '@assets/50_shades_of_green_1788457954054.jpeg';
+import eagleLogo from '@assets/refugio-eagle-logo.png';
 
 /* -------------------------------------------------------------------------
  * Refúgio — landing (uma única página) + rota /admin.
@@ -33,10 +34,9 @@ function getRef() {
 function Mark({ inverse = false }: { inverse?: boolean }) {
   return (
     <div className="flex items-center gap-2" data-testid="brand-refugio">
-      <svg width="26" height="26" viewBox="0 0 29 29" aria-hidden="true" className={inverse ? 'text-white' : 'text-[#02110c]'}>
-        <path d="M4 24.5V10.9C4 7.1 7.1 4 10.9 4h3.5c5.9 0 10.6 4.7 10.6 10.6v9.9h-5.5v-8.8c0-3.4-2.2-5.9-5.7-5.9h-1.6v14.7H4Z" fill="currentColor" />
-        <path d="M9.4 8.1c1.9 0 3.5-1.1 4.2-2.7" stroke="#06392f" strokeWidth="2.4" strokeLinecap="round" />
-      </svg>
+      <span className={`flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ${inverse ? '' : 'bg-[#06392f]'}`}>
+        <img src={eagleLogo} alt="" className="h-6 w-6 object-contain" />
+      </span>
       <span className={`text-[1.02rem] font-bold tracking-[-.04em] ${inverse ? 'text-white' : 'text-[#02110c]'}`}>refúgio</span>
     </div>
   );
