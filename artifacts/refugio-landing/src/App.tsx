@@ -270,7 +270,7 @@ function Home() {
       )}
 
       {/* 01 PROMESSA — hero */}
-      <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-16 pt-6 md:px-10 md:pb-28 md:pt-16">
+      <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 md:px-10 md:pb-20 md:pt-10">
         <Eyebrow>para quem precisa falar e não tem com quem</Eyebrow>
         <h1 className="serif mt-5 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] font-normal leading-[1] text-[#02110c]">
           Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#06392f]">Aqui, você fala — e ninguém sabe quem é você.</span>
