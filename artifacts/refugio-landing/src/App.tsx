@@ -12,7 +12,7 @@ import howItWorksTwo from '@assets/__(2)_1788459710226.jpeg';
 import howItWorksThree from '@assets/__(3)_1788459710226.jpeg';
 
 /* -------------------------------------------------------------------------
- * Refúgio — landing (uma única página) + rota /admin.
+ * Refúgio: landing (uma única página) + rota /admin.
  * Paleta fechada em 3 cores + 1 cinza de suporte:
  *   branco  #ffffff   → fundo principal
  *   preto   #02110c   → texto principal, seções de quebra
@@ -197,7 +197,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
           {submitting ? 'Guardando seu lugar…' : 'Quero entrar na lista de espera'} {!submitting && <ArrowRight size={16} />}
         </ButtonPrimary>
       </div>
-      <p className="mt-4 flex items-center gap-1.5 text-[.7rem] text-[#02110c]/60"><LockKeyhole size={12} /> Grátis e anônimo. Você entra se quiser — e sai quando quiser.</p>
+      <p className="mt-4 flex items-center gap-1.5 text-[.7rem] text-[#02110c]/60"><LockKeyhole size={12} /> Grátis e anônimo. Você entra se quiser. E sai quando quiser.</p>
     </form>
   );
 }
@@ -284,10 +284,10 @@ function Home() {
       <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 md:px-10 md:pb-20 md:pt-10">
         <Eyebrow>para quem precisa falar e não tem com quem</Eyebrow>
         <h1 className="serif mt-5 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] font-normal leading-[1] text-[#02110c]">
-          Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#06392f]">Aqui, você fala — e ninguém sabe quem é você.</span>
+          Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#06392f]">Aqui, você fala. E ninguém sabe quem é você.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
-          Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser — sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
+          Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
         <CompactBar />
         <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</p>
@@ -301,7 +301,7 @@ function Home() {
             Com quem você fala <span className="text-[#a4a9a5]">quando não dá pra falar com ninguém?</span>
           </h2>
           <p className="mt-10 max-w-4xl text-[1.06rem] leading-[1.75] text-white/85">
-            Com a família, vira preocupação. Com os amigos mais próximos, vem o medo de ser lido diferente depois. Com colega, chefe, terapeuta esperando três semanas — nada disso serve pro que você está sentindo agora, dentro do carro parado, ou às três da manhã com o celular na mão. Então você engole. Abre a caixa de mensagem de alguém, digita, apaga. Escreve nos rascunhos e nunca envia. Fecha o app. E carrega mais um dia.
+            Com a família, vira preocupação. Com os amigos mais próximos, vem o medo de ser lido diferente depois. Com colega, chefe, terapeuta esperando três semanas. Nada disso serve pro que você está sentindo agora, dentro do carro parado, ou às três da manhã com o celular na mão. Então você engole. Abre a caixa de mensagem de alguém, digita, apaga. Escreve nos rascunhos e nunca envia. Fecha o app. E carrega mais um dia.
           </p>
           <blockquote className="mt-14 max-w-3xl border-l-2 border-[#a4a9a5]/60 pl-5 md:pl-8">
             <p className="serif text-lg leading-[1.3] text-white md:text-2xl">
@@ -319,13 +319,13 @@ function Home() {
             E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
           </h2>
           <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
-            Aqui você não usa seu nome. Não coloca foto. Não monta perfil. Você escolhe um apelido, escreve, e é isso.
+            Aqui você decide como aparecer. Pode ser um apelido, um nome, uma foto qualquer, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando.
           </p>
           <p className="serif mt-8 border-l-2 border-[#06392f] pl-5 text-xl leading-[1.25] text-[#06392f] md:pl-6 md:text-2xl">
             O anonimato não é para se esconder. É o que devolve a liberdade de falar.
           </p>
           <p className="mt-8 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
-            Do outro lado, alguém lê e responde — muitas vezes alguém que já passou por isso e sabe, na pele, como é precisar de apoio. A gente sabe que isso não é terapia, e não vai fingir que é. Mas ninguém devia ter que segurar tudo sozinho até a próxima consulta.
+            Do outro lado, alguém lê e responde, muitas vezes alguém que já passou por isso e sabe, na pele, como é precisar de apoio. A gente sabe que isso não é terapia, e não vai fingir que é. Mas ninguém devia ter que segurar tudo sozinho até a próxima consulta.
           </p>
         </div>
       </section>
@@ -335,10 +335,10 @@ function Home() {
         <div className="mx-auto max-w-7xl">
           <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
           <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
-            Não é um chat de robô. É gente <span className="text-[#a4a9a5]">respondendo gente.</span>
+            Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
           </h2>
           <p className="mt-6 max-w-2xl text-[1rem] leading-[1.7] text-white/75">
-            Um exemplo de como uma conversa costuma acontecer aqui. Nomes e situação são inventados — o Refúgio ainda não abriu.
+            Um exemplo de como uma conversa costuma acontecer aqui. Nomes e situação são inventados. O Refúgio ainda não abriu.
           </p>
 
           <div className="mt-12 grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-start">
@@ -369,7 +369,7 @@ function Home() {
                 </div>
               </div>
               <p className="mt-4 text-[.98rem] leading-relaxed text-white/95">
-                Eu passei quase um ano assim. A parte pior pra mim foi exatamente essa — não ter onde soltar sem virar preocupação. O que me ajudou foi separar dois lugares: um pra falar do dia (aqui era um deles), outro pra cuidar de longo prazo. Você tem alguém pra ajudar com o longo prazo?
+                Eu passei quase um ano assim. A parte pior pra mim foi exatamente essa. Não ter onde soltar sem virar preocupação. O que me ajudou foi separar dois lugares: um pra falar do dia (aqui era um deles), outro pra cuidar de longo prazo. Você tem alguém pra ajudar com o longo prazo?
               </p>
               <div className="mt-5 flex items-center gap-2 text-[.68rem] font-bold text-white/85"><Check size={14} /> resposta marcada como útil</div>
             </div>
@@ -387,7 +387,7 @@ function Home() {
           <h2 className="serif mt-4 max-w-2xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">É simples — de propósito.</h2>
           <div className="mt-14 grid gap-4 md:grid-cols-3 md:gap-5">
             {[
-              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você — ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.', howItWorksOne],
+              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.', howItWorksOne],
               ['02', 'Escreve o que está sentindo.', 'Do jeito que sair. Sem precisar organizar, sem precisar explicar de onde veio.', howItWorksTwo],
               ['03', 'Alguém lê e responde.', 'Uma pessoa comum que talvez já tenha passado por algo parecido. Você decide o que faz sentido levar.', howItWorksThree],
             ].map(([n, title, copy, background]) => (
@@ -421,14 +421,14 @@ function Home() {
             Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
           </h2>
           <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78">
-            A gente cuidou de cada detalhe pra proteger quem fala e dar liberdade pra ouvir. Nada de seguidores, nada de curtidas públicas, nada de fila de anúncios entre um desabafo e outro.
+            Nada de seguidores. Nada de curtidas públicas. Nada de anúncio entre um desabafo e outro. A ideia é o oposto de rede social: você entra pra falar ou pra escutar, não pra performar.
           </p>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
-              ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido — só isso aparece.', backgroundOne],
+              ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido. Só isso aparece.', backgroundOne],
               ['Sem seguidores.', 'Ninguém está construindo audiência aqui. Todo mundo começa do zero, todo dia.', backgroundTwo],
               ['Pessoas que já passaram pelo mesmo.', 'Quem responde não é robô nem plantonista. É gente que sabe, pela própria vida, o que é precisar de apoio.', backgroundThree],
-              ['Moderação de verdade.', 'Regra clara e denúncia com um clique. Respeito aqui não é opcional.', backgroundFour],
+              ['Moderação de verdade.', 'Regras publicadas em uma página, sem letra miúda. Denúncia em um toque, e a equipe olha caso a caso. Quem passa do limite sai.', backgroundFour],
               ['Reputação por acolher, não por aparecer.', 'Quem contribui com respostas úteis ganha reconhecimento. O que vale é o que você oferece quando alguém precisa.', backgroundFive],
               ['Sem anúncio no meio do desabafo.', 'Projeto sem fins lucrativos. Ninguém está tentando te vender nada aqui.', backgroundSix],
             ].map(([title, copy, background]) => (
@@ -458,7 +458,7 @@ function Home() {
               É de graça — e vai continuar sendo.
             </h2>
             <p className="mx-auto mt-6 max-w-[640px] text-[1.02rem] leading-[1.7] text-[#02110c]/75">
-              A gente não quer que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, vai ser opcional — e vai continuar sem anúncio no meio do desabafo.
+              A gente não quer que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, vai ser opcional. E vai continuar sem anúncio no meio do desabafo.
             </p>
           </div>
 
@@ -472,7 +472,7 @@ function Home() {
               <ul className="space-y-5 text-[.98rem] leading-[1.55] text-[#02110c]/85">
                 <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você entra sem nome real, sem cartão, sem cadastro pesado.</li>
                 <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Ninguém, dentro ou fora daqui, vê quem é você.</li>
-                <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você pode apagar sua conta a qualquer momento — e leva junto tudo que escreveu.</li>
+                <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Você pode apagar sua conta a qualquer momento. E leva junto tudo que escreveu.</li>
                 <li className="flex gap-3"><Check size={18} className="mt-0.5 shrink-0 text-[#06392f]" /> Sem anúncios. Sem revenda de dados. Sem exceção.</li>
               </ul>
             </div>
@@ -480,7 +480,7 @@ function Home() {
             <div className="flex flex-col justify-between gap-8 bg-[#06392f] p-8 text-white md:p-10">
               <h3 className="serif text-3xl leading-[1.05]">A garantia é o anonimato.</h3>
               <p className="mt-4 text-[.98rem] leading-[1.7] text-white/85">
-                Se um dia isso mudar, você é o primeiro a saber — e decide se continua ou não. Enquanto o Refúgio existir, o anonimato vem antes de qualquer outra coisa.
+                Se um dia isso mudar, você é o primeiro a saber. E decide se continua ou não. Enquanto o Refúgio existir, o anonimato vem antes de qualquer outra coisa.
               </p>
             </div>
           </div>
@@ -498,10 +498,10 @@ function Home() {
               Você não precisa segurar tudo <span className="text-[#a4a9a5]">sozinho.</span>
             </h2>
             <p className="mx-auto mt-7 max-w-2xl text-[1.05rem] leading-[1.7] text-white/78">
-              Quando a comunidade abrir, você vai poder falar sem revelar quem é — e é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
+              A comunidade ainda não abriu. Quando abrir, você vai poder falar sem revelar quem é. E é você quem decide o quanto quer contar. Do outro lado, alguém estará pronto pra ouvir.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-[.9rem] leading-[1.7] text-white/60">
-              Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir — e vai querer saber, sem pressão, o que você espera encontrar aqui.
+              Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir. E vai querer saber, sem pressão, o que você espera encontrar aqui.
             </p>
           </div>
           <div className="mx-auto mt-12 max-w-4xl">
@@ -516,12 +516,12 @@ function Home() {
           <Eyebrow>as dúvidas que mais chegam</Eyebrow>
           <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">Antes de deixar o e-mail.</h2>
           <div className="mt-12 border-t border-[#a4a9a5]/50">
-            <FaqItem q="É mesmo anônimo?" a={<p>Sim. Você participa sem nome real, sem foto e sem perfil público — a comunidade vê só o apelido que você escolher. A gente também deixa sempre claro o mínimo que fica guardado no servidor.</p>} />
+            <FaqItem q="É mesmo anônimo?" a={<p>Sim. Você participa sem nome real, sem foto e sem perfil público. A comunidade vê só o apelido que você escolher. A gente também deixa sempre claro o mínimo que fica guardado no servidor.</p>} />
             <FaqItem q="Vocês são psicólogos ou terapeutas?" a={<p>Não. O Refúgio é uma comunidade de apoio entre pessoas. <strong>Não substitui atendimento psicológico, médico ou serviços de emergência.</strong> Se você estiver passando por um momento grave ou pensando em se machucar, ligue para o <strong className="text-[#06392f]">CVV no 188</strong> (24h, gratuito e sigiloso) ou procure a emergência no 192. Você não está sozinho.</p>} />
             <FaqItem q="E se alguém me tratar mal?" a={<p>Tem regras de convivência e moderação. Você pode denunciar qualquer conteúdo que passe do limite, e a equipe responsável cuida disso. Respeito aqui não é opcional.</p>} />
             <FaqItem q="É pago?" a={<p>Não. É gratuito e sem compromisso, porque a ideia é que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, é escolha sua.</p>} />
             <FaqItem q="Vocês vão vender meus dados?" a={<p>Não. O projeto é sem fins lucrativos e não tem anúncio no meio do desabafo. A gente não vende, não compartilha e não usa o que você escreve pra treinar nada.</p>} />
-            <FaqItem q="E se eu não souber o que escrever?" a={<p>Não precisa saber. Muita gente começa com uma frase só — "não sei por onde começar" já é começar. Você pode voltar depois, editar, ou apagar. É seu.</p>} />
+            <FaqItem q="E se eu não souber o que escrever?" a={<p>Não precisa saber. Muita gente começa com uma frase só. "Não sei por onde começar" já é começar. Você pode voltar depois, editar, ou apagar. É seu.</p>} />
           </div>
           <div
             style={{ backgroundImage: `url("${backgroundSix}")` }}

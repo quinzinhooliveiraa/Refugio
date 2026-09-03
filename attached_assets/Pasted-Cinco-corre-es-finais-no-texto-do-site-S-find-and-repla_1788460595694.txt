@@ -1,0 +1,59 @@
+Cinco correções finais no texto do site. Só find-and-replace do que
+está escrito abaixo. Não mexe em layout, cor, estrutura ou fonte.
+
+TROCA 1 — Corrige contradição na seção "A virada"
+Encontra o parágrafo:
+  "Aqui você não usa seu nome. Não coloca foto. Não monta perfil. Você
+   escolhe um apelido, escreve, e é isso."
+Substitui por:
+  "Aqui você decide como aparecer. Pode ser um apelido, um nome, uma
+   foto qualquer, ou nada disso. Não tem perfil público, não tem
+   seguidores, não tem gente te procurando."
+
+TROCA 2 — Tira auto-elogio na seção "Não é mais uma rede social"
+Encontra o parágrafo:
+  "A gente cuidou de cada detalhe pra proteger quem fala e dar
+   liberdade pra ouvir. Nada de seguidores, nada de curtidas públicas,
+   nada de fila de anúncios entre um desabafo e outro."
+Substitui por:
+  "Nada de seguidores. Nada de curtidas públicas. Nada de anúncio
+   entre um desabafo e outro. A ideia é o oposto de rede social: você
+   entra pra falar ou pra escutar, não pra performar."
+
+TROCA 3 — Concretiza o card "Moderação de verdade"
+Encontra o texto do card com título "Moderação de verdade.":
+  "Regra clara e denúncia com um clique. Respeito aqui não é opcional."
+Substitui por:
+  "Regras publicadas em uma página, sem letra miúda. Denúncia em um
+   toque, e a equipe olha caso a caso. Quem passa do limite sai."
+
+TROCA 4 — Quebra a repetição do padrão "Não é X. É Y."
+No card ou seção que contém a frase:
+  "Não é um chat de robô. É gente respondendo gente."
+Substitui por:
+  "Quem responde aqui é gente. Alguém que já sentou onde você está
+   sentado agora."
+
+TROCA 5 — Adiciona "ainda" na última chance (aumenta expectativa)
+Encontra a frase próxima do formulário final:
+  "Quando a comunidade abrir, você vai poder falar sem revelar quem é"
+Substitui por:
+  "A comunidade ainda não abriu. Quando abrir, você vai poder falar
+   sem revelar quem é"
+
+BONUS — Reduz traços longos em excesso (—) no texto do site
+No arquivo inteiro do App, procura o caractere "—" (em dash / travessão
+longo). Para cada ocorrência:
+- Se a frase antes e depois for curta e independente, troca "—" por
+  ponto final ("."). Ex.: "sem exposição — e sem precisar fingir" vira
+  "sem exposição. E sem precisar fingir".
+- Se for uma explicação curta grudada, troca "—" por vírgula. Ex.:
+  "muitas vezes alguém que já passou por isso, e sabe".
+- Se o traço estiver em um título ou pull-quote (frases de destaque),
+  MANTÉM.
+- Se o traço separar duas ideias que ficariam ruins com ponto ou
+  vírgula, também mantém.
+Meta: reduzir o total de traços longos no site em pelo menos 60%,
+sem quebrar o ritmo das frases importantes.
+
+Depois de aplicar tudo, roda o preview e me manda o link.
