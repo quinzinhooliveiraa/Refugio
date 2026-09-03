@@ -6,5 +6,14 @@
  * OpenAPI spec version: 0.1.0
  */
 
+export * from './behaviorSummary';
+export * from './behaviorSummaryFunnelItem';
+export * from './behaviorSummaryTopOriginsItem';
+export * from './behaviorSummaryVisitors';
 export * from './healthStatus';
+export * from './trackEventAck';
+export * from './trackEventRequest';
+export * from './trackEventRequestEvent';
+export * from './trackEventRequestMeta';
+export * from './trackEventRequestMetaForm';
 export * from './waitlistCount';

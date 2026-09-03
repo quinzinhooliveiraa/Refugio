@@ -46,6 +46,32 @@ function getRef() {
   }
 }
 
+type TrackEventName =
+  | 'pageview'
+  | 'scroll_como_funciona'
+  | 'scroll_faq'
+  | 'form_started'
+  | 'form_submitted'
+  | 'cta_hero_clicked'
+  | 'cta_como_funciona_clicked';
+
+function trackEvent(event: TrackEventName, meta?: Record<string, string | number | boolean>) {
+  try {
+    void fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event,
+        ref: getRef(),
+        path: window.location.pathname,
+        ...(meta ? { meta } : {}),
+      }),
+    }).catch(() => {});
+  } catch {
+    // Analytics must never interrupt the landing experience.
+  }
+}
+
 /* ------------------------- micro-componentes ------------------------- */
 
 function Mark({ inverse = false }: { inverse?: boolean }) {
@@ -94,6 +120,34 @@ function useReveal() {
   return { ref, style: { opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(14px)', transition: 'opacity .7s ease, transform .7s ease' } as React.CSSProperties };
 }
 
+function useTrackSectionView(event: 'scroll_como_funciona' | 'scroll_faq') {
+  const ref = useRef<HTMLElement>(null);
+  const tracked = useRef(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    const track = () => {
+      if (tracked.current) return;
+      tracked.current = true;
+      trackEvent(event);
+    };
+    if (!node || !('IntersectionObserver' in window)) {
+      track();
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        track();
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [event]);
+
+  return ref;
+}
+
 /* ------------------------- formulário principal ------------------------- */
 
 function SignupForm({ compact = false }: { compact?: boolean }) {
@@ -101,6 +155,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
   const [intent, setIntent] = useState<Intent | ''>('');
   const [firstIntent, setFirstIntent] = useState<FirstIntent>('');
   const [showFirstIntent, setShowFirstIntent] = useState(false);
+  const formStarted = useRef(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -131,6 +186,7 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.ok !== true) throw new Error(typeof data.error === 'string' ? data.error : 'Não foi possível salvar agora. Tente de novo.');
       try { sessionStorage.removeItem('refugio-pending-email'); } catch {}
+      trackEvent('form_submitted', { form: 'full' });
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível salvar agora. Tente de novo.');
@@ -171,7 +227,14 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
           id="refugio-email"
           type="email"
           value={email}
-          onChange={(e) => { setEmail(e.target.value); setError(''); }}
+           onChange={(e) => {
+             if (e.target.value && !formStarted.current) {
+               formStarted.current = true;
+               trackEvent('form_started', { form: compact ? 'compact' : 'full' });
+             }
+             setEmail(e.target.value);
+             setError('');
+           }}
           placeholder="voce@exemplo.com"
           className="w-full rounded-full border border-[#a4a9a5]/70 bg-white py-3.5 pl-11 pr-5 text-sm text-[#02110c] outline-none placeholder:text-[#a4a9a5] focus:border-[#06392f]"
           data-testid="input-email"
@@ -256,8 +319,9 @@ function SignupForm({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function CompactBar({ className = 'mt-8' }: { className?: string } = {}) {
+function CompactBar({ className = 'mt-8', location = 'inline' }: { className?: string; location?: 'hero' | 'inline' } = {}) {
   const [email, setEmail] = useState('');
+  const formStarted = useRef(false);
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const clean = email.trim();
@@ -273,12 +337,18 @@ function CompactBar({ className = 'mt-8' }: { className?: string } = {}) {
         type="email"
         required
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+       onChange={(e) => {
+         if (e.target.value && !formStarted.current) {
+           formStarted.current = true;
+           trackEvent('form_started', { form: location });
+         }
+         setEmail(e.target.value);
+       }}
         placeholder="Seu melhor e-mail"
         className="min-w-0 w-full flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-[#02110c] outline-none placeholder:text-[#a4a9a5]"
         aria-label="Seu melhor e-mail"
       />
-      <ButtonPrimary type="submit" className="w-full shrink-0 sm:w-auto">Entrar na lista <ArrowRight size={16} /></ButtonPrimary>
+      <ButtonPrimary type="submit" onClick={location === 'hero' ? () => trackEvent('cta_hero_clicked') : undefined} className="w-full shrink-0 sm:w-auto">Entrar na lista <ArrowRight size={16} /></ButtonPrimary>
     </form>
   );
 }
@@ -458,10 +528,15 @@ function Home() {
   const espelho = useReveal();
   const virada = useReveal();
   const como = useReveal();
+  const comoTracked = useTrackSectionView('scroll_como_funciona');
   const encontra = useReveal();
   const origem = useReveal();
+  const faqTracked = useTrackSectionView('scroll_faq');
 
-  useEffect(() => { document.title = 'Refúgio — desabafe sem revelar quem você é'; }, []);
+  useEffect(() => {
+    document.title = 'Refúgio — desabafe sem revelar quem você é';
+    trackEvent('pageview');
+  }, []);
 
   return (
     <main className="min-h-screen bg-white text-[#02110c] antialiased">
@@ -496,9 +571,9 @@ function Home() {
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
-        <CompactBar className="mt-8 lg:mx-auto" />
+        <CompactBar location="hero" className="mt-8 lg:mx-auto" />
       <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
-       <a href="#como-funciona" className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
+        <a href="#como-funciona" onClick={() => trackEvent('cta_como_funciona_clicked')} className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
          Antes disso, quero ver como funciona ↓
        </a>
       </section>
@@ -561,7 +636,7 @@ function Home() {
       </section>
 
       {/* 05 COMO FUNCIONA — 3 passos */}
-      <section id="como-funciona" className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
+      <section id="como-funciona" ref={comoTracked} className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
         <div ref={como.ref} style={como.style}>
           <div className="lg:text-center">
             <Eyebrow>como funciona</Eyebrow>
@@ -700,7 +775,7 @@ function Home() {
       </section>
 
       {/* 10 FAQ — objeções reais */}
-      <section className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
+      <section id="faq" ref={faqTracked} className="border-y border-[#a4a9a5]/50 bg-white px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
             <div className="text-center">
              <Eyebrow>as dúvidas que mais chegam</Eyebrow>
@@ -742,30 +817,42 @@ function Home() {
 
 type AdminEntry = { email: string; intent: Intent; firstIntent: FirstIntent; source: string | null; createdAt: string };
 type AdminSummary = { total: number; counts: Record<Intent, number>; firstIntentCounts: Record<Exclude<FirstIntent, ''>, number> };
+type BehaviorSummary = {
+  visitors: { today: number; sevenDays: number; thirtyDays: number };
+  conversionRate: number;
+  funnel: { event: string; label: string; count: number; rate: number }[];
+  topOrigins: { ref: string; visitors: number; conversions: number; conversionRate: number }[];
+};
 
 function Admin() {
   const [password, setPassword] = useState('');
   const [auth, setAuth] = useState('');
   const [summary, setSummary] = useState<AdminSummary | null>(null);
+  const [behavior, setBehavior] = useState<BehaviorSummary | null>(null);
   const [entries, setEntries] = useState<AdminEntry[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
-  useEffect(() => { document.title = 'Refúgio · Painel'; }, []);
+  useEffect(() => {
+    document.title = 'Refúgio · Painel';
+    trackEvent('pageview');
+  }, []);
 
   const load = async (secret = auth) => {
     setLoading(true); setError('');
     const headers = { Authorization: `Basic ${btoa(`admin:${secret}`)}` };
     try {
-      const [s, e] = await Promise.all([
+      const [s, e, b] = await Promise.all([
         fetch('/api/admin/summary', { headers }),
         fetch('/api/admin/waitlist', { headers }),
+        fetch('/api/admin/behavior', { headers }),
       ]);
-      if (s.status === 401 || e.status === 401) throw new Error('Senha inválida ou ADMIN_PASSWORD não configurado.');
-      if (!s.ok || !e.ok) throw new Error('Não foi possível carregar.');
+      if (s.status === 401 || e.status === 401 || b.status === 401) throw new Error('Senha inválida ou ADMIN_PASSWORD não configurado.');
+      if (!s.ok || !e.ok || !b.ok) throw new Error('Não foi possível carregar.');
       setSummary(await s.json());
       setEntries((await e.json()).entries);
+      setBehavior(await b.json());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível carregar.');
     } finally { setLoading(false); }
@@ -857,8 +944,81 @@ function Admin() {
                   ))}
                 </div>
               </div>
-            </div>
-            <div className="mt-10 overflow-x-auto rounded-2xl border border-[#a4a9a5]/60 bg-white">
+             </div>
+             {behavior && (
+               <section className="mt-14" aria-labelledby="behavior-title">
+                 <div className="flex flex-wrap items-end justify-between gap-4">
+                   <div>
+                     <Eyebrow>comportamento</Eyebrow>
+                     <h2 id="behavior-title" className="serif mt-3 text-4xl text-[#02110c] md:text-5xl">O que as pessoas fazem aqui.</h2>
+                   </div>
+                   <p className="text-xs text-[#a4a9a5]">Eventos anônimos · últimos 7 dias</p>
+                 </div>
+                 <div className="mt-7 grid gap-4 sm:grid-cols-4">
+                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
+                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">visitas hoje</p>
+                     <p className="serif mt-4 text-5xl text-[#02110c]">{behavior.visitors.today}</p>
+                     <p className="mt-1 text-xs text-[#a4a9a5]">visitantes únicos por dia</p>
+                   </div>
+                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
+                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">visitas 7 dias</p>
+                     <p className="serif mt-4 text-5xl text-[#02110c]">{behavior.visitors.sevenDays}</p>
+                     <p className="mt-1 text-xs text-[#a4a9a5]">visitantes únicos por dia</p>
+                   </div>
+                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6">
+                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-[#06392f]">visitas 30 dias</p>
+                     <p className="serif mt-4 text-5xl text-[#02110c]">{behavior.visitors.thirtyDays}</p>
+                     <p className="mt-1 text-xs text-[#a4a9a5]">visitantes únicos por dia</p>
+                   </div>
+                   <div className="rounded-2xl bg-[#06392f] p-6 text-white">
+                     <p className="text-[.65rem] font-bold uppercase tracking-[.22em] text-white/70">conversão 7 dias</p>
+                     <p className="serif mt-4 text-5xl">{behavior.conversionRate}%</p>
+                     <p className="mt-1 text-xs text-white/70">cadastros por visita</p>
+                   </div>
+                 </div>
+                 <div className="mt-4 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
+                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6 md:p-7">
+                     <div className="flex items-baseline justify-between gap-4">
+                       <h3 className="text-sm font-bold text-[#02110c]">Funil da página</h3>
+                       <span className="text-xs text-[#a4a9a5]">últimos 7 dias</span>
+                     </div>
+                     <div className="mt-5 space-y-3">
+                       {behavior.funnel.map((step, index) => (
+                         <div key={step.event} className="rounded-xl bg-[#f7f8f7] p-4">
+                           <div className="flex items-center justify-between gap-4">
+                             <span className="text-sm font-semibold text-[#02110c]">{index + 1}. {step.label}</span>
+                             <span className="text-lg font-bold text-[#06392f]">{step.count}</span>
+                           </div>
+                           <p className="mt-1 text-xs text-[#a4a9a5]">{index === 0 ? 'base do funil' : `${step.rate}% do nível anterior`}</p>
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                   <div className="rounded-2xl border border-[#a4a9a5]/60 bg-white p-6 md:p-7">
+                     <div className="flex items-baseline justify-between gap-4">
+                       <h3 className="text-sm font-bold text-[#02110c]">Top origens</h3>
+                       <span className="text-xs text-[#a4a9a5]">últimos 30 dias</span>
+                     </div>
+                     {behavior.topOrigins.length > 0 ? (
+                       <div className="mt-5 space-y-4">
+                         {behavior.topOrigins.map((origin) => (
+                           <div key={origin.ref} className="flex items-center justify-between gap-4 border-b border-[#a4a9a5]/30 pb-3 last:border-0 last:pb-0">
+                             <div className="min-w-0">
+                               <p className="truncate text-sm font-semibold text-[#02110c]">{origin.ref}</p>
+                               <p className="mt-1 text-xs text-[#a4a9a5]">{origin.visitors} visitantes · {origin.conversions} cadastro(s)</p>
+                             </div>
+                             <span className="shrink-0 text-sm font-bold text-[#06392f]">{origin.conversionRate}%</span>
+                           </div>
+                         ))}
+                       </div>
+                     ) : (
+                       <p className="mt-5 text-sm text-[#a4a9a5]">Ainda não há origens registradas.</p>
+                     )}
+                   </div>
+                 </div>
+               </section>
+             )}
+             <div className="mt-10 overflow-x-auto rounded-2xl border border-[#a4a9a5]/60 bg-white">
               <table className="w-full min-w-[820px] text-left text-sm">
                 <thead className="border-b border-[#a4a9a5]/50 text-xs uppercase tracking-wider text-[#a4a9a5]">
                   <tr><th className="px-5 py-4">E-mail</th><th className="px-5 py-4">Intenção</th><th className="px-5 py-4">Primeira intenção</th><th className="px-5 py-4">Data</th><th className="px-5 py-4">Origem</th></tr>
