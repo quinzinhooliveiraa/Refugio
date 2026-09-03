@@ -565,7 +565,7 @@ function Home() {
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
-              ['100% anônimo.', 'Sem nome real, sem foto, sem perfil público. Você escolhe um apelido. Só isso aparece.', backgroundOne],
+              ['100% anônimo.', 'Nome, apelido, foto — ou nada disso. Sem perfil público. Só o que você escolher mostrar aparece.', backgroundOne],
               ['Sem seguidores.', 'Ninguém está construindo audiência aqui. Todo mundo começa do zero, todo dia.', backgroundTwo],
               ['Pessoas que já passaram pelo mesmo.', 'Quem responde não é robô nem plantonista. É gente que sabe, pela própria vida, o que é precisar de apoio.', backgroundThree],
               ['Moderação de verdade.', 'Regras publicadas em uma página, sem letra miúda. Denúncia em um toque, e a equipe olha caso a caso. Quem passa do limite sai.', backgroundFour],
