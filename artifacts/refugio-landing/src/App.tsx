@@ -574,7 +574,7 @@ function Home() {
         <CompactBar location="hero" className="mt-8 lg:mx-auto" />
       <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-[#02110c]/60 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>
         <a href="#como-funciona" onClick={() => trackEvent('cta_como_funciona_clicked')} className="mt-3 block max-w-2xl text-left text-sm text-[#a4a9a5] underline-offset-4 transition-colors hover:text-[#06392f] hover:underline lg:mx-auto">
-         Antes disso, quero ver como funciona ↓
+         Prefiro entender antes de me inscrever ↓
        </a>
       </section>
 
@@ -601,7 +601,7 @@ function Home() {
         <div ref={virada.ref} style={virada.style} className="mx-auto max-w-3xl">
           <Eyebrow>a virada</Eyebrow>
           <h2 className="serif mt-4 text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] text-[#02110c]">
-            E se você pudesse falar sem que <span className="text-[#06392f]">ninguém</span> soubesse quem você é?
+            E se <span className="text-[#06392f]">você pudesse falar</span> sem que ninguém soubesse quem você é?
           </h2>
           <p className="mt-10 text-[1.06rem] leading-[1.75] text-[#02110c]/80">
             Aqui você decide como aparecer. Pode ser um apelido, um nome, uma foto qualquer, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando.
@@ -619,7 +619,7 @@ function Home() {
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="lg:text-center">
-            <Eyebrow inverse>como uma conversa parece por dentro</Eyebrow>
+            <Eyebrow inverse>uma conversa por dentro</Eyebrow>
             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
               Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
             </h2>
@@ -644,7 +644,7 @@ function Home() {
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3 md:gap-5">
             {[
-              ['01', 'Você escolhe como aparecer.', 'Um nome, um apelido, uma foto que faça sentido pra você, ou nada disso. Não tem perfil público, não tem seguidores, não tem gente te procurando pelo nome. Você decide o quanto quer mostrar.', howItWorksOne],
+              ['01', 'Você escolhe como aparecer.', 'Nome, apelido, foto que fizer sentido, ou nada disso. Sem perfil público, sem gente te procurando pelo nome.', howItWorksOne],
               ['02', 'Escreve o que está sentindo.', 'Do jeito que sair. Sem precisar organizar, sem precisar explicar de onde veio.', howItWorksTwo],
               ['03', 'Alguém lê e responde.', 'Uma pessoa comum que talvez já tenha passado por algo parecido. Você decide o que faz sentido levar.', howItWorksThree],
             ].map(([n, title, copy, background]) => (
@@ -676,7 +676,7 @@ function Home() {
           <div className="lg:text-center">
             <Eyebrow inverse>o que você encontra aqui</Eyebrow>
             <h2 className="serif mt-4 max-w-3xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94] lg:mx-auto">
-              Não é mais uma rede social. É <span className="text-[#a4a9a5]">quase o oposto dela.</span>
+              É <span className="text-[#a4a9a5]">quase o oposto de uma rede social.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-[1.02rem] leading-[1.7] text-white/78 lg:mx-auto">
               Nada de seguidores. Nada de curtidas públicas. Nada de anúncio entre um desabafo e outro. A ideia é o oposto de rede social: você entra pra falar ou pra escutar, não pra performar.
