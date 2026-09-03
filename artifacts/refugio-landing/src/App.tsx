@@ -286,6 +286,127 @@ function FaqItem({ q, a }: { q: string; a: React.ReactNode }) {
   );
 }
 
+type ConversationExample = {
+  label: string;
+  sender: string;
+  senderTime: string;
+  message: React.ReactNode;
+  responderTime: string;
+  response: React.ReactNode;
+};
+
+const conversationExamples: ConversationExample[] = [
+  {
+    label: 'Quando ninguém pergunta como você está',
+    sender: 'um apelido qualquer',
+    senderTime: 'sem foto · sem perfil · há 12 minutos',
+    message: (
+      <>
+        <p>Faz meses que ninguém pergunta como eu estou de verdade. E eu não sei mais o que responder quando alguém pergunta. Achei que ia passar sozinho, mas não passou.</p>
+        <p className="mt-4 text-[#02110c]/75">Não queria virar assunto na família. E cansei de dizer 'tô bem' quando não tô.</p>
+      </>
+    ),
+    responderTime: 'respondeu · há 4 minutos',
+    response: (
+      <>
+        <p>Eu passei quase um ano assim. A parte pior pra mim foi exatamente essa: não ter onde soltar sem virar preocupação. O que me ajudou foi separar dois lugares: um pra falar do dia (aqui era um deles), outro pra cuidar de longo prazo. Você tem alguém pra ajudar com o longo prazo?</p>
+        <div className="mt-5 flex items-center gap-2 text-[.68rem] font-bold text-white/85"><Check size={14} /> resposta marcada como útil</div>
+      </>
+    ),
+  },
+  {
+    label: 'Depois de uma perda',
+    sender: 'outro apelido',
+    senderTime: 'sem foto · sem perfil · há 20 minutos',
+    message: (
+      <p>Perdi minha avó há 3 meses e todo mundo já voltou pra vida normal. Eu não. Sinto que se eu ainda falar sobre isso, vão achar que eu não superei, que tô sendo demais. Só queria dizer isso em algum lugar.</p>
+    ),
+    responderTime: 'respondeu · há 6 minutos',
+    response: (
+      <>
+        <p>Não tem prazo pra isso, sério. Perdi meu pai faz 4 anos e ainda tem semana que dói do nada. Não é 'não ter superado', é que a gente aprende a carregar diferente. Você pode falar disso aqui sempre que precisar.</p>
+        <div className="mt-5 flex items-center gap-2 text-[.68rem] font-bold text-white/85"><Check size={14} /> resposta marcada como útil</div>
+      </>
+    ),
+  },
+  {
+    label: 'Quando você tá cansado de fingir',
+    sender: 'outro apelido',
+    senderTime: 'sem foto · sem perfil · há 5 minutos',
+    message: (
+      <p>Tô cansado. Cansado de sorrir no trabalho, cansado de dizer que tá tudo bem no grupo da família, cansado de responder mensagem como se eu fosse feliz. Não sei mais o que é sentir de verdade e o que é personagem.</p>
+    ),
+    responderTime: 'respondeu · há 2 minutos',
+    response: (
+      <>
+        <p>Isso é uma das coisas mais difíceis de nomear e você acabou de nomear. Fica com essa frase que você escreveu — 'não sei mais o que é sentir e o que é personagem'. Guarda. Não precisa resolver hoje. Só de ver escrito, já muda alguma coisa.</p>
+        <div className="mt-5 flex items-center gap-2 text-[.68rem] font-bold text-white/85"><Check size={14} /> resposta marcada como útil</div>
+      </>
+    ),
+  },
+];
+
+function ConversationShowcase() {
+  const [activeConversation, setActiveConversation] = useState(0);
+  const conversation = conversationExamples[activeConversation];
+
+  return (
+    <>
+      <div className="mt-10 flex gap-2 overflow-x-auto pb-1 md:mt-12 md:justify-center" role="tablist" aria-label="Exemplos de conversa">
+        {conversationExamples.map((example, index) => {
+          const active = activeConversation === index;
+          return (
+            <button
+              key={example.label}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              aria-controls="conversation-panel"
+              onClick={() => setActiveConversation(index)}
+              data-testid={`conversation-tab-${index + 1}`}
+              className={`min-h-10 shrink-0 rounded-full border px-4 py-2 text-left text-[.76rem] font-semibold leading-tight transition-colors md:text-center ${active ? 'border-[#06392f] bg-[#06392f] text-white' : 'border-[#a4a9a5]/60 bg-transparent text-white/70 hover:border-white/80 hover:text-white'}`}
+            >
+              {example.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        key={activeConversation}
+        id="conversation-panel"
+        role="tabpanel"
+        aria-label={conversation.label}
+        className="conversation-content grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-start"
+      >
+        <div className="rounded-3xl bg-white p-6 text-[#02110c] md:p-7">
+          <div className="flex items-center gap-3 border-b border-[#a4a9a5]/50 pb-3">
+            <span className="h-9 w-9 rounded-full bg-[#06392f]" />
+            <div>
+              <p className="text-xs font-bold">{conversation.sender}</p>
+              <p className="text-[.68rem] text-[#a4a9a5]">{conversation.senderTime}</p>
+            </div>
+          </div>
+          <div className="mt-4 text-[.98rem] leading-relaxed">{conversation.message}</div>
+        </div>
+
+        <div className="hidden md:mt-24 md:block"><ArrowRight size={28} className="text-[#a4a9a5]" /></div>
+
+        <div className="rounded-3xl bg-[#06392f] p-6 text-white md:mt-14 md:p-7">
+          <div className="flex items-center gap-3 border-b border-white/25 pb-3">
+            <span className="h-9 w-9 rounded-full bg-white" />
+            <div>
+              <p className="text-xs font-bold">outra pessoa, também anônima</p>
+              <p className="text-[.68rem] text-white/70">{conversation.responderTime}</p>
+            </div>
+          </div>
+          <div className="mt-4 text-[.98rem] leading-relaxed text-white/95">{conversation.response}</div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 /* ------------------------- HOME ------------------------- */
 
 function Home() {
@@ -381,43 +502,11 @@ function Home() {
               Quem responde aqui é gente. Alguém que já sentou onde você está sentado agora.
             </h2>
             <p className="mt-6 max-w-2xl text-[1rem] leading-[1.7] text-white/75 lg:mx-auto">
-              Um exemplo de como uma conversa costuma acontecer aqui. Nomes e situação são inventados. O Refúgio ainda não abriu.
+               Um exemplo de como uma conversa costuma acontecer aqui. Nomes e situação são inventados — o Refúgio ainda não abriu.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-start">
-            <div className="rounded-3xl bg-white p-6 text-[#02110c] md:p-7">
-              <div className="flex items-center gap-3 border-b border-[#a4a9a5]/50 pb-3">
-                <span className="h-9 w-9 rounded-full bg-[#06392f]" />
-                <div>
-                  <p className="text-xs font-bold">um apelido qualquer</p>
-                  <p className="text-[.68rem] text-[#a4a9a5]">sem foto · sem perfil · há 12 minutos</p>
-                </div>
-              </div>
-              <p className="mt-4 text-[.98rem] leading-relaxed">
-                Faz meses que ninguém pergunta como eu estou de verdade. E eu não sei mais o que responder quando alguém pergunta. Achei que ia passar sozinho, mas não passou.
-              </p>
-              <p className="mt-4 text-[.98rem] leading-relaxed text-[#02110c]/75">
-                Não queria virar assunto na família. E cansei de dizer "tô bem" quando não tô.
-              </p>
-            </div>
-
-            <div className="hidden md:mt-24 md:block"><ArrowRight size={28} className="text-[#a4a9a5]" /></div>
-
-            <div className="rounded-3xl bg-[#06392f] p-6 text-white md:mt-14 md:p-7">
-              <div className="flex items-center gap-3 border-b border-white/25 pb-3">
-                <span className="h-9 w-9 rounded-full bg-white" />
-                <div>
-                  <p className="text-xs font-bold">outra pessoa, também anônima</p>
-                  <p className="text-[.68rem] text-white/70">respondeu · há 4 minutos</p>
-                </div>
-              </div>
-              <p className="mt-4 text-[.98rem] leading-relaxed text-white/95">
-                Eu passei quase um ano assim. A parte pior pra mim foi exatamente essa. Não ter onde soltar sem virar preocupação. O que me ajudou foi separar dois lugares: um pra falar do dia (aqui era um deles), outro pra cuidar de longo prazo. Você tem alguém pra ajudar com o longo prazo?
-              </p>
-              <div className="mt-5 flex items-center gap-2 text-[.68rem] font-bold text-white/85"><Check size={14} /> resposta marcada como útil</div>
-            </div>
-          </div>
+          <ConversationShowcase />
 
           <CompactBar className="mt-14 lg:mx-auto" />
            <p className="mt-3 max-w-2xl text-center text-[.72rem] leading-relaxed text-white/70 lg:mx-auto">Grátis. Anônimo. A gente te avisa quando abrir.</p>

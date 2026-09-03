@@ -1,0 +1,77 @@
+Transforma a seção "Não é um chat de robô" (a que tem o mock de
+conversa entre "um apelido qualquer" e "outra pessoa, também anônima")
+em uma seção INTERATIVA com 3 exemplos de conversa que a pessoa
+navega clicando.
+
+Em vez de um mock fixo, agora tem 3 conversas diferentes que a pessoa
+alterna clicando em abas/botões no topo do bloco de conversa.
+
+Layout:
+- ACIMA do card de conversa, adiciona uma linha horizontal com 3
+  botões-aba (pill buttons) discretos:
+
+  [ Quando ninguém pergunta como você está ]  [ Depois de uma perda ]
+  [ Quando você tá cansado de fingir ]
+
+  Cada botão é uma pill com borda cinza clara. O selecionado fica com
+  fundo tiber verde e texto branco. Os outros ficam com fundo
+  transparente e texto branco/70.
+
+- ABAIXO das abas, o card de conversa muda de conteúdo conforme a aba
+  selecionada. O layout do card (mock à esquerda, seta no meio,
+  resposta à direita em tiber) fica IGUAL ao que já existe. Só o
+  conteúdo do texto muda.
+
+Conteúdo das 3 conversas:
+
+ABA 1 — "Quando ninguém pergunta como você está"
+Card esquerdo (apelido qualquer, há 12 minutos):
+  "Faz meses que ninguém pergunta como eu estou de verdade. E eu não
+  sei mais o que responder quando alguém pergunta. Achei que ia
+  passar sozinho, mas não passou.
+  Não queria virar assunto na família. E cansei de dizer 'tô bem'
+  quando não tô."
+Card direito (outra pessoa, também anônima, há 4 minutos):
+  "Eu passei quase um ano assim. A parte pior pra mim foi exatamente
+  essa: não ter onde soltar sem virar preocupação. O que me ajudou
+  foi separar dois lugares: um pra falar do dia (aqui era um deles),
+  outro pra cuidar de longo prazo. Você tem alguém pra ajudar com o
+  longo prazo?"
+
+ABA 2 — "Depois de uma perda"
+Card esquerdo (outro apelido, há 20 minutos):
+  "Perdi minha avó há 3 meses e todo mundo já voltou pra vida normal.
+  Eu não. Sinto que se eu ainda falar sobre isso, vão achar que eu
+  não superei, que tô sendo demais.
+  Só queria dizer isso em algum lugar."
+Card direito (outra pessoa, também anônima, há 6 minutos):
+  "Não tem prazo pra isso, sério. Perdi meu pai faz 4 anos e ainda
+  tem semana que dói do nada. Não é 'não ter superado', é que a gente
+  aprende a carregar diferente. Você pode falar disso aqui sempre
+  que precisar."
+
+ABA 3 — "Quando você tá cansado de fingir"
+Card esquerdo (outro apelido, há 5 minutos):
+  "Tô cansado. Cansado de sorrir no trabalho, cansado de dizer que
+  tá tudo bem no grupo da família, cansado de responder mensagem
+  como se eu fosse feliz. Não sei mais o que é sentir de verdade e
+  o que é personagem."
+Card direito (outra pessoa, também anônima, há 2 minutos):
+  "Isso é uma das coisas mais difíceis de nomear e você acabou de
+  nomear. Fica com essa frase que você escreveu — 'não sei mais o
+  que é sentir e o que é personagem'. Guarda. Não precisa resolver
+  hoje. Só de ver escrito, já muda alguma coisa."
+
+Regras:
+- A primeira aba (ABA 1) vem selecionada por padrão quando a página
+  carrega.
+- Ao clicar em outra aba, o conteúdo do card de conversa troca com
+  uma transição de opacidade suave (fade), sem re-renderizar a
+  seção inteira.
+- Em mobile, as 3 abas ficam empilhadas verticalmente ou em scroll
+  horizontal — o que ficar mais limpo.
+- Mantém o disclaimer que já tem embaixo: "Um exemplo de como uma
+  conversa costuma acontecer aqui. Nomes e situação são inventados
+  — o Refúgio ainda não abriu."
+
+Não muda mais nada da seção nem da página.
