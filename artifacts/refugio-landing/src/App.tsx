@@ -530,6 +530,9 @@ function Home() {
             <FaqItem q="É pago?" a={<p>Não. É gratuito e sem compromisso, porque a ideia é que ninguém deixe de pedir ajuda por causa de dinheiro. Se um dia você quiser apoiar o projeto, é escolha sua.</p>} />
             <FaqItem q="Vocês vão vender meus dados?" a={<p>Não. O projeto é sem fins lucrativos e não tem anúncio no meio do desabafo. A gente não vende, não compartilha e não usa o que você escreve pra treinar nada.</p>} />
             <FaqItem q="E se eu não souber o que escrever?" a={<p>Não precisa saber. Muita gente começa com uma frase só. "Não sei por onde começar" já é começar. Você pode voltar depois, editar, ou apagar. É seu.</p>} />
+            <FaqItem q="Quanto tempo até alguém me responder?" a={<p>Depende. Como quem responde é gente comum (não plantonista, não robô), pode levar minutos ou algumas horas. A gente também mostra quantas pessoas estão online agora, pra você não ficar no escuro. Se o assunto for urgente de verdade, ligue para o CVV no 188.</p>} />
+            <FaqItem q="E se eu me arrepender do que escrevi?" a={<p>Você pode apagar qualquer coisa que escreveu, a qualquer momento, e some pra todo mundo. Não fica em backup, não fica em cache visível pra outros usuários. E se quiser sumir de vez, apaga a conta inteira — leva junto tudo que já escreveu.</p>} />
+            <FaqItem q="Como sei que quem responde não é uma pessoa ruim?" a={<p>Ninguém entra aqui como especialista. Todo mundo começa igual, sem seguidores, sem reputação. Quem contribui com respostas úteis vai ganhando reconhecimento com o tempo, e quem passa do limite é denunciado e sai. Você também pode bloquear qualquer pessoa a qualquer momento — sem precisar justificar.</p>} />
           </div>
           <div
             style={{ backgroundImage: `url("${backgroundSix}")` }}
