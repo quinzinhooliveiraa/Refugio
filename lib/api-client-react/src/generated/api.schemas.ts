@@ -9,3 +9,8 @@ export interface HealthStatus {
   status: string;
 }
 
+export interface WaitlistCount {
+  /** @minimum 0 */
+  total: number;
+}
+

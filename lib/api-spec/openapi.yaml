@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: waitlist
+    description: Public waitlist operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /waitlist/count:
+    get:
+      operationId: getWaitlistCount
+      tags: [waitlist]
+      summary: Get public waitlist count
+      description: Returns the total number of people currently on the waitlist without exposing personal data
+      responses:
+        "200":
+          description: Current waitlist count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WaitlistCount"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +48,12 @@ components:
           type: string
       required:
         - status
+    WaitlistCount:
+      type: object
+      properties:
+        total:
+          type: number
+          minimum: 0
+      required:
+        - total
 

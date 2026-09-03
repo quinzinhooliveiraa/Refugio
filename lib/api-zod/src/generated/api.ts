@@ -17,3 +17,16 @@ export const HealthCheckResponse = zod.object({
 })
 
 
+/**
+ * Returns the total number of people currently on the waitlist without exposing personal data
+ * @summary Get public waitlist count
+ */
+export const getWaitlistCountResponseTotalMin = 0;
+
+
+
+export const GetWaitlistCountResponse = zod.object({
+  "total": zod.number().min(getWaitlistCountResponseTotalMin)
+})
+
+

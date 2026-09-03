@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowRight, ArrowDownRight, Check, ChevronDown, LockKeyhole, Mail, Menu, X } from 'lucide-react';
+import { getWaitlistCount } from '@workspace/api-client-react';
 import backgroundOne from '@assets/__(1)_1788457940406.jpeg';
 import backgroundTwo from '@assets/__(2)_1788457940406.jpeg';
 import backgroundThree from '@assets/__(3)_1788457940407.jpeg';
@@ -407,6 +408,38 @@ function ConversationShowcase() {
   );
 }
 
+function WaitlistSocialProof() {
+  const [total, setTotal] = useState<number | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    void getWaitlistCount()
+      .then(({ total: nextTotal }) => {
+        if (mounted && Number.isFinite(nextTotal)) setTotal(Math.floor(nextTotal));
+      })
+      .catch(() => {
+        // A private count endpoint must never affect the landing page.
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (total === null || total <= 50) return null;
+
+  return (
+    <section aria-label="Prova social" className="border-y border-[#a4a9a5]/50 bg-white px-5 py-16 md:px-10 md:py-24">
+      <div className="mx-auto max-w-7xl text-center">
+        <Eyebrow>gente esperando para falar</Eyebrow>
+        <p className="serif mt-4 text-[clamp(2.6rem,6vw,5rem)] leading-[.94] text-[#06392f]">
+          {total} pessoas já estão esperando.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------- HOME ------------------------- */
 
 function Home() {
@@ -588,6 +621,9 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* 07 PROVA SOCIAL — contador factual da lista */}
+      <WaitlistSocialProof />
 
       {/* 08 OFERTA — grátis + garantia = anonimato */}
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">

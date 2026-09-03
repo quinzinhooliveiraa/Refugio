@@ -6,5 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export * from './healthStatus';
-export * from './waitlistCount';
+export interface WaitlistCount {
+  /** @minimum 0 */
+  total: number;
+}

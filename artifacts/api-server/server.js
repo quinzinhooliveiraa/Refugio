@@ -171,6 +171,15 @@ const server = http.createServer(async (req, res) => {
     return json(res, 200, { ok: true });
   }
 
+  if (req.method === "GET" && pathname === "/api/waitlist/count") {
+    const total = loadSignups().length;
+    res.writeHead(200, {
+      "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+      "Content-Type": "application/json; charset=utf-8",
+    });
+    return res.end(JSON.stringify({ total }));
+  }
+
   if (req.method === "GET" && pathname === "/api/admin/summary") {
     if (!checkAuth(req)) return requireAuth(res);
     const list = loadSignups();
