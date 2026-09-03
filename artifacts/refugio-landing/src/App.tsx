@@ -281,7 +281,7 @@ function Home() {
       )}
 
       {/* 01 PROMESSA — hero */}
-      <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 md:px-10 md:pb-20 md:pt-10">
+      <section id="top" className="mx-auto w-full max-w-7xl px-5 pb-12 pt-5 md:px-10 md:pb-20 md:pt-10 lg:max-w-3xl">
         <Eyebrow>para quem precisa falar e não tem com quem</Eyebrow>
         <h1 className="serif mt-5 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] font-normal leading-[1] text-[#02110c]">
           Tem um peso que você carrega porque não tem com quem falar. <span className="text-[#06392f]">Aqui, você fala. E ninguém sabe quem é você.</span>
@@ -289,13 +289,13 @@ function Home() {
         <p className="mt-6 max-w-2xl text-[1rem] leading-[1.55] text-[#02110c]/78 md:text-[1.08rem]">
           Um lugar anônimo para desabafar e ser ouvido por quem entende. Você fala do seu jeito, na hora que quiser. Sem seguidores, sem exposição e sem precisar fingir que está tudo bem.
         </p>
-        <CompactBar />
+        <CompactBar className="mt-8 lg:mx-auto" />
         <p className="mt-3 max-w-2xl text-[.72rem] leading-relaxed text-[#02110c]/60">Grátis. Anônimo. A gente te avisa quando abrir.</p>
       </section>
 
       {/* 02 ESPELHO — narrativa em primeira pessoa, agita o problema */}
       <section className="bg-[#02110c] px-5 py-20 text-white md:px-10 md:py-32">
-        <div ref={espelho.ref} style={espelho.style} className="mx-auto max-w-7xl">
+        <div ref={espelho.ref} style={espelho.style} className="mx-auto max-w-7xl lg:max-w-3xl">
           <Eyebrow inverse>o que segura a sua voz</Eyebrow>
           <h2 className="serif mt-4 max-w-4xl text-[clamp(2rem,4.4vw,4.2rem)] leading-[.94]">
             Com quem você fala <span className="text-[#a4a9a5]">quando não dá pra falar com ninguém?</span>
