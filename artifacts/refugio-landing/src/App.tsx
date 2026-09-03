@@ -295,7 +295,7 @@ function Home() {
             Com a família, vira preocupação. Com os amigos mais próximos, vem o medo de ser lido diferente depois. Com colega, chefe, terapeuta esperando três semanas — nada disso serve pro que você está sentindo agora, dentro do carro parado, ou às três da manhã com o celular na mão. Então você engole. Abre a caixa de mensagem de alguém, digita, apaga. Escreve nos rascunhos e nunca envia. Fecha o app. E carrega mais um dia.
           </p>
           <blockquote className="mt-14 max-w-3xl border-l-2 border-[#a4a9a5]/60 pl-5 md:pl-8">
-            <p className="serif text-xl leading-[1.2] text-[#d8c7ad] md:text-3xl">
+            <p className="serif text-lg leading-[1.3] text-white md:text-2xl">
               “O problema quase nunca é falta de gente por perto. É que fica difícil ser honesto com quem sabe o seu nome, o seu rosto, a sua vida.”
             </p>
           </blockquote>
