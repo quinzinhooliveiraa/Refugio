@@ -509,6 +509,14 @@ function Home() {
             <p className="mx-auto mt-4 max-w-2xl text-[.9rem] leading-[1.7] text-white/60">
               Se fizer sentido pra você, deixe seu e-mail. A gente te avisa quando abrir. E vai querer saber, sem pressão, o que você espera encontrar aqui.
             </p>
+            <ul className="mt-7 space-y-4 text-left text-sm leading-[1.55] text-white">
+              <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Anônimo de verdade. Sem nome real, sem foto, sem perfil público.</span></li>
+              <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Grátis, sem anúncio no meio do desabafo, sem revenda de dados.</span></li>
+              <li className="flex items-start gap-3"><Check size={15} className="mt-0.5 shrink-0 text-[#06392f]" /> <span>Comunidade real. Gente que já passou por algo parecido responde.</span></li>
+            </ul>
+            <p className="mt-6 text-sm leading-relaxed text-white/70">
+              A comunidade ainda não abriu. Quando abrir, você é dos primeiros a saber.
+            </p>
           </div>
           <div className="mx-auto mt-12 max-w-4xl">
             <SignupForm />
